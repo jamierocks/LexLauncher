@@ -7,6 +7,8 @@ import java.io.*;
 
 import javax.swing.*;
 
+import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
+
 public class InstallerFrame extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
@@ -17,9 +19,13 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	
 	JMenuBar menuBar;
 	JMenu file;
+	JMenu installmenu;
 	JMenu hackedClients;
 	JMenuItem resilience;
 	JMenuItem huzuni;
+	JMenu mcForge;
+	JMenuItem mcflatest;
+	JMenuItem mcfinput;
 	JMenuItem close;
 	
 	JLabel logo;
@@ -47,6 +53,9 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		file = new JMenu("File");
 		menuBar.add(file);
 		
+		installmenu = new JMenu("Install");
+		menuBar.add(installmenu);
+		
 		hackedClients = new JMenu("Hacked Clients");
 		menuBar.add(hackedClients);
 		
@@ -61,6 +70,17 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		huzuni = new JMenuItem("Huzuni");
 		huzuni.addActionListener(this);
 		hackedClients.add(huzuni);
+		
+		mcForge = new JMenu("Minecraft Forge");
+		installmenu.add(mcForge);
+		
+		mcflatest = new JMenuItem("Latest");
+		mcflatest.addActionListener(this);
+		mcForge.add(mcflatest);
+		
+		mcfinput = new JMenuItem("Input version");
+		mcfinput.addActionListener(this);
+		mcForge.add(mcfinput);
 		
 		logo = new JLabel(resLoader.getImage("res/logo.png"));
 		installed = new JLabel(resLoader.getImage("res/installed.png"));
@@ -126,6 +146,12 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		}
 		if(event.getSource() == this.huzuni) {
 			System.out.println("Huzuni clicked");
+		}
+		if(event.getSource() == this.mcflatest) {
+			System.out.println("MinecraftForge latest clicked");
+		}
+		if(event.getSource() == this.mcfinput) {
+			System.out.println("MinecraftForge input clicked");
 		}
 	}
 }

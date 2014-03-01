@@ -1,4 +1,4 @@
-package malgm.minecraft.versioninstaller;
+package malgm.minecraft.versioninstaller.reader;
 
 import javax.xml.parsers.*;
 
