@@ -92,6 +92,7 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		field.setToolTipText("Enter the URL for your modpack/version");
 		
 		install = new JButton("Install");
+		install.setMnemonic(KeyEvent.VK_ENTER);
 		install.addActionListener(this);
 		
 		info = new JTextArea();
@@ -128,7 +129,7 @@ public class InstallerFrame extends JFrame implements ActionListener {
 					if(!(reader.getName() == "")) {
 						Installer installer = new Installer();
 						installer.install(reader.getName(), reader.getVersion(), reader.getJar(), reader.getJson(), reader.getFileName());
-						info.append("Installed " + reader.getName() + " " + reader.getVersion());
+						info.append("Installed " + reader.getName() + " " + reader.getVersion() + "\n");
 						modpack.setText(reader.getName() + " " + reader.getVersion());
 						installed.setVisible(true);
 						modpack.setVisible(true);
@@ -152,6 +153,8 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		}
 		if(event.getSource() == this.mcfinput) {
 			System.out.println("MinecraftForge input clicked");
+			String input = JOptionPane.showInputDialog("Please input a valid version of Minecraft Forge");
+			System.out.println("MinecraftForge - " + input);
 		}
 	}
 }
