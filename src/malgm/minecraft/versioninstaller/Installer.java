@@ -1,8 +1,9 @@
 package malgm.minecraft.versioninstaller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
+
+import malgm.minecraft.versioninstaller.util.Utils;
 
 public class Installer {
 	

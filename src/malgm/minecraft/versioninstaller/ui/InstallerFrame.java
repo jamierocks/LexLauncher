@@ -1,14 +1,14 @@
-package malgm.minecraft.versioninstaller;
+package malgm.minecraft.versioninstaller.ui;
 
-import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
 import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
-import malgm.minecraft.versioninstaller.reader.MinecraftForgeVersionGetter;
+import malgm.minecraft.versioninstaller.*;
+import malgm.minecraft.versioninstaller.reader.*;
+import malgm.minecraft.versioninstaller.util.*;
 
 public class InstallerFrame extends JFrame implements ActionListener {
 	
@@ -19,18 +19,13 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	private boolean installing = false;
 	
 	JMenuBar menuBar;
-	JMenu file;
-	JMenu installmenu;
-	JMenu hackedClients;
-	JMenuItem resilience;
-	JMenuItem huzuni;
+	JMenu file, installmenu, hackedClients;
+	JMenuItem resilience, huzuni;
 	JMenu mcForge;
-	JMenuItem mcflatest;
-	JMenuItem mcfinput;
+	JMenuItem mcflatest, mcfinput;
 	JMenuItem close;
 	
-	JLabel logo;
-	JLabel installed;
+	JLabel logo, installed;
 	
 	JLabel modpack;
 	

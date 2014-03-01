@@ -1,4 +1,4 @@
-package malgm.minecraft.versioninstaller;
+package malgm.minecraft.versioninstaller.util;
 
 import java.io.File;
 import java.nio.file.*;

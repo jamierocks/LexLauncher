@@ -1,13 +1,13 @@
 package malgm.minecraft.versioninstaller;
 
 import java.awt.Image;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import malgm.minecraft.versioninstaller.ui.InstallerFrame;
 
 public class VersionInstaller {
 	
@@ -44,7 +44,7 @@ public class VersionInstaller {
 		
 		InstallerFrame frame = new InstallerFrame();
 		
-		frame.setTitle("Minecraft version Installer v" + Data.getVersion());
+		frame.setTitle("Minecraft Version Installer v" + Data.getVersion());
 		frame.setIconImage(icon);
 		frame.setSize(300,400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

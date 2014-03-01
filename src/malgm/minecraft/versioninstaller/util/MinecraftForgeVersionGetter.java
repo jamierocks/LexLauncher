@@ -1,4 +1,4 @@
-package malgm.minecraft.versioninstaller.reader;
+package malgm.minecraft.versioninstaller.util;
 
 public class MinecraftForgeVersionGetter {
 	
