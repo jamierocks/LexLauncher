@@ -44,7 +44,7 @@ public class VersionInstaller {
 		
 		InstallerFrame frame = new InstallerFrame();
 		
-		frame.setTitle("Minecraft version Installer");
+		frame.setTitle("Minecraft version Installer v" + Data.getVersion());
 		frame.setIconImage(icon);
 		frame.setSize(300,400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
