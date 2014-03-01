@@ -19,11 +19,16 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	JMenu file;
 	JMenu hackedClients;
 	JMenuItem resilience;
+	JMenuItem huzuni;
 	JMenuItem close;
 	
 	JLabel logo;
 	JLabel installed;
+	
+	JLabel modpack;
+	
 	JButton install;
+	
 	JTextField field;
 	JTextArea info;
 	JScrollPane scrollPane;
@@ -53,9 +58,15 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		resilience.addActionListener(this);
 		hackedClients.add(resilience);
 		
+		huzuni = new JMenuItem("Huzuni");
+		huzuni.addActionListener(this);
+		hackedClients.add(huzuni);
+		
 		logo = new JLabel(resLoader.getImage("res/logo.png"));
 		installed = new JLabel(resLoader.getImage("res/installed.png"));
 		installed.setVisible(false);
+		modpack = new JLabel("", JLabel.CENTER);
+		modpack.setVisible(false);
 		
 		field = new JTextField(20);
 		field.setToolTipText("Enter the URL for your modpack/version");
@@ -71,13 +82,13 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		
 		scrollPane = new JScrollPane(info, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
-		
 		setJMenuBar(menuBar);
 		add(logo);
 		add(field);
 		add(install);
 		add(scrollPane);
 		add(installed);
+		add(modpack);
 	}
 	
 	public void actionPerformed(ActionEvent event) {
@@ -87,6 +98,7 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		if (event.getSource() == this.install) {
 			if(!installing == true) {
 				installed.setVisible(false);
+				modpack.setVisible(false);
 				String url = field.getText();
 				if(!(url == null)) {
 					info.append("Installing...\n");
@@ -95,9 +107,11 @@ public class InstallerFrame extends JFrame implements ActionListener {
 					reader.readDoc(url);
 					if(!(reader.getName() == "")) {
 						Installer installer = new Installer();
-						installer.install(reader.getName(), reader.getVersion(), reader.getJar(), reader.getJson());
+						installer.install(reader.getName(), reader.getVersion(), reader.getJar(), reader.getJson(), reader.getFileName());
 						info.append("Installed " + reader.getName() + " " + reader.getVersion());
+						modpack.setText(reader.getName() + " " + reader.getVersion());
 						installed.setVisible(true);
+						modpack.setVisible(true);
 					} else {
 						info.append("Failed to install!");
 					}
@@ -106,6 +120,12 @@ public class InstallerFrame extends JFrame implements ActionListener {
 					info.append("You need to give a URL");
 				}
 			}
+		}
+		if(event.getSource() == this.resilience) {
+			System.out.println("Resilience clicked");
+		}
+		if(event.getSource() == this.huzuni) {
+			System.out.println("Huzuni clicked");
 		}
 	}
 }

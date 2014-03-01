@@ -12,6 +12,7 @@ public class MVIDocumentReader {
 	private String version = null;
 	private String jar = null;
 	private String json = null;
+	private String fileName = null;
 	
 	public void readDoc(String url) {
 		try {
@@ -25,6 +26,7 @@ public class MVIDocumentReader {
 			  version = getTextValue(version, ele, "version");
 			  jar = getTextValue(jar, ele, "jar");
 			  json = getTextValue(json, ele, "json");
+			  fileName = getTextValue(fileName, ele, "fileName");
 			} catch (Exception e) {}
 	}
 	
@@ -39,6 +41,9 @@ public class MVIDocumentReader {
 	}
 	public String getJson() {
 		return json;
+	}
+	public String getFileName() {
+		return fileName;
 	}
 	
 	private String getTextValue(String def, Element doc, String tag) {
