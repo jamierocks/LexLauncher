@@ -8,6 +8,7 @@ import java.io.*;
 import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
+import malgm.minecraft.versioninstaller.reader.MinecraftForgeVersionGetter;
 
 public class InstallerFrame extends JFrame implements ActionListener {
 	
@@ -154,7 +155,8 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		if(event.getSource() == this.mcfinput) {
 			System.out.println("MinecraftForge input clicked");
 			String input = JOptionPane.showInputDialog("Please input a valid version of Minecraft Forge");
-			System.out.println("MinecraftForge - " + input);
+			MinecraftForgeVersionGetter mfvg = new MinecraftForgeVersionGetter();
+			System.out.println(mfvg.getURL(input));
 		}
 	}
 }
