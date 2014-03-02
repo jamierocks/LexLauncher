@@ -1,24 +1,18 @@
 package malgm.minecraft.versioninstaller.util;
 
-import java.io.*;
-import java.util.Properties;
+import malgm.minecraft.versioninstaller.settings.MinecraftForge;
 
 public class MinecraftForgeVersionGetter {
 	
 	private String part1 = null;
 	private String part2 = null;
 	
+	private MinecraftForge forge = new MinecraftForge();
+	
 	public String getURL(String version) {
-		
-		try {
-			Properties configFile = new Properties();
-			configFile.load(this.getClass().getResourceAsStream("config.properties"));
 			
-			part1 = configFile.getProperty("mcfpart1");
-			part2 = configFile.getProperty("mcfpart2");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		part1 = forge.getProperty("mcfpart1");
+		part2 = forge.getProperty("mcfpart2");
 		
 		return part1 + version + "/" + version + part2;
 	}
