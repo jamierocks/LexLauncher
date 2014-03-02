@@ -10,21 +10,15 @@ public class MinecraftForgeVersionGetter {
 	
 	public String getURL(String version) {
 		
-		Properties prop = new Properties();
-		InputStream input = null;
-		
 		try {
-			input = new FileInputStream("config.properties");
+			Properties configFile = new Properties();
+			configFile.load(this.getClass().getResourceAsStream("config.properties"));
 			
-			prop.load(input);
-			
-			part1 = prop.getProperty("mcfpart1");
-			part2 = prop.getProperty("mcfpart2");
+			part1 = configFile.getProperty("mcfpart1");
+			part2 = configFile.getProperty("mcfpart2");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(part1 + version + "/" + version + part2);
 		
 		return part1 + version + "/" + version + part2;
 	}

@@ -151,7 +151,7 @@ public class InstallerFrame extends JFrame implements ActionListener {
 			System.out.println("MinecraftForge input clicked");
 			String input = JOptionPane.showInputDialog("Please input a valid version of Minecraft Forge");
 			MinecraftForgeVersionGetter mfvg = new MinecraftForgeVersionGetter();
-			System.out.println(mfvg.getURL(input));
+			info.append(mfvg.getURL(input));
 		}
 	}
 }
