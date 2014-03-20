@@ -16,14 +16,16 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	
 	private ResourceLoader resLoader = new ResourceLoader();
 	
+	private OptionsFrame optionspane;
+	
 	private boolean installing = false;
 	
 	JMenuBar menuBar;
-	JMenu file, installmenu, hackedClients;
-	JMenuItem resilience, huzuni;
-	JMenu mcForge;
+	JMenu file, installmenu;
+	JMenu mcForge, mmAPI;
 	JMenuItem mcflatest, mcfinput;
-	JMenuItem close;
+	JMenuItem malatest, mainput;
+	JMenuItem close, options;
 	
 	JLabel logo, installed;
 	
@@ -44,6 +46,8 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	public void init() throws IOException {
 		setLayout(new FlowLayout());
 		
+		optionspane = new OptionsFrame();
+		
 		menuBar = new JMenuBar();
 		
 		file = new JMenu("File");
@@ -52,20 +56,13 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		installmenu = new JMenu("Install");
 		menuBar.add(installmenu);
 		
-		hackedClients = new JMenu("Hacked Clients");
-		menuBar.add(hackedClients);
+		options = new JMenuItem("Options");
+		options.addActionListener(this);
+		file.add(options);
 		
 		close = new JMenuItem("Close App");
 		close.addActionListener(this);
 		file.add(close);
-		
-		resilience = new JMenuItem("Resilience");
-		resilience.addActionListener(this);
-		hackedClients.add(resilience);
-		
-		huzuni = new JMenuItem("Huzuni");
-		huzuni.addActionListener(this);
-		hackedClients.add(huzuni);
 		
 		mcForge = new JMenu("Minecraft Forge");
 		installmenu.add(mcForge);
@@ -77,6 +74,17 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		mcfinput = new JMenuItem("Input version");
 		mcfinput.addActionListener(this);
 		mcForge.add(mcfinput);
+		
+		mmAPI = new JMenu("mmAPI");
+		installmenu.add(mmAPI);
+		
+		malatest = new JMenuItem("Latest");
+		malatest.addActionListener(this);
+		mmAPI.add(malatest);
+		
+		mainput = new JMenuItem("Input version");
+		mainput.addActionListener(this);
+		mmAPI.add(mainput);
 		
 		logo = new JLabel(resLoader.getImage("res/logo.png"));
 		installed = new JLabel(resLoader.getImage("res/installed.png"));
@@ -112,46 +120,76 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		if (event.getSource() == this.close) {
 			System.exit(0);
 		}
+		if(event.getSource() == this.options) {
+			System.out.println("Options clicked");
+			
+			optionspane.setTitle("Options");
+			optionspane.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			optionspane.setSize(300, 400);
+			optionspane.setResizable(false);
+			optionspane.setVisible(true);
+		}
 		if (event.getSource() == this.install) {
 			if(!installing == true) {
 				installed.setVisible(false);
 				modpack.setVisible(false);
 				String url = field.getText();
-				if(!(url == null)) {
-					info.append("Installing...\n");
-					installing = true;
-					MVIDocumentReader reader = new MVIDocumentReader();
-					reader.readDoc(url);
-					if(!(reader.getName() == "")) {
-						Installer installer = new Installer();
-						installer.install(reader.getName(), reader.getVersion(), reader.getJar(), reader.getJson(), reader.getFileName());
-						info.append("Installed " + reader.getName() + " " + reader.getVersion() + "\n");
-						modpack.setText(reader.getName() + " " + reader.getVersion());
-						installed.setVisible(true);
-						modpack.setVisible(true);
-					} else {
-						info.append("Failed to install!");
-					}
-					installing = false;
-				} else { 
-					info.append("You need to give a URL");
-				}
+				install(url);
 			}
 		}
-		if(event.getSource() == this.resilience) {
-			System.out.println("Resilience clicked");
-		}
-		if(event.getSource() == this.huzuni) {
-			System.out.println("Huzuni clicked");
-		}
 		if(event.getSource() == this.mcflatest) {
-			System.out.println("MinecraftForge latest clicked");
+			if(!installing == true) {
+				System.out.println("MinecraftForge latest clicked");
+			}
 		}
 		if(event.getSource() == this.mcfinput) {
-			System.out.println("MinecraftForge input clicked");
-			String input = JOptionPane.showInputDialog("Please input a valid version of Minecraft Forge");
-			MinecraftForgeVersionGetter mfvg = new MinecraftForgeVersionGetter();
-			info.append(mfvg.getURL(input));
+			if(!installing == true) {
+				System.out.println("MinecraftForge input clicked");
+				String input = JOptionPane.showInputDialog("Please input a valid version of Minecraft Forge");
+				MinecraftForgeVersionGetter mfvg = new MinecraftForgeVersionGetter();
+				info.append(mfvg.getURL(input));
+				install(mfvg.getURL(input));
+			}
 		}
+		if(event.getSource() == this.malatest) {
+			if(!installing == true) {
+				System.out.println("mmAPI latest clicked");
+			}
+		}
+		if(event.getSource() == this.mainput) {
+			if(!installing == true) {
+				System.out.println("mmAPI input clicked");
+				String input = JOptionPane.showInputDialog("Please input a valid version of mmAPI");
+				MinecraftForgeVersionGetter mfvg = new MinecraftForgeVersionGetter();
+				info.append(mfvg.getURL(input));
+				install(mfvg.getURL(input));
+			}
+		}
+	}
+	
+	public void install(String url) {
+		if(!(url == null)) {
+			info.append("Installing...\n");
+			installing = true;
+			MVIDocumentReader reader = new MVIDocumentReader();
+			reader.readDoc(url);
+			if(!(reader.getName() == "")) {
+				Installer installer = new Installer();
+				installer.install(reader.getName(), reader.getVersion(), reader.getJar(), reader.getJson(), reader.getFileName());
+				info.append("Installed " + reader.getName() + " " + reader.getVersion() + "\n");
+				modpack.setText(reader.getName() + " " + reader.getVersion());
+				installed.setVisible(true);
+				modpack.setVisible(true);
+			} else {
+				info.append("Failed to install!");
+			}
+			installing = false;
+		} else { 
+			info.append("You need to give a URL");
+		}
+	}
+	
+	public void print(String text) {
+		info.append(text);
 	}
 }
