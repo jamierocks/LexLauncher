@@ -13,9 +13,10 @@ public class Menus {
 	
 	private JPanel menus = new JPanel();
 	
-	private JButton installTab;
+	private JButton installTab, optionsTab;
 	
 	public void render(JFrame frame, ActionListener listener) throws IOException {
+		
 		// install tab 
 		installTab = new JButton(resLoader.getImage("res/installTab.png"));
 		installTab.setBorder(null);
@@ -24,7 +25,16 @@ public class Menus {
 		installTab.addActionListener(listener);
 		menus.add(installTab);
 		
+		// options tab 
+		optionsTab = new JButton(resLoader.getImage("res/optionsTab.png"));
+		optionsTab.setBorder(null);
+		optionsTab.setBorderPainted(false);
+		optionsTab.setFocusPainted(false);
+		optionsTab.addActionListener(listener);
+		menus.add(optionsTab);
+		
 		frame.add(menus);
+		
 	}
 
 }

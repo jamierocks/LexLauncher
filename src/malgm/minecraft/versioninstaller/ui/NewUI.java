@@ -14,11 +14,12 @@ public class NewUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	//private ResourceLoader resLoader = new ResourceLoader();
+	private Menus menus = new Menus();
 	
 	private JMenuBar menuBar;
 	
 	private JMenu file;
-	private JMenuItem options, exit;
+	private JMenuItem exit;
 	
 	public NewUI(){
 		try {
@@ -36,18 +37,12 @@ public class NewUI extends JFrame implements ActionListener {
 		file = new JMenu("File");
 		menuBar.add(file);
 		
-		// options under file in the menu bar
-		options = new JMenuItem("Options");
-		options.addActionListener(this);
-		file.add(options);
-		
 		// exit under file in the menu bar
 		exit = new JMenuItem("Exit application");
 		exit.addActionListener(this);
 		file.add(exit);
 		
 		//menu tabs
-		Menus menus = new Menus();
 		menus.render(this, this);
 		
 		setJMenuBar(menuBar);
