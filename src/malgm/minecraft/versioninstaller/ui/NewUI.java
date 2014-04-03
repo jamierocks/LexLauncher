@@ -61,12 +61,15 @@ public class NewUI extends JFrame implements ActionListener {
 		}
 		if(event.getSource() == menus.welcomeTab) {
 			setTab(1);
+			welcomeTab.panel.setVisible(true);
 		}
 		if(event.getSource() == menus.installTab) {
 			setTab(2);
+			welcomeTab.panel.setVisible(false);
 		}
 		if(event.getSource() == menus.optionsTab) {
 			setTab(3);
+			welcomeTab.panel.setVisible(false);
 		}
 	}
 

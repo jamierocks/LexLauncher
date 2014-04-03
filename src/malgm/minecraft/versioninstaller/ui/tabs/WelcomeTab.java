@@ -13,7 +13,7 @@ public class WelcomeTab {
 	
 	private JLabel logo;
 	
-	private JPanel panel = new JPanel();
+	public JPanel panel = new JPanel();
 	
 	public void render(JFrame frame, ActionListener listener) throws IOException {
 		
