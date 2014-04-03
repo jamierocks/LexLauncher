@@ -13,6 +13,8 @@ public class VersionInstaller {
 	
 	static Image icon;
 	
+	private static Data data = new Data();
+	
 	public static void main(String []args) {
 		
 		String imagePath = "res/icon.png";
@@ -44,7 +46,7 @@ public class VersionInstaller {
 		
 		InstallerFrame frame = new InstallerFrame();
 		
-		frame.setTitle("Minecraft Version Installer v" + Data.getVersion());
+		frame.setTitle("Minecraft Version Installer v" + data.getVersion());
 		frame.setIconImage(icon);
 		frame.setSize(300,400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

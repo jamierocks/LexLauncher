@@ -2,9 +2,9 @@ package malgm.minecraft.versioninstaller;
 
 public class Data {
 	
-	private static double version = 1.003;
+	private double version = 1.003;
 
-	public static double getVersion() {
+	public double getVersion() {
 		return version;
 	}
 

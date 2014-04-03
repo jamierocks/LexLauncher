@@ -17,6 +17,7 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	private ResourceLoader resLoader = new ResourceLoader();
 	
 	private OptionsFrame optionspane;
+	private NewUI newuipane;
 	
 	private boolean installing = false;
 	
@@ -25,7 +26,7 @@ public class InstallerFrame extends JFrame implements ActionListener {
 	JMenu mcForge, mmAPI;
 	JMenuItem mcflatest, mcfinput;
 	JMenuItem malatest, mainput;
-	JMenuItem close, options;
+	JMenuItem close, options, newui;
 	
 	JLabel logo, installed;
 	
@@ -47,66 +48,88 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		setLayout(new FlowLayout());
 		
 		optionspane = new OptionsFrame();
+		newuipane = new NewUI();
 		
 		menuBar = new JMenuBar();
 		
+		//menu bar file
 		file = new JMenu("File");
 		menuBar.add(file);
 		
+		//menu bar install
 		installmenu = new JMenu("Install");
 		menuBar.add(installmenu);
 		
+		//inside of file - options
 		options = new JMenuItem("Options");
 		options.addActionListener(this);
 		file.add(options);
 		
-		close = new JMenuItem("Close App");
+		//inside of file - new ui
+		newui = new JMenuItem("Try new ui");
+		newui.addActionListener(this);
+		file.add(newui);
+		
+		//inside of file - close app
+		close = new JMenuItem("Exit Application");
 		close.addActionListener(this);
 		file.add(close);
 		
+		//Inside of install - mc forge
 		mcForge = new JMenu("Minecraft Forge");
 		installmenu.add(mcForge);
 		
+		//inside of mc forge - latest
 		mcflatest = new JMenuItem("Latest");
 		mcflatest.addActionListener(this);
 		mcForge.add(mcflatest);
 		
+		//inside of mc forge - input version
 		mcfinput = new JMenuItem("Input version");
 		mcfinput.addActionListener(this);
 		mcForge.add(mcfinput);
 		
+		//Inside of install - mmapi
 		mmAPI = new JMenu("mmAPI");
 		installmenu.add(mmAPI);
 		
+		//inside of mampi - latest
 		malatest = new JMenuItem("Latest");
 		malatest.addActionListener(this);
 		mmAPI.add(malatest);
 		
+		//inside of mmapi - input version
 		mainput = new JMenuItem("Input version");
 		mainput.addActionListener(this);
 		mmAPI.add(mainput);
 		
+		//MVI logo
 		logo = new JLabel(resLoader.getImage("res/logo.png"));
 		installed = new JLabel(resLoader.getImage("res/installed.png"));
 		installed.setVisible(false);
 		modpack = new JLabel("", JLabel.CENTER);
 		modpack.setVisible(false);
 		
+		// Text field for url
 		field = new JTextField(20);
 		field.setToolTipText("Enter the URL for your modpack/version");
 		
+		//install button
 		install = new JButton("Install");
 		install.setMnemonic(KeyEvent.VK_ENTER);
 		install.addActionListener(this);
 		
+		// text area
 		info = new JTextArea();
 		info.setFont(new Font("Sans Serif", 2, 12));
 		info.append("Welcome to the Minecraft version Installer!\n");
 		info.append("Enter the URL for your modpack/version and\nclick Install\n");
 		info.setEditable(false);
 		
+		//scrollpane for text area
 		scrollPane = new JScrollPane(info, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
+		//adding everything
 		setJMenuBar(menuBar);
 		add(logo);
 		add(field);
@@ -128,6 +151,15 @@ public class InstallerFrame extends JFrame implements ActionListener {
 			optionspane.setSize(300, 400);
 			optionspane.setResizable(false);
 			optionspane.setVisible(true);
+		}
+		if(event.getSource() == this.newui) {
+			System.out.println("New UI");
+			
+			newuipane.setTitle("New UI");
+			newuipane.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			newuipane.setSize(400, 400);
+			newuipane.setResizable(false);
+			newuipane.setVisible(true);
 		}
 		if (event.getSource() == this.install) {
 			if(!installing == true) {
@@ -189,7 +221,4 @@ public class InstallerFrame extends JFrame implements ActionListener {
 		}
 	}
 	
-	public void print(String text) {
-		info.append(text);
-	}
 }
