@@ -1,5 +1,6 @@
 package malgm.minecraft.versioninstaller.ui.tabs;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
@@ -11,9 +12,10 @@ public class WelcomeTab {
 	
 	private ResourceLoader resLoader = new ResourceLoader();
 	
-	private JLabel logo;
+	private JLabel logo, text;
 	
-	public JPanel panel = new JPanel();
+	private JPanel panel = new JPanel();
+	private JPanel textpanel = new JPanel();
 	
 	public void render(JFrame frame, ActionListener listener) throws IOException {
 		
@@ -21,8 +23,20 @@ public class WelcomeTab {
 		logo = new JLabel(resLoader.getImage("res/logo.png"));
 		panel.add(logo);
 		
-		frame.add(panel);
+		// Welcome text
+		text = new JLabel("<html>Welcome to the Minecraft Version Installer!<br />Find a mod to install and goto the install tab.</html>");
+		textpanel.add(text);
 		
+		textpanel.setBackground(Color.cyan);
+		
+		frame.add(panel);
+		frame.add(textpanel);
+		
+	}
+	
+	public void setVisible(boolean visible) {
+		panel.setVisible(visible);
+		textpanel.setVisible(visible);
 	}
 
 }

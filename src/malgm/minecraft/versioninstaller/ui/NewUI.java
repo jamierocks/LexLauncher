@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.ui.panels.Menus;
+import malgm.minecraft.versioninstaller.ui.tabs.OptionsTab;
 import malgm.minecraft.versioninstaller.ui.tabs.WelcomeTab;
 
 public class NewUI extends JFrame implements ActionListener {
@@ -18,6 +19,7 @@ public class NewUI extends JFrame implements ActionListener {
 
 	private Menus menus = new Menus();
 	private WelcomeTab welcomeTab = new WelcomeTab();
+	private OptionsTab optionsTab = new OptionsTab();
 	
 	private JMenuBar menuBar;
 	
@@ -48,8 +50,13 @@ public class NewUI extends JFrame implements ActionListener {
 		// menu tabs
 		menus.render(this, this);
 		
-		// render tab
+		// render welcome tab
 		welcomeTab.render(this, this);
+		welcomeTab.setVisible(true);
+		
+		// render options tab
+		optionsTab.render(this);
+		optionsTab.setVisible(false);
 		
 		setJMenuBar(menuBar);
 	}
@@ -61,15 +68,18 @@ public class NewUI extends JFrame implements ActionListener {
 		}
 		if(event.getSource() == menus.welcomeTab) {
 			setTab(1);
-			welcomeTab.panel.setVisible(true);
+			welcomeTab.setVisible(true);
+			optionsTab.setVisible(false);
 		}
 		if(event.getSource() == menus.installTab) {
 			setTab(2);
-			welcomeTab.panel.setVisible(false);
+			welcomeTab.setVisible(false);
+			optionsTab.setVisible(false);
 		}
 		if(event.getSource() == menus.optionsTab) {
 			setTab(3);
-			welcomeTab.panel.setVisible(false);
+			welcomeTab.setVisible(false);
+			optionsTab.setVisible(true);
 		}
 	}
 
