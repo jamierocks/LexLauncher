@@ -1,6 +1,6 @@
 package malgm.minecraft.versioninstaller.ui;
 
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -8,13 +8,16 @@ import java.io.IOException;
 import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.ui.panels.Menus;
+import malgm.minecraft.versioninstaller.ui.tabs.WelcomeTab;
 
 public class NewUI extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	//private ResourceLoader resLoader = new ResourceLoader();
+	private int tab = 1;
+
 	private Menus menus = new Menus();
+	private WelcomeTab welcomeTab = new WelcomeTab();
 	
 	private JMenuBar menuBar;
 	
@@ -42,8 +45,11 @@ public class NewUI extends JFrame implements ActionListener {
 		exit.addActionListener(this);
 		file.add(exit);
 		
-		//menu tabs
+		// menu tabs
 		menus.render(this, this);
+		
+		// render tab
+		welcomeTab.render(this, this);
 		
 		setJMenuBar(menuBar);
 	}
@@ -53,6 +59,23 @@ public class NewUI extends JFrame implements ActionListener {
 		if(event.getSource() == this.exit) {
 			System.exit(0);
 		}
+		if(event.getSource() == menus.welcomeTab) {
+			setTab(1);
+		}
+		if(event.getSource() == menus.installTab) {
+			setTab(2);
+		}
+		if(event.getSource() == menus.optionsTab) {
+			setTab(3);
+		}
+	}
+
+	public int getTab() {
+		return tab;
+	}
+
+	public void setTab(int tab) {
+		this.tab = tab;
 	}
 
 }

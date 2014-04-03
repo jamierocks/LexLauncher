@@ -153,12 +153,13 @@ public class InstallerFrame extends JFrame implements ActionListener {
 			optionspane.setVisible(true);
 		}
 		if(event.getSource() == this.newui) {
-			System.out.println("New UI");
+			System.out.println("Experimental UI");
 			
-			newuipane.setTitle("New UI");
+			newuipane.setTitle("Minecraft Version Installer experimental UI");
 			newuipane.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			newuipane.setSize(400, 400);
 			newuipane.setResizable(false);
+			newuipane.getContentPane().setBackground(Color.CYAN);
 			newuipane.setVisible(true);
 		}
 		if (event.getSource() == this.install) {
