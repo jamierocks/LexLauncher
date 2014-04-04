@@ -22,11 +22,12 @@ public class NewUI extends JFrame implements ActionListener {
 	private WelcomeTab welcomeTab = new WelcomeTab();
 	private OptionsTab optionsTab = new OptionsTab();
 	private InstallTab installTab = new InstallTab();
+	private CreditsTab creditsTab = new CreditsTab();
 	
 	private JMenuBar menuBar;
 	
 	private JMenu file;
-	private JMenuItem exit;
+	private JMenuItem exit, credits;
 	
 	public NewUI(){
 		try {
@@ -43,6 +44,11 @@ public class NewUI extends JFrame implements ActionListener {
 		
 		file = new JMenu("File");
 		menuBar.add(file);
+		
+		// credits under file in the menu bar
+		credits = new JMenuItem("Credits");
+		credits.addActionListener(this);
+		file.add(credits);
 		
 		// exit under file in the menu bar
 		exit = new JMenuItem("Exit application");
@@ -64,6 +70,10 @@ public class NewUI extends JFrame implements ActionListener {
 		installTab.render(this);
 		installTab.setVisible(false);
 		
+		// render install tab
+		creditsTab.render(this);
+		creditsTab.setVisible(false);
+		
 		setJMenuBar(menuBar);
 	}
 	
@@ -73,18 +83,28 @@ public class NewUI extends JFrame implements ActionListener {
 			welcomeTab.setVisible(true);
 			optionsTab.setVisible(false);
 			installTab.setVisible(false);
+			creditsTab.setVisible(false);
 		}
 		// install tab
 		if(tab == 2) {
 			welcomeTab.setVisible(false);
 			optionsTab.setVisible(false);
 			installTab.setVisible(true);
+			creditsTab.setVisible(false);
 		}
 		// options tab
 		if(tab == 3) {
 			welcomeTab.setVisible(false);
 			optionsTab.setVisible(true);
 			installTab.setVisible(false);
+			creditsTab.setVisible(false);
+		}
+		// credits tab
+		if(tab == 4) {
+			welcomeTab.setVisible(false);
+			optionsTab.setVisible(false);
+			installTab.setVisible(false);
+			creditsTab.setVisible(true);
 		}
 	}
 
@@ -104,6 +124,10 @@ public class NewUI extends JFrame implements ActionListener {
 		// on click of the options tab
 		if(event.getSource() == menus.optionsTab) {
 			changeTab(3);
+		}
+		// on click of credits under file
+		if(event.getSource() == this.credits) {
+			changeTab(4);
 		}
 	}
 
