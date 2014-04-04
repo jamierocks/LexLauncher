@@ -70,7 +70,7 @@ public class NewUI extends JFrame implements ActionListener {
 		installTab.render(this);
 		installTab.setVisible(false);
 		
-		// render install tab
+		// render credits tab
 		creditsTab.render(this);
 		creditsTab.setVisible(false);
 		

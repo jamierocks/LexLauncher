@@ -26,7 +26,8 @@ public class CreditsTab {
 		text = new JLabel("<html>Hello my name is Jamie, I am the creator of Minecraft Version Installer.<br />"
 				+ "My aim with Minecraft Version Installer is to make installing mods and etc easy.<br /><br />"
 				+ "Hopefully you as the consumer will enjoy using Minecraft Version Installer as<br />"
-				+ "much as I did creating it!</html>");
+				+ "much as I did creating it. :)<br /><br />"
+				+ "- Jamie</html>");
 		textpanel.add(text);
 		
 		textpanel.setBackground(Color.cyan);
