@@ -6,8 +6,13 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.ui.panels.Menus;
+import malgm.minecraft.versioninstaller.ui.panels.*;
 import malgm.minecraft.versioninstaller.ui.tabs.*;
+
+/*
+ * 
+ * MVI UI v2 
+ */
 
 public class NewUI extends JFrame implements ActionListener {
 

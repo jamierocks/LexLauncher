@@ -1,5 +1,6 @@
 package malgm.minecraft.versioninstaller.ui.tabs;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -28,6 +29,9 @@ public class OptionsTab implements ActionListener {
 	private JLabel logo;
 	
 	public void render(JFrame frame) throws IOException {
+		
+		// color the normal panel
+		panel.setBackground(Color.CYAN);
 		
 		//MVI logo
 		logo = new JLabel(resLoader.getImage("res/logo.png"));
