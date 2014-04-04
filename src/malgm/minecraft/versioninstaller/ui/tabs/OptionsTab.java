@@ -6,11 +6,15 @@ import java.io.IOException;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
 
 public class OptionsTab implements ActionListener {
+	
+	private ResourceLoader resLoader = new ResourceLoader();
 	
 	//Array of modes
 	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
@@ -19,8 +23,17 @@ public class OptionsTab implements ActionListener {
 	SettingsFile settings = new SettingsFile();
 	
 	private JPanel panel = new JPanel();
+	private JPanel logoPanel = new JPanel();
+	
+	private JLabel logo;
 	
 	public void render(JFrame frame) throws IOException {
+		
+		//MVI logo
+		logo = new JLabel(resLoader.getImage("res/logo.png"));
+		logoPanel.add(logo);
+		
+		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);
 		list.setSelectedItem(settings.getSettingsValue(settings.getDefaultConfigFile(), "mcDirectory"));
 		list.addActionListener(this);
@@ -28,11 +41,14 @@ public class OptionsTab implements ActionListener {
 		
 		panel.add(list);
 		
+		frame.add(logoPanel);
 		frame.add(panel);
+		
 	}
 	
 	public void setVisible(boolean visible) {
 		panel.setVisible(visible);
+		logoPanel.setVisible(visible);
 	}
 
 	@Override

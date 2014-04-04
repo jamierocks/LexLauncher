@@ -24,7 +24,7 @@ public class WelcomeTab {
 		panel.add(logo);
 		
 		// Welcome text
-		text = new JLabel("<html>Welcome to the Minecraft Version Installer!<br />Find a mod to install and goto the install tab.</html>");
+		text = new JLabel("<html>Welcome to the Minecraft Version Installer!<br />Find a mod to install and use the install tab to install it.</html>");
 		textpanel.add(text);
 		
 		textpanel.setBackground(Color.cyan);
