@@ -93,6 +93,7 @@ public class InstallTab implements ActionListener{
 				mviDocReader.readDoc(field.getText());
 				info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
 				Utils utils = new Utils();
+				utils.createDirectory(installer.getDirectory());
 				utils.createDirectory(installer.getDirectory() + mviDocReader.getFileName());
 				try {
 					installer.downloadJar(installer.getDirectory(), mviDocReader.getJar(), mviDocReader.getFileName());

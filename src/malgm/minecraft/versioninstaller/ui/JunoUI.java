@@ -27,7 +27,7 @@ public class JunoUI extends JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	
 	private JMenu file;
-	private JMenuItem exit, credits;
+	private JMenuItem exit, credits, modslist;
 	
 	public JunoUI(){
 		try {
@@ -49,6 +49,11 @@ public class JunoUI extends JFrame implements ActionListener {
 		credits = new JMenuItem("Credits");
 		credits.addActionListener(this);
 		file.add(credits);
+		
+		// mods list under file in the menu bar
+		modslist = new JMenuItem("Mods list");
+		modslist.addActionListener(this);
+		file.add(modslist);
 		
 		// exit under file in the menu bar
 		exit = new JMenuItem("Exit application");
