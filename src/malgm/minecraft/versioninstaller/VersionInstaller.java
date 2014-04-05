@@ -6,7 +6,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.ui.NewUI;
+import malgm.minecraft.versioninstaller.ui.JunoUI;
 
 public class VersionInstaller {
 	
@@ -36,7 +36,7 @@ public class VersionInstaller {
 		}
 		catch (Exception e) {e.printStackTrace();}
 		
-		NewUI frame = new NewUI();
+		JunoUI frame = new JunoUI();
 		
 		frame.setTitle("Minecraft Version Installer build " + data.getVersion());
 		frame.setIconImage(icon);

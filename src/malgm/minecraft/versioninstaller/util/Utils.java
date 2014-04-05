@@ -1,7 +1,6 @@
 package malgm.minecraft.versioninstaller.util;
 
 import java.io.File;
-import java.nio.file.*;
 
 public class Utils {
 	
@@ -31,16 +30,6 @@ public class Utils {
 	      return null;
 	    }
 	    return dir;
-	}
-	
-	public boolean folderExists(String folder) {
-		Path path = Paths.get(folder);
-		
-		if (Files.exists(path)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 	
 }
