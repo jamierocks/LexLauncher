@@ -15,6 +15,9 @@ public class MVIDocumentReader {
 	private String fileName = null;
 	private String modpack = null;
 	private String standalonemod = null;
+	private String modpackurl = null;
+	private String profile = null;
+	private String profilename = null;
 	
 	public void readDoc(String url) {
 		try {
@@ -31,6 +34,9 @@ public class MVIDocumentReader {
 			  fileName = getTextValue(fileName, ele, "fileName");
 			  modpack = getTextValue(modpack, ele, "modpack");
 			  standalonemod = getTextValue(standalonemod, ele, "standalonemod");
+			  modpackurl = getTextValue(modpackurl, ele, "modpackurl");
+			  profile = getTextValue(profile, ele, "profile");
+			  profilename = getTextValue(profilename, ele, "profilename");
 			} catch (Exception e) {}
 	}
 	
@@ -62,6 +68,19 @@ public class MVIDocumentReader {
 		} else {
 			return false;
 		}
+	}
+	public String getModpackURL() {
+		return modpackurl;
+	}
+	public boolean makeProfile() {
+		if(profile.equals("true")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public String getProfileName() {
+		return profilename;
 	}
 	
 	private String getTextValue(String def, Element doc, String tag) {

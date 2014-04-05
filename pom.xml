@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Minecraft-Version-Installer</groupId>
   <artifactId>Minecraft-Version-Installer</artifactId>
-  <version>1.009</version>
+  <version>1.010</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
