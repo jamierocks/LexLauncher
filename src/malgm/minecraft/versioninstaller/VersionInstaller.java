@@ -40,7 +40,7 @@ public class VersionInstaller {
 		
 		frame.setTitle("Minecraft Version Installer build " + data.getVersion());
 		frame.setIconImage(icon);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 400);
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.CYAN);

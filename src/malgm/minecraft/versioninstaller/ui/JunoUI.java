@@ -27,7 +27,7 @@ public class JunoUI extends JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	
 	private JMenu file;
-	private JMenuItem exit, credits, trialui;
+	private JMenuItem exit, credits;
 	
 	public JunoUI(){
 		try {
@@ -49,11 +49,6 @@ public class JunoUI extends JFrame implements ActionListener {
 		credits = new JMenuItem("Credits");
 		credits.addActionListener(this);
 		file.add(credits);
-		
-		// trail ui
-		trialui = new JMenuItem("Try TrialUI");
-		trialui.addActionListener(this);
-		file.add(trialui);
 		
 		// exit under file in the menu bar
 		exit = new JMenuItem("Exit application");
@@ -134,14 +129,6 @@ public class JunoUI extends JFrame implements ActionListener {
 		if(event.getSource() == this.credits) {
 			changeTab(4);
 		}
-		// trial ui
-		if(event.getSource() == this.trialui) {
-			tryTrialUI();
-		}
-	}
-	
-	public void tryTrialUI() {
-		
 	}
 
 }
