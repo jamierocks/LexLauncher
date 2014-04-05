@@ -30,9 +30,9 @@ public class Installer {
 	
 	public String getDirectory() {
 		if(settings.getSettingsValue(settings.getDefaultConfigFile(), "mcDirectory").equals("Default Minecraft Directory")) {
-			return Utils.getMinecraftDirectory().toString();
+			return Utils.getMinecraftDirectory().toString() + "versions/";
 		} else {
-			return settings.getSettingsValue(settings.getDefaultConfigFile(), "customDirectory");
+			return settings.getSettingsValue(settings.getDefaultConfigFile(), "customDirectory")  + "versions/";
 		}
 	}
 

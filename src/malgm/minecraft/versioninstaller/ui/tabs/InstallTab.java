@@ -18,10 +18,11 @@ import javax.swing.JTextField;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
 import malgm.minecraft.versioninstaller.util.Installer;
+import malgm.minecraft.versioninstaller.util.Utils;
 
 public class InstallTab implements ActionListener{
 	
-	private boolean installing = false;
+	private boolean installing = false, successful = true;
 	
 	private MVIDocumentReader mviDocReader = new MVIDocumentReader();
 	private Installer installer = new Installer();
@@ -87,20 +88,26 @@ public class InstallTab implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == this.install) {
-			
-			System.out.println("Install button clicked");
 			if(!installing) {
 				installing = true;
 				mviDocReader.readDoc(field.getText());
 				info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+				Utils utils = new Utils();
+				utils.createDirectory(installer.getDirectory() + mviDocReader.getFileName());
 				try {
 					installer.downloadJar(installer.getDirectory(), mviDocReader.getJar(), mviDocReader.getFileName());
 					installer.downloadJson(installer.getDirectory(), mviDocReader.getJson(), mviDocReader.getFileName());
-				} catch (IOException e) {info.append("Failed to install modpack/version\n");}
-				info.append("Installed " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+					successful = true;
+				} catch (IOException e) {
+					info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");
+					successful = false;
+				}
+				if(successful) {
+					info.append("Installed " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+				}
 				installing = false;
+				successful = false;
 			}
-			
 		}
 	}
 

@@ -32,4 +32,9 @@ public class Utils {
 	    return dir;
 	}
 	
+	public void createDirectory(String dir) {
+		File file = new File(dir);
+		file.mkdir();
+	}
+	
 }

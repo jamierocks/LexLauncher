@@ -109,7 +109,12 @@ public class OptionsTab implements ActionListener {
 			change.setEnabled(true);
 		}
 		if(event.getSource() == this.change) {
-			settings.writeToSettingsFile(settings.getDefaultConfigFile(), "customDirectory", field.getText());
+			String s = field.getText();
+			if(!(s.substring(s.length() - 1) == "\\")) {
+				s += "\\";
+			}
+			settings.writeToSettingsFile(settings.getDefaultConfigFile(), "customDirectory", s);
+			field.setText(settings.getSettingsValue(settings.getDefaultConfigFile(), "customDirectory"));
 		}
 	}
 
