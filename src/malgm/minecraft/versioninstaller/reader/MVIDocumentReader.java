@@ -6,11 +6,15 @@ import org.w3c.dom.*;
 
 public class MVIDocumentReader {
 	
+	// test url - https://dl.dropboxusercontent.com/s/b7cnf5m08fh2g7q/test.xml
+	
 	private String name = null;
 	private String version = null;
 	private String jar = null;
 	private String json = null;
 	private String fileName = null;
+	private String modpack = null;
+	private String standalonemod = null;
 	
 	public void readDoc(String url) {
 		try {
@@ -25,6 +29,8 @@ public class MVIDocumentReader {
 			  jar = getTextValue(jar, ele, "jar");
 			  json = getTextValue(json, ele, "json");
 			  fileName = getTextValue(fileName, ele, "fileName");
+			  modpack = getTextValue(modpack, ele, "modpack");
+			  standalonemod = getTextValue(standalonemod, ele, "standalonemod");
 			} catch (Exception e) {}
 	}
 	
@@ -42,6 +48,20 @@ public class MVIDocumentReader {
 	}
 	public String getFileName() {
 		return fileName;
+	}
+	public boolean isModpack() {
+		if(modpack.equals("true")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean isStandaloneMod() {
+		if(standalonemod.equals("true")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private String getTextValue(String def, Element doc, String tag) {
