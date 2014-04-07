@@ -1,4 +1,4 @@
-package malgm.minecraft.versioninstaller.ui;
+package malgm.minecraft.versioninstaller.ui.modslist;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

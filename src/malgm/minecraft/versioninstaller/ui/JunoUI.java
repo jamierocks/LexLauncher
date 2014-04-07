@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import malgm.minecraft.versioninstaller.ui.modslist.ModsListUI;
 import malgm.minecraft.versioninstaller.ui.panels.*;
 import malgm.minecraft.versioninstaller.ui.tabs.*;
 

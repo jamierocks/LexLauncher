@@ -1,10 +1,9 @@
-package malgm.minecraft.versioninstaller.ui;
+package malgm.minecraft.versioninstaller.ui.modslist;
 
 import java.awt.Dimension;
 
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+import javax.swing.event.*;
 
 public class ModsListContainer extends JPanel implements TableModelListener {
 
@@ -28,6 +27,10 @@ public class ModsListContainer extends JPanel implements TableModelListener {
 		jt.getTableHeader().setReorderingAllowed(false);
 		
 		JScrollPane jsp = new JScrollPane(jt);
+		
+		//TableColumn modname = jt.getColumnModel().getColumn(1);
+		//TableColumn installed = jt.getColumnModel().getColumn(2);
+		//TableColumn install = jt.getColumnModel().getColumn(2);
 		
 		add(jsp);
 	}
