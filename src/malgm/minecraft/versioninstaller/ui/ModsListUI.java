@@ -17,6 +17,15 @@ public class ModsListUI extends JFrame implements ActionListener {
 	private JSONParser parser = new JSONParser();
 	
 	private String[] modslist = null, urllist = null;
+	
+	public ModsListUI() {
+		init();
+	}
+	
+	public void init() {
+		ModsListContainer c = new ModsListContainer();
+		add(c);
+	}
 
 	public String[] getModsList(String url) throws ParseException {
 		JSONArray results = null;

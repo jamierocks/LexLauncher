@@ -88,27 +88,31 @@ public class InstallTab implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == this.install) {
-			if(!installing) {
-				installing = true;
-				mviDocReader.readDoc(field.getText());
-				info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
-				Utils utils = new Utils();
-				utils.createDirectory(installer.getDirectory());
-				utils.createDirectory(installer.getDirectory() + mviDocReader.getFileName());
-				try {
-					installer.downloadJar(installer.getDirectory(), mviDocReader.getJar(), mviDocReader.getFileName());
-					installer.downloadJson(installer.getDirectory(), mviDocReader.getJson(), mviDocReader.getFileName());
-					successful = true;
-				} catch (IOException e) {
-					info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");
-					successful = false;
-				}
-				if(successful) {
-					info.append("Installed " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
-				}
-				installing = false;
+			install(field.getText());
+		}
+	}
+	
+	public void install(String modurl) {
+		if(!installing) {
+			installing = true;
+			mviDocReader.readDoc(modurl);
+			info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+			Utils utils = new Utils();
+			utils.createDirectory(installer.getDirectory());
+			utils.createDirectory(installer.getDirectory() + mviDocReader.getFileName());
+			try {
+				installer.downloadJar(installer.getDirectory(), mviDocReader.getJar(), mviDocReader.getFileName());
+				installer.downloadJson(installer.getDirectory(), mviDocReader.getJson(), mviDocReader.getFileName());
+				successful = true;
+			} catch (IOException e) {
+				info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");
 				successful = false;
 			}
+			if(successful) {
+				info.append("Installed " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+			}
+			installing = false;
+			successful = false;
 		}
 	}
 
