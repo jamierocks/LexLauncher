@@ -1,5 +1,6 @@
 package malgm.minecraft.versioninstaller.ui;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +24,8 @@ public class ModsListUI extends JFrame implements ActionListener {
 	}
 	
 	public void init() {
+		setLayout(new FlowLayout());
+		
 		ModsListContainer c = new ModsListContainer();
 		add(c);
 	}
@@ -50,6 +53,20 @@ public class ModsListUI extends JFrame implements ActionListener {
 	    for (int i = 0; i < ((CharSequence) results).length(); i++) {
 	    	JSONObject childJSONObject = (JSONObject) results.get(i);
 	        urllist[i] += childJSONObject.get("url");
+	    }
+		
+		return urllist;
+	}
+	
+	public String[] getFilename(String url) throws ParseException {
+		JSONArray results = null;
+		JSONObject json = (JSONObject) parser.parse(url);
+		
+		results = (JSONArray) json.get("mods");
+
+	    for (int i = 0; i < ((CharSequence) results).length(); i++) {
+	    	JSONObject childJSONObject = (JSONObject) results.get(i);
+	        urllist[i] += childJSONObject.get("filename");
 	    }
 		
 		return urllist;

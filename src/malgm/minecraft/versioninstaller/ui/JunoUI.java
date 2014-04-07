@@ -24,6 +24,8 @@ public class JunoUI extends JFrame implements ActionListener {
 	private InstallTab installTab = new InstallTab();
 	private CreditsTab creditsTab = new CreditsTab();
 	
+	private ModsListUI modslistui = new ModsListUI();
+	
 	private JMenuBar menuBar;
 	
 	private JMenu file;
@@ -133,6 +135,14 @@ public class JunoUI extends JFrame implements ActionListener {
 		// on click of credits under file
 		if(event.getSource() == this.credits) {
 			changeTab(4);
+		}
+		// on click of modslist
+		if(event.getSource() == this.modslist) {
+			modslistui.setTitle("Mods List");
+			modslistui.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			modslistui.setSize(600,250);
+			modslistui.setResizable(false);
+			modslistui.setVisible(true);
 		}
 	}
 
