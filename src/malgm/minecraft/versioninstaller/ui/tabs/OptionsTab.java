@@ -38,7 +38,7 @@ public class OptionsTab implements ActionListener {
 		
 		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);
-		list.setSelectedItem(settings.getSettingsValue(settings.getDefaultConfigFile(), "mcDirectory"));
+		list.setSelectedItem(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory"));
 		list.addActionListener(this);
 		list.setEnabled(true);
 		
@@ -46,7 +46,7 @@ public class OptionsTab implements ActionListener {
 		
 		// Text field for custom directory
 		field = new JTextField(20);
-		field.setText(settings.getSettingsValue(settings.getDefaultConfigFile(), "customDirectory"));
+		field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
 		field.setToolTipText("Enter the directory of your custom directory");
 		textfield.add(field);
 		
@@ -87,13 +87,13 @@ public class OptionsTab implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(list.getSelectedItem() == modes[0]) {
-			settings.writeToSettingsFile(settings.getDefaultConfigFile(), "mcDirectory", "Default Minecraft Directory");
+			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", "Default Minecraft Directory");
 			field.setEditable(false);
 			browse.setEnabled(false);
 			change.setEnabled(false);
 		}
 		if(list.getSelectedItem() == modes[1]) {
-			settings.writeToSettingsFile(settings.getDefaultConfigFile(), "mcDirectory", "Custom Minecraft Directory");
+			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", "Custom Minecraft Directory");
 			field.setEditable(true);
 			browse.setEnabled(true);
 			change.setEnabled(true);
@@ -103,8 +103,8 @@ public class OptionsTab implements ActionListener {
 			if(!(s.substring(s.length() - 1) == "\\")) {
 				s += "\\";
 			}
-			settings.writeToSettingsFile(settings.getDefaultConfigFile(), "customDirectory", s);
-			field.setText(settings.getSettingsValue(settings.getDefaultConfigFile(), "customDirectory"));
+			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory", s);
+			field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
 		}
 	}
 

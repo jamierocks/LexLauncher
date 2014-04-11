@@ -9,11 +9,15 @@ public class SettingsFile {
 	OutputStream output = null;
 	InputStream input = null;
 	
-	public void writeToSettingsFile(String filename, String property, String value) {
+	private String userhome = System.getProperty("user.home");
+	
+	public void writeToSettingsFile(String directory, String filename, String property, String value) {
 		
 		try {
 			 
-			output = new FileOutputStream(filename);
+			checkIfExists(directory, filename);
+			
+			output = new FileOutputStream(directory + "/" + filename);
 	 
 			// set the properties value
 			prop.setProperty(property, value);
@@ -36,13 +40,18 @@ public class SettingsFile {
 		
 	}
 	
-	public String getSettingsValue(String filename, String property) {
+	public String getSettingsValue(String directory, String filename, String property) {
 		try {
+			
+			checkIfExists(directory, filename);
 			 
-			input = new FileInputStream(filename);
+			input = new FileInputStream(directory + "/" + filename);
 	 
 			// load a properties file
 			prop.load(input);
+			
+			// check values
+			checkValues(directory, filename);
 	 
 			// get the property value and print it out
 			return prop.getProperty(property);
@@ -61,8 +70,34 @@ public class SettingsFile {
 		return null;
 	}
 	
-	public String getDefaultConfigFile() {
+	public void checkIfExists(String directory, String filename) throws IOException {
+		File dir = new File(directory);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		File file = new File(directory + "/" + filename);
+		if(!file.createNewFile()) {}
+	}
+	
+	public void checkValues(String dir, String filename) {
+		File file = new File(dir + "/" + filename);
+		boolean empty = file.length() == 0;
+		if(empty) {
+			writeDefaults(dir, filename);
+		}
+	}
+	
+	public void writeDefaults(String dir, String filename) {
+		this.writeToSettingsFile(dir, filename, "mcDirectory", "Default Minecraft Directory");
+	}
+	
+	public String getDefaultFileName() {
 		return "config.properties";
+	}
+	
+	public String getDefaultDirectory() {
+		return userhome + "/Lexware/MVI/";
 	}
 
 }
