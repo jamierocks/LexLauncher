@@ -7,18 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
-import malgm.minecraft.versioninstaller.util.Installer;
-import malgm.minecraft.versioninstaller.util.Utils;
+import malgm.minecraft.versioninstaller.util.*;
 
 public class InstallTab implements ActionListener{
 	
@@ -27,13 +19,9 @@ public class InstallTab implements ActionListener{
 	private MVIDocumentReader mviDocReader = new MVIDocumentReader();
 	private Installer installer = new Installer();
 	
-	private ResourceLoader resLoader = new ResourceLoader();
-	
 	private JPanel panel = new JPanel();
 	private JPanel textfield = new JPanel();
 	private JPanel preview = new JPanel();
-	
-	private JLabel logo;
 	
 	private JTextField field;
 	
@@ -47,9 +35,9 @@ public class InstallTab implements ActionListener{
 		textfield.setBackground(Color.CYAN);
 		preview.setBackground(Color.CYAN);
 		
-		//MVI logo
-		logo = new JLabel(resLoader.getImage("res/logo.png"));
-		panel.add(logo);
+		// MVI logo
+		BaseTab basetab = new BaseTab();
+		basetab.render(panel);
 		
 		// Text field for url
 		field = new JTextField(20);

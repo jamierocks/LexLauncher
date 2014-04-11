@@ -5,13 +5,9 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.ResourceLoader;
-
 public class CreditsTab {
 	
-	private ResourceLoader resLoader = new ResourceLoader();
-	
-	private JLabel logo, text;
+	private JLabel text;
 	
 	private JPanel panel = new JPanel();
 	private JPanel textpanel = new JPanel();
@@ -19,8 +15,8 @@ public class CreditsTab {
 	public void render(JFrame frame) throws IOException {
 		
 		// MVI logo
-		logo = new JLabel(resLoader.getImage("res/logo.png"));
-		panel.add(logo);
+		BaseTab basetab = new BaseTab();
+		basetab.render(panel);
 		
 		// Welcome text
 		text = new JLabel("<html>Hello my name is Jamie, I am the creator of Minecraft Version Installer.<br />"

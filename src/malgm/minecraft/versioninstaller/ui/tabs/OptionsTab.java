@@ -6,19 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
 
 public class OptionsTab implements ActionListener {
-	
-	private ResourceLoader resLoader = new ResourceLoader();
 	
 	//Array of modes
 	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
@@ -30,8 +22,6 @@ public class OptionsTab implements ActionListener {
 	private JPanel logoPanel = new JPanel();
 	private JPanel textfield = new JPanel();
 	
-	private JLabel logo;
-	
 	private JButton browse, change;
 	
 	private JTextField field;
@@ -42,9 +32,9 @@ public class OptionsTab implements ActionListener {
 		panel.setBackground(Color.CYAN);
 		textfield.setBackground(Color.CYAN);
 		
-		//MVI logo
-		logo = new JLabel(resLoader.getImage("res/logo.png"));
-		logoPanel.add(logo);
+		// MVI logo
+		BaseTab basetab = new BaseTab();
+		basetab.render(logoPanel);
 		
 		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);
