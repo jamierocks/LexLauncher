@@ -9,8 +9,7 @@ import javax.swing.ImageIcon;
 public class ResourceLoader {
 	
 	public ImageIcon getImage(String imagePath) throws IOException {
-		InputStream imgStream = ResourceLoader.class.getResourceAsStream(imagePath);
-		BufferedImage image = ImageIO.read(imgStream);
+		BufferedImage image = ImageIO.read(new File(imagePath));
 		return new ImageIcon(image);
 	}
 
