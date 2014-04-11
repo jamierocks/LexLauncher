@@ -19,8 +19,9 @@ public class VersionInstaller {
 	public static void main(String []args) {
 
 		icon = null;
+		InputStream imgStream = VersionInstaller.class.getResourceAsStream(resFinder.icon());
 		try {
-			icon = ImageIO.read(new File(resFinder.icon()));
+			icon = ImageIO.read(imgStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 public class ResourceLoader {
 	
 	public ImageIcon getImage(String imagePath) throws IOException {
-		BufferedImage image = ImageIO.read(new File(imagePath));
+		BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream(imagePath));
 		return new ImageIcon(image);
 	}
 
