@@ -12,14 +12,15 @@ public class VersionInstaller {
 	
 	static Image icon;
 	
+	private static ResourceFinder resFinder = new ResourceFinder();
+	
 	private static Data data = new Data();
 	
 	public static void main(String []args) {
-		
-		String imagePath = "res/icon.png";
+
 		icon = null;
 		try {
-			icon = ImageIO.read(new File(imagePath));
+			icon = ImageIO.read(new File(resFinder.icon()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
