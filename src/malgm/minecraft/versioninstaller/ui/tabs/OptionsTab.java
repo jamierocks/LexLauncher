@@ -100,7 +100,8 @@ public class OptionsTab implements ActionListener {
 		}
 		if(event.getSource() == this.change) {
 			String s = field.getText();
-			if(!(s.substring(s.length() - 1) == "\\")) {
+			String su = s.substring(s.length() - 1);
+			if(!su.equals("\\")) {
 				s += "\\";
 			}
 			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory", s);
