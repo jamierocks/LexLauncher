@@ -89,8 +89,9 @@ public class InstallTab implements ActionListener{
 			utils.createDirectory(installer.getDirectory());
 			utils.createDirectory(installer.getDirectory() + mviDocReader.getFileName());
 			try {
-				installer.downloadJar(installer.getDirectory(), mviDocReader.getJar(), mviDocReader.getFileName());
-				installer.downloadJson(installer.getDirectory(), mviDocReader.getJson(), mviDocReader.getFileName());
+				String directory = installer.getDirectory() + "/" + mviDocReader.getFileName();
+				installer.downloadFile(mviDocReader.getJar(), directory, mviDocReader.getFileName()+".jar");
+				installer.downloadFile(mviDocReader.getJson(), directory, mviDocReader.getFileName()+".json");
 				successful = true;
 			} catch (IOException e) {
 				info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");

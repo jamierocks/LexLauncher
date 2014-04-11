@@ -1,10 +1,8 @@
 package malgm.minecraft.versioninstaller.util;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.*;
 
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
 
@@ -13,18 +11,10 @@ public class Installer {
 	SettingsFile settings = new SettingsFile();
 	
 	@SuppressWarnings("resource")
-	public void downloadJar(String directory, String downloadFile, String fileName) throws IOException {
-		URL website = new URL(downloadFile);
+	public void downloadFile(String url, String directory, String filename) throws IOException {
+		URL website = new URL(url);
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-		FileOutputStream fos = new FileOutputStream(directory + fileName + "/" + fileName + ".jar");
-		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-	}
-	
-	@SuppressWarnings("resource")
-	public void downloadJson(String directory, String downloadFile, String fileName) throws IOException {
-		URL website = new URL(downloadFile);
-		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-		FileOutputStream fos = new FileOutputStream(directory + fileName + "/" + fileName + ".json");
+		FileOutputStream fos = new FileOutputStream(directory + "/" + filename);
 		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 	}
 	
