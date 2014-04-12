@@ -34,7 +34,7 @@ public class Utils {
 	
 	public void createDirectory(String dir) {
 		File file = new File(dir);
-		file.mkdir();
+		file.mkdirs();
 	}
 	
 }
