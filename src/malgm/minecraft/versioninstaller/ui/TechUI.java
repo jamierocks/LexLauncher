@@ -40,6 +40,10 @@ public class TechUI extends DraggableFrame {
 	private HeaderTab installTab;
 	private HeaderTab optionsTab;
 	
+	private WelcomeInfoPanel welcomePanel;
+	private InstallInfoPanel installPanel;
+	private OptionsInfoPanel optionsPanel;
+	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
 	
@@ -70,6 +74,8 @@ public class TechUI extends DraggableFrame {
 		} else if(tabName.equalsIgnoreCase(TAB_OPTIONS)) {
 			optionsTab.setIsActive(true);
 		}
+		
+		infoLayout.show(infoSwap, tabName);
 	}
 	
 	protected void closeWindow() {
@@ -91,7 +97,7 @@ public class TechUI extends DraggableFrame {
         setLayout(layout);
         
         //////////////////////////////////////
-        //Header
+        // Header
         //////////////////////////////////////
         JPanel header = new JPanel();
         header.setLayout(new BoxLayout(header, BoxLayout.LINE_AXIS));
@@ -106,7 +112,7 @@ public class TechUI extends DraggableFrame {
         header.add(headerLabel);
         
         header.add(Box.createRigidArea(new Dimension(6, 0)));
-
+        
         ActionListener tabListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,13 +126,13 @@ public class TechUI extends DraggableFrame {
         header.add(welcomeTab);
         
         installTab = new HeaderTab("Install", resLoader);
-        welcomeTab.setActionCommand(TAB_INSTALL);
-        welcomeTab.addActionListener(tabListener);
+        installTab.setActionCommand(TAB_INSTALL);
+        installTab.addActionListener(tabListener);
         header.add(installTab);
         
         optionsTab = new HeaderTab("Options", resLoader);
-        welcomeTab.setActionCommand(TAB_OPTIONS);
-        welcomeTab.addActionListener(tabListener);
+        optionsTab.setActionCommand(TAB_OPTIONS);
+        optionsTab.addActionListener(tabListener);
         header.add(optionsTab);
         
         header.add(Box.createHorizontalGlue());
@@ -183,11 +189,11 @@ public class TechUI extends DraggableFrame {
         this.add(infoContainer, BorderLayout.CENTER);
         infoContainer.setLayout(new BorderLayout());
         
-        WelcomeInfoPanel welcomePanel = new WelcomeInfoPanel(resLoader);
+        welcomePanel = new WelcomeInfoPanel(resLoader);
         
-        InstallInfoPanel installPanel = new InstallInfoPanel(resLoader);
+        installPanel = new InstallInfoPanel(resLoader);
         
-        OptionsInfoPanel optionsPanel = new OptionsInfoPanel(resLoader);
+        optionsPanel = new OptionsInfoPanel(resLoader);
         
         infoSwap = new JPanel();
         infoLayout = new CardLayout();
