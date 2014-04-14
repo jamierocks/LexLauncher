@@ -14,7 +14,9 @@ import malgm.minecraft.versioninstaller.Data;
 import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.ui.controls.DraggableFrame;
+import malgm.minecraft.versioninstaller.ui.controls.FooterButton;
 import malgm.minecraft.versioninstaller.ui.controls.HeaderTab;
+import malgm.minecraft.versioninstaller.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.install.InstallInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.options.OptionsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.welcome.WelcomeInfoPanel;
@@ -35,14 +37,18 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_WELCOME = "welcome";
 	public static final String TAB_INSTALL = "install";
 	public static final String TAB_OPTIONS = "options";
+	public static final String TAB_CREDITS = "credits";
 	
 	private HeaderTab welcomeTab;
 	private HeaderTab installTab;
 	private HeaderTab optionsTab;
 	
+	private FooterButton creditsTab;
+	
 	private WelcomeInfoPanel welcomePanel;
 	private InstallInfoPanel installPanel;
 	private OptionsInfoPanel optionsPanel;
+	private CreditsInfoPanel creditsPanel;
 	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
@@ -66,6 +72,7 @@ public class TechUI extends DraggableFrame {
 		welcomeTab.setIsActive(false);
 		installTab.setIsActive(false);
 		optionsTab.setIsActive(false);
+		creditsTab.setIsActive(false);
 		
 		if(tabName.equalsIgnoreCase(TAB_WELCOME)) {
 			welcomeTab.setIsActive(true);
@@ -73,6 +80,8 @@ public class TechUI extends DraggableFrame {
 			installTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_OPTIONS)) {
 			optionsTab.setIsActive(true);
+		} else if(tabName.equalsIgnoreCase(TAB_CREDITS)) {
+			creditsTab.setIsActive(true);
 		}
 		
 		infoLayout.show(infoSwap, tabName);
@@ -195,6 +204,8 @@ public class TechUI extends DraggableFrame {
         
         optionsPanel = new OptionsInfoPanel(resLoader);
         
+        creditsPanel = new CreditsInfoPanel(resLoader);
+        
         infoSwap = new JPanel();
         infoLayout = new CardLayout();
         infoSwap.setLayout(infoLayout);
@@ -202,6 +213,7 @@ public class TechUI extends DraggableFrame {
         infoSwap.add(welcomePanel, TAB_WELCOME);
         infoSwap.add(installPanel, TAB_INSTALL);
         infoSwap.add(optionsPanel, TAB_OPTIONS);
+        infoSwap.add(creditsPanel, TAB_CREDITS);
         infoContainer.add(infoSwap, BorderLayout.CENTER);
         
         //////////////////////////////////////
@@ -217,6 +229,13 @@ public class TechUI extends DraggableFrame {
         dashText.setForeground(COLOR_WHITE_TEXT);
         dashText.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText);
+        
+        footer.add(Box.createHorizontalGlue());
+        
+        creditsTab = new FooterButton("Credits", resLoader);
+        creditsTab.setActionCommand(TAB_CREDITS);
+        creditsTab.addActionListener(tabListener);
+        footer.add(creditsTab);
 
         infoContainer.add(footer, BorderLayout.PAGE_END);
 	}
