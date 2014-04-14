@@ -1,6 +1,7 @@
 package malgm.minecraft.versioninstaller.ui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -14,6 +15,9 @@ import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.ui.controls.DraggableFrame;
 import malgm.minecraft.versioninstaller.ui.controls.HeaderTab;
+import malgm.minecraft.versioninstaller.ui.tabs.install.InstallInfoPanel;
+import malgm.minecraft.versioninstaller.ui.tabs.options.OptionsInfoPanel;
+import malgm.minecraft.versioninstaller.ui.tabs.welcome.WelcomeInfoPanel;
 
 public class TechUI extends DraggableFrame {
 	
@@ -25,6 +29,8 @@ public class TechUI extends DraggableFrame {
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
 	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
     public static final Color COLOR_BLACK_TEXT = new Color(0,0,0);
+    public static final Color COLOR_CHARCOAL = new Color(31, 31, 31);
+    public static final Color COLOR_SELECTOR_BACK = new Color(22,26,29);
 	
 	public static final String TAB_WELCOME = "welcome";
 	public static final String TAB_INSTALL = "install";
@@ -33,6 +39,9 @@ public class TechUI extends DraggableFrame {
 	private HeaderTab welcomeTab;
 	private HeaderTab installTab;
 	private HeaderTab optionsTab;
+	
+	private CardLayout infoLayout;
+	private JPanel infoSwap;
 	
 	private ResourceLoader resLoader = new ResourceLoader();
 	private ResourceFinder resFinder = new ResourceFinder();
@@ -64,7 +73,7 @@ public class TechUI extends DraggableFrame {
 	}
 	
 	protected void closeWindow() {
-        this.dispose();
+	    this.dispose();
     }
 
 	public void relocalize(ResourceLoader resLoader) {
@@ -164,6 +173,46 @@ public class TechUI extends DraggableFrame {
         rightHeaderPanel.add(Box.createVerticalGlue());
         
         header.add(rightHeaderPanel);
+        
+        //////////////////////////////////////
+        // Central
+        //////////////////////////////////////
+        JPanel infoContainer = new JPanel();
+        infoContainer.setBackground(COLOR_CHARCOAL);
+        infoContainer.setForeground(COLOR_WHITE_TEXT);
+        this.add(infoContainer, BorderLayout.CENTER);
+        infoContainer.setLayout(new BorderLayout());
+        
+        WelcomeInfoPanel welcomePanel = new WelcomeInfoPanel(resLoader);
+        
+        InstallInfoPanel installPanel = new InstallInfoPanel(resLoader);
+        
+        OptionsInfoPanel optionsPanel = new OptionsInfoPanel(resLoader);
+        
+        infoSwap = new JPanel();
+        infoLayout = new CardLayout();
+        infoSwap.setLayout(infoLayout);
+        infoSwap.setOpaque(false);
+        infoSwap.add(welcomePanel, TAB_WELCOME);
+        infoSwap.add(installPanel, TAB_INSTALL);
+        infoSwap.add(optionsPanel, TAB_OPTIONS);
+        infoContainer.add(infoSwap, BorderLayout.CENTER);
+        
+        //////////////////////////////////////
+        // Footer
+        //////////////////////////////////////
+        JPanel footer = new JPanel();
+        footer.setBackground(COLOR_SELECTOR_BACK);
+        footer.setLayout(new BoxLayout(footer, BoxLayout.LINE_AXIS));
+        footer.setForeground(COLOR_WHITE_TEXT);
+        footer.setBorder(BorderFactory.createEmptyBorder(3,6,3,12));
+        
+        JLabel dashText = new JLabel("Copyright Lexware 2014.");
+        dashText.setForeground(COLOR_WHITE_TEXT);
+        dashText.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
+        footer.add(dashText);
+
+        infoContainer.add(footer, BorderLayout.PAGE_END);
 	}
 
 }
