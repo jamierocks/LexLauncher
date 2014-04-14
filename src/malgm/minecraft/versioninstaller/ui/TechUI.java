@@ -1,12 +1,7 @@
 package malgm.minecraft.versioninstaller.ui;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
@@ -18,6 +13,7 @@ import malgm.minecraft.versioninstaller.ui.controls.FooterButton;
 import malgm.minecraft.versioninstaller.ui.controls.HeaderTab;
 import malgm.minecraft.versioninstaller.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.install.InstallInfoPanel;
+import malgm.minecraft.versioninstaller.ui.tabs.modpacks.ModpacksInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.options.OptionsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.welcome.WelcomeInfoPanel;
 
@@ -38,17 +34,20 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_INSTALL = "install";
 	public static final String TAB_OPTIONS = "options";
 	public static final String TAB_CREDITS = "credits";
+	public static final String TAB_MODPACKS = "modpacks";
 	
 	private HeaderTab welcomeTab;
 	private HeaderTab installTab;
 	private HeaderTab optionsTab;
 	
 	private FooterButton creditsTab;
+	private FooterButton modpacksTab;
 	
 	private WelcomeInfoPanel welcomePanel;
 	private InstallInfoPanel installPanel;
 	private OptionsInfoPanel optionsPanel;
 	private CreditsInfoPanel creditsPanel;
+	private ModpacksInfoPanel modpacksPanel;
 	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
@@ -73,6 +72,7 @@ public class TechUI extends DraggableFrame {
 		installTab.setIsActive(false);
 		optionsTab.setIsActive(false);
 		creditsTab.setIsActive(false);
+		modpacksTab.setIsActive(false);
 		
 		if(tabName.equalsIgnoreCase(TAB_WELCOME)) {
 			welcomeTab.setIsActive(true);
@@ -82,6 +82,8 @@ public class TechUI extends DraggableFrame {
 			optionsTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_CREDITS)) {
 			creditsTab.setIsActive(true);
+		} else if(tabName.equalsIgnoreCase(TAB_MODPACKS)) {
+			modpacksTab.setIsActive(true);
 		}
 		
 		infoLayout.show(infoSwap, tabName);
@@ -206,6 +208,8 @@ public class TechUI extends DraggableFrame {
         
         creditsPanel = new CreditsInfoPanel(resLoader);
         
+        modpacksPanel = new ModpacksInfoPanel(resLoader);
+        
         infoSwap = new JPanel();
         infoLayout = new CardLayout();
         infoSwap.setLayout(infoLayout);
@@ -214,6 +218,7 @@ public class TechUI extends DraggableFrame {
         infoSwap.add(installPanel, TAB_INSTALL);
         infoSwap.add(optionsPanel, TAB_OPTIONS);
         infoSwap.add(creditsPanel, TAB_CREDITS);
+        infoSwap.add(modpacksPanel, TAB_MODPACKS);
         infoContainer.add(infoSwap, BorderLayout.CENTER);
         
         //////////////////////////////////////
@@ -231,6 +236,16 @@ public class TechUI extends DraggableFrame {
         footer.add(dashText);
         
         footer.add(Box.createHorizontalGlue());
+        
+        modpacksTab = new FooterButton("Modpacks", resLoader);
+        modpacksTab.setActionCommand(TAB_MODPACKS);
+        modpacksTab.addActionListener(tabListener);
+        footer.add(modpacksTab);
+        
+        JLabel dashText2 = new JLabel(" | ");
+        dashText2.setForeground(COLOR_WHITE_TEXT);
+        dashText2.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
+        footer.add(dashText2);
         
         creditsTab = new FooterButton("Credits", resLoader);
         creditsTab.setActionCommand(TAB_CREDITS);
