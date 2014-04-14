@@ -15,7 +15,7 @@ public class BaseTab {
 	
 	public void render(JPanel panel) throws IOException {
 		// MVI logo
-		logo = new JLabel(resLoader.getImage(resFinder.logo()));
+		logo = new JLabel(resLoader.getIcon(resFinder.logo()));
 		panel.add(logo);
 	}
 }

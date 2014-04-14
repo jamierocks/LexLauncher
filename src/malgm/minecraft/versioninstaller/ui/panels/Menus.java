@@ -23,7 +23,7 @@ public class Menus {
 		menus.setBackground(Color.decode("#FF6A00"));
 		
 		// welcome tab 
-		welcomeTab = new JButton(resLoader.getImage(resFinder.welcomeTab()));
+		welcomeTab = new JButton(resLoader.getIcon(resFinder.welcomeTab()));
 		welcomeTab.setBorder(null);
 		welcomeTab.setBorderPainted(false);
 		welcomeTab.setFocusPainted(false);
@@ -32,7 +32,7 @@ public class Menus {
 		menus.add(welcomeTab);
 		
 		// install tab 
-		installTab = new JButton(resLoader.getImage(resFinder.installTab()));
+		installTab = new JButton(resLoader.getIcon(resFinder.installTab()));
 		installTab.setBorder(null);
 		installTab.setBorderPainted(false);
 		installTab.setFocusPainted(false);
@@ -41,7 +41,7 @@ public class Menus {
 		menus.add(installTab);
 		
 		// options tab 
-		optionsTab = new JButton(resLoader.getImage(resFinder.optionsTab()));
+		optionsTab = new JButton(resLoader.getIcon(resFinder.optionsTab()));
 		optionsTab.setBorder(null);
 		optionsTab.setBorderPainted(false);
 		optionsTab.setFocusPainted(false);
