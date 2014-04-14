@@ -15,7 +15,10 @@ public class WelcomeInfoPanel extends TiledBackground {
 	public WelcomeInfoPanel(ResourceLoader loader) {
 		super(loader.getImage("res/background_repeat2.png"));
 		
-		text = new JLabel("<html>Welcome to the Minecraft Version Installer!<br />Find a mod to install and use the install tab to install it.</html>");
+		text = new JLabel("<html><center>"
+				+ "Welcome to the Minecraft Version Installer!<br />"
+				+ "Find a mod to install and use the install tab to install it."
+				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_LEX_GREEN);
 		add(text);
 	}
