@@ -1,4 +1,4 @@
-package malgm.minecraft.versioninstaller.ui.modslist;
+package malgm.minecraft.versioninstaller.ui.tabs.modslist;
 
 import java.awt.Dimension;
 
@@ -22,7 +22,7 @@ public class ModsListContainer extends JPanel implements TableModelListener {
 	
 	public void init() {
 		jt = new JTable(data, columns);
-		jt.setPreferredScrollableViewportSize(new Dimension(580, 240));
+		jt.setPreferredScrollableViewportSize(new Dimension(580, 220));
 		jt.getModel().addTableModelListener(this);
 		jt.getTableHeader().setReorderingAllowed(false);
 		

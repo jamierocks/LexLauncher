@@ -13,7 +13,7 @@ import malgm.minecraft.versioninstaller.ui.controls.FooterButton;
 import malgm.minecraft.versioninstaller.ui.controls.HeaderTab;
 import malgm.minecraft.versioninstaller.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.install.InstallInfoPanel;
-import malgm.minecraft.versioninstaller.ui.tabs.modpacks.ModpacksInfoPanel;
+import malgm.minecraft.versioninstaller.ui.tabs.modslist.ModsListInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.options.OptionsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.welcome.WelcomeInfoPanel;
 
@@ -34,7 +34,7 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_INSTALL = "install";
 	public static final String TAB_OPTIONS = "options";
 	public static final String TAB_CREDITS = "credits";
-	public static final String TAB_MODPACKS = "modpacks";
+	public static final String TAB_MODLIST = "modlist";
 	
 	private HeaderTab welcomeTab;
 	private HeaderTab installTab;
@@ -47,7 +47,7 @@ public class TechUI extends DraggableFrame {
 	private InstallInfoPanel installPanel;
 	private OptionsInfoPanel optionsPanel;
 	private CreditsInfoPanel creditsPanel;
-	private ModpacksInfoPanel modpacksPanel;
+	private ModsListInfoPanel modpacksPanel;
 	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
@@ -82,7 +82,7 @@ public class TechUI extends DraggableFrame {
 			optionsTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_CREDITS)) {
 			creditsTab.setIsActive(true);
-		} else if(tabName.equalsIgnoreCase(TAB_MODPACKS)) {
+		} else if(tabName.equalsIgnoreCase(TAB_MODLIST)) {
 			modpacksTab.setIsActive(true);
 		}
 		
@@ -208,7 +208,7 @@ public class TechUI extends DraggableFrame {
         
         creditsPanel = new CreditsInfoPanel(resLoader);
         
-        modpacksPanel = new ModpacksInfoPanel(resLoader);
+        modpacksPanel = new ModsListInfoPanel(resLoader);
         
         infoSwap = new JPanel();
         infoLayout = new CardLayout();
@@ -218,7 +218,7 @@ public class TechUI extends DraggableFrame {
         infoSwap.add(installPanel, TAB_INSTALL);
         infoSwap.add(optionsPanel, TAB_OPTIONS);
         infoSwap.add(creditsPanel, TAB_CREDITS);
-        infoSwap.add(modpacksPanel, TAB_MODPACKS);
+        infoSwap.add(modpacksPanel, TAB_MODLIST);
         infoContainer.add(infoSwap, BorderLayout.CENTER);
         
         //////////////////////////////////////
@@ -237,8 +237,8 @@ public class TechUI extends DraggableFrame {
         
         footer.add(Box.createHorizontalGlue());
         
-        modpacksTab = new FooterButton("Modpacks", resLoader);
-        modpacksTab.setActionCommand(TAB_MODPACKS);
+        modpacksTab = new FooterButton("Mod list", resLoader);
+        modpacksTab.setActionCommand(TAB_MODLIST);
         modpacksTab.addActionListener(tabListener);
         footer.add(modpacksTab);
         
