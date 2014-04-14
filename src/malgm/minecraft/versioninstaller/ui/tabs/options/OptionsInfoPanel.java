@@ -1,40 +1,32 @@
-package malgm.minecraft.versioninstaller.ui.tabs;
+package malgm.minecraft.versioninstaller.ui.tabs.options;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
+import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
+import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
 
-public class OptionsTab implements ActionListener {
+public class OptionsInfoPanel extends TiledBackground implements ActionListener {
 	
-	//Array of modes
-	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
-	private JComboBox<?> list;
-		
-	SettingsFile settings = new SettingsFile();
-	
-	private JPanel panel = new JPanel();
-	private JPanel logoPanel = new JPanel();
-	private JPanel textfield = new JPanel();
+	private static final long serialVersionUID = 1L;
 	
 	private JButton browse, change;
 	
 	private JTextField field;
+	SettingsFile settings = new SettingsFile();
+
+	//Array of modes
+	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
+	private JComboBox<?> list;
 	
-	public void render(JFrame frame) throws IOException {
-		
-		// color the normal panel
-		panel.setBackground(Color.CYAN);
-		textfield.setBackground(Color.CYAN);
-		
-		// MVI logo
-		BaseTab basetab = new BaseTab();
-		basetab.render(logoPanel);
+	public OptionsInfoPanel(ResourceLoader loader) {
+		super(loader.getImage("res/background_repeat2.png"));
 		
 		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);
@@ -42,13 +34,13 @@ public class OptionsTab implements ActionListener {
 		list.addActionListener(this);
 		list.setEnabled(true);
 		
-		panel.add(list);
+		add(list);
 		
 		// Text field for custom directory
 		field = new JTextField(20);
 		field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
 		field.setToolTipText("Enter the directory of your custom directory");
-		textfield.add(field);
+		add(field);
 		
 		// browse button
 		browse = new JButton("Browse");
@@ -69,23 +61,12 @@ public class OptionsTab implements ActionListener {
 			change.setEnabled(true);
 		}
 		
-		textfield.add(browse);
-		textfield.add(change);
-		
-		frame.add(logoPanel);
-		frame.add(panel);
-		frame.add(textfield);
-		
-	}
-	
-	public void setVisible(boolean visible) {
-		panel.setVisible(visible);
-		logoPanel.setVisible(visible);
-		textfield.setVisible(visible);
+		add(browse);
+		add(change);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent e) {
 		if(list.getSelectedItem() == modes[0]) {
 			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", "Default Minecraft Directory");
 			field.setEditable(false);
@@ -98,7 +79,7 @@ public class OptionsTab implements ActionListener {
 			browse.setEnabled(true);
 			change.setEnabled(true);
 		}
-		if(event.getSource() == this.change) {
+		if(e.getSource() == this.change) {
 			String s = field.getText();
 			String su = s.substring(s.length() - 1);
 			if(!su.equals("\\")) {

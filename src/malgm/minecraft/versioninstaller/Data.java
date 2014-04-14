@@ -2,10 +2,10 @@ package malgm.minecraft.versioninstaller;
 
 public class Data {
 	
-	private double version = 1.015;
+	private double build = 1.016;
 
-	public double getVersion() {
-		return version;
+	public double getBuild() {
+		return build;
 	}
 
 }

@@ -1,6 +1,5 @@
-package malgm.minecraft.versioninstaller.ui.tabs;
+package malgm.minecraft.versioninstaller.ui.tabs.install;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,73 +8,56 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
-import malgm.minecraft.versioninstaller.util.*;
+import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
+import malgm.minecraft.versioninstaller.util.Installer;
+import malgm.minecraft.versioninstaller.util.Utils;
 
-public class InstallTab implements ActionListener{
+public class InstallInfoPanel extends TiledBackground implements ActionListener {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private boolean installing = false, successful = true;
 	
 	private MVIDocumentReader mviDocReader = new MVIDocumentReader();
 	private Installer installer = new Installer();
 	
-	private JPanel panel = new JPanel();
-	private JPanel textfield = new JPanel();
-	private JPanel preview = new JPanel();
-	
 	private JTextField field;
 	
 	private JButton install;
 	private JTextArea info;
 	private JScrollPane scrollPane;
-	
-	public void render(JFrame frame) throws IOException {
-		
-		// set background color for both jpanels
-		textfield.setBackground(Color.CYAN);
-		preview.setBackground(Color.CYAN);
-		
-		// MVI logo
-		BaseTab basetab = new BaseTab();
-		basetab.render(panel);
+
+	public InstallInfoPanel(ResourceLoader loader) {
+		super(loader.getImage("res/background_repeat2.png"));
 		
 		// Text field for url
-		field = new JTextField(20);
+		field = new JTextField(35);
 		field.setToolTipText("Enter the URL for your modpack/version");
-		textfield.add(field);
-		
+		add(field);
+				
 		//install button
 		install = new JButton("Install");
 		install.setMnemonic(KeyEvent.VK_ENTER);
 		install.addActionListener(this);
-		textfield.add(install);
-		
+		add(install);
+				
 		// text area
 		info = new JTextArea();
 		info.setFont(new Font("Sans Serif", 2, 12));
 		info.append("Welcome to the Minecraft version Installer!\n");
 		info.append("Enter the URL for your modpack/version and\nclick Install\n");
 		info.setEditable(false);
-		
+				
 		//scrollpane for text area
 		scrollPane = new JScrollPane(info, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		preview.add(scrollPane);
-		
-		frame.add(panel);
-		frame.add(textfield);
-		frame.add(preview);
-		
-	}
-	
-	public void setVisible(boolean visible) {
-		panel.setVisible(visible);
-		textfield.setVisible(visible);
-		preview.setVisible(visible);
+		add(scrollPane);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
-		if(event.getSource() == this.install) {
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == this.install) {
 			install(field.getText());
 		}
 	}
