@@ -2,6 +2,7 @@ package malgm.minecraft.versioninstaller.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,10 @@ public class TechUI extends DraggableFrame {
 			optionsTab.setIsActive(true);
 		}
 	}
+	
+	protected void closeWindow() {
+        this.dispose();
+    }
 
 	public void relocalize(ResourceLoader resLoader) {
 		setIconImage(resLoader.getImage(resFinder.icon()));
@@ -116,6 +121,49 @@ public class TechUI extends DraggableFrame {
         header.add(optionsTab);
         
         header.add(Box.createHorizontalGlue());
+        
+        JPanel rightHeaderPanel = new JPanel();
+        rightHeaderPanel.setOpaque(false);
+        rightHeaderPanel.setLayout(new BoxLayout(rightHeaderPanel, BoxLayout.PAGE_AXIS));
+        rightHeaderPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        
+        JPanel windowGadgetPanel = new JPanel();
+        windowGadgetPanel.setOpaque(false);
+        windowGadgetPanel.setLayout(new BoxLayout(windowGadgetPanel, BoxLayout.LINE_AXIS));
+        windowGadgetPanel.setAlignmentX(RIGHT_ALIGNMENT);
+        
+        ImageIcon minimizeIcon = resLoader.getIcon(resFinder.minimize());
+        JButton minimizeButton = new JButton(minimizeIcon);
+        minimizeButton.setBorder(BorderFactory.createEmptyBorder());
+        minimizeButton.setContentAreaFilled(false);
+        minimizeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	setState(ICONIFIED);
+            }
+        });
+        minimizeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        minimizeButton.setFocusable(false);
+        windowGadgetPanel.add(minimizeButton);
+        
+        ImageIcon closeIcon = resLoader.getIcon(resFinder.close());
+        JButton closeButton = new JButton(closeIcon);
+        closeButton.setBorder(BorderFactory.createEmptyBorder());
+        closeButton.setContentAreaFilled(false);
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeWindow();
+            }
+        });
+        closeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        closeButton.setFocusable(false);
+        windowGadgetPanel.add(closeButton);
+
+        rightHeaderPanel.add(windowGadgetPanel);
+        rightHeaderPanel.add(Box.createVerticalGlue());
+        
+        header.add(rightHeaderPanel);
 	}
 
 }

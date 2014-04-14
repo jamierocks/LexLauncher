@@ -25,5 +25,13 @@ public class ResourceFinder {
 	public String icon_title() {
 		return "res/icon_title.png";
 	}
+	
+	public String close() {
+		return "res/close.png";
+	}
+	
+	public String minimize() {
+		return "res/minimize.png";
+	}
 
 }
