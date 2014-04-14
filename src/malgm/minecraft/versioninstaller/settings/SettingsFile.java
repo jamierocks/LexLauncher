@@ -97,7 +97,7 @@ public class SettingsFile {
 	}
 	
 	public String getDefaultDirectory() {
-		return userhome + "/Lexware/MVI/";
+		return userhome + "/Lexware/MVI";
 	}
 
 }
