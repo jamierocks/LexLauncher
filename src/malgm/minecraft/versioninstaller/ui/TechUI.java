@@ -237,7 +237,8 @@ public class TechUI extends DraggableFrame {
         
         footer.add(Box.createHorizontalGlue());
         
-        modpacksTab = new FooterButton("Mod list", resLoader);
+        modpacksTab = new FooterButton("Mods list", resLoader);
+        modpacksTab.setForeground(COLOR_WHITE_TEXT);
         modpacksTab.setActionCommand(TAB_MODLIST);
         modpacksTab.addActionListener(tabListener);
         footer.add(modpacksTab);
@@ -248,6 +249,7 @@ public class TechUI extends DraggableFrame {
         footer.add(dashText2);
         
         creditsTab = new FooterButton("Credits", resLoader);
+        creditsTab.setForeground(COLOR_WHITE_TEXT);
         creditsTab.setActionCommand(TAB_CREDITS);
         creditsTab.addActionListener(tabListener);
         footer.add(creditsTab);

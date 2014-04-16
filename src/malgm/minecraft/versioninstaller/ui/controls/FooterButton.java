@@ -1,10 +1,8 @@
 package malgm.minecraft.versioninstaller.ui.controls;
 
-import java.awt.Color;
 import java.awt.Cursor;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.ResourceLoader;
 
@@ -21,7 +19,6 @@ public class FooterButton extends JButton {
 		setBorder(BorderFactory.createEmptyBorder());
         setContentAreaFilled(false);
         setFocusable(false);
-        setForeground(Color.WHITE);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 	
