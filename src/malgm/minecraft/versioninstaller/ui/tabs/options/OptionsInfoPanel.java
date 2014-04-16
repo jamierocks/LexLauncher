@@ -61,7 +61,7 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 			change.setEnabled(true);
 		}
 		
-		add(browse);
+		//add(browse);
 		add(change);
 	}
 

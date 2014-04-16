@@ -38,10 +38,10 @@ public class TechUI extends DraggableFrame {
 	
 	private HeaderTab welcomeTab;
 	private HeaderTab installTab;
-	private HeaderTab optionsTab;
+	private HeaderTab modslistTab;
 	
 	private FooterButton creditsTab;
-	private FooterButton modpacksTab;
+	private FooterButton settingsTab;
 	
 	private WelcomeInfoPanel welcomePanel;
 	private InstallInfoPanel installPanel;
@@ -70,20 +70,20 @@ public class TechUI extends DraggableFrame {
 	protected void selectTab(String tabName) {
 		welcomeTab.setIsActive(false);
 		installTab.setIsActive(false);
-		optionsTab.setIsActive(false);
+		settingsTab.setIsActive(false);
 		creditsTab.setIsActive(false);
-		modpacksTab.setIsActive(false);
+		modslistTab.setIsActive(false);
 		
 		if(tabName.equalsIgnoreCase(TAB_WELCOME)) {
 			welcomeTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_INSTALL)) {
 			installTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_OPTIONS)) {
-			optionsTab.setIsActive(true);
+			settingsTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_CREDITS)) {
 			creditsTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_MODLIST)) {
-			modpacksTab.setIsActive(true);
+			modslistTab.setIsActive(true);
 		}
 		
 		infoLayout.show(infoSwap, tabName);
@@ -141,10 +141,10 @@ public class TechUI extends DraggableFrame {
         installTab.addActionListener(tabListener);
         header.add(installTab);
         
-        optionsTab = new HeaderTab("Options", resLoader);
-        optionsTab.setActionCommand(TAB_OPTIONS);
-        optionsTab.addActionListener(tabListener);
-        header.add(optionsTab);
+        modslistTab = new HeaderTab("Mods", resLoader);
+        modslistTab.setActionCommand(TAB_MODLIST);
+        modslistTab.addActionListener(tabListener);
+        header.add(modslistTab);
         
         header.add(Box.createHorizontalGlue());
         
@@ -237,11 +237,10 @@ public class TechUI extends DraggableFrame {
         
         footer.add(Box.createHorizontalGlue());
         
-        modpacksTab = new FooterButton("Mods list", resLoader);
-        modpacksTab.setForeground(COLOR_WHITE_TEXT);
-        modpacksTab.setActionCommand(TAB_MODLIST);
-        modpacksTab.addActionListener(tabListener);
-        footer.add(modpacksTab);
+        settingsTab = new FooterButton("Settings", resLoader);
+        settingsTab.setActionCommand(TAB_OPTIONS);
+        settingsTab.addActionListener(tabListener);
+        footer.add(settingsTab);
         
         JLabel dashText2 = new JLabel(" | ");
         dashText2.setForeground(COLOR_WHITE_TEXT);
@@ -249,7 +248,6 @@ public class TechUI extends DraggableFrame {
         footer.add(dashText2);
         
         creditsTab = new FooterButton("Credits", resLoader);
-        creditsTab.setForeground(COLOR_WHITE_TEXT);
         creditsTab.setActionCommand(TAB_CREDITS);
         creditsTab.addActionListener(tabListener);
         footer.add(creditsTab);

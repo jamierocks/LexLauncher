@@ -1,10 +1,12 @@
 package malgm.minecraft.versioninstaller.ui.controls;
 
+import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.ResourceLoader;
+import malgm.minecraft.versioninstaller.ui.TechUI;
 
 public class FooterButton extends JButton {
 	
@@ -26,6 +28,11 @@ public class FooterButton extends JButton {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+        if(isActive) {
+        	this.setForeground(Color.CYAN);
+        } else {
+        	this.setForeground(TechUI.COLOR_WHITE_TEXT);
+        }
         repaint();
     }
 
