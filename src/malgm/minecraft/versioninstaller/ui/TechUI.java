@@ -117,7 +117,7 @@ public class TechUI extends DraggableFrame {
         header.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
         this.add(header, BorderLayout.PAGE_START);
 
-        ImageIcon headerIcon = resLoader.getIcon("res/icon_title.png");
+        ImageIcon headerIcon = resLoader.getIcon(resFinder.icon_title());
         JLabel headerLabel = new JLabel(headerIcon);
         headerLabel.setBorder(BorderFactory.createEmptyBorder(5,8,5,0));
         header.add(headerLabel);
