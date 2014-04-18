@@ -2,36 +2,26 @@ package malgm.minecraft.versioninstaller;
 
 public class ResourceFinder {
 	
-	public String installTab() {
-		return "res/installTab.png";
-	}
-	
-	public String optionsTab() {
-		return "res/optionsTab.png";
-	}
-	
-	public String welcomeTab() {
-		return "res/welcomeTab.png";
-	}
-	
-	public String logo() {
-		return "res/logo.png";
-	}
+	private String resFolder = "res/";
 	
 	public String icon() {
-		return "res/icon.png";
+		return resFolder+"icon.png";
 	}
 	
 	public String icon_title() {
-		return "res/icon_title.png";
+		return resFolder+"icon_title.png";
 	}
 	
 	public String close() {
-		return "res/close.png";
+		return resFolder+"close.png";
 	}
 	
 	public String minimize() {
-		return "res/minimize.png";
+		return resFolder+"minimize.png";
+	}
+	
+	public String background() {
+		return resFolder+"background.png";
 	}
 
 }

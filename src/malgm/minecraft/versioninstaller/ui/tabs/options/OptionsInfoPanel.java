@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
@@ -25,8 +26,10 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
 	private JComboBox<?> list;
 	
+	private static ResourceFinder resFinder = new ResourceFinder();
+	
 	public OptionsInfoPanel(ResourceLoader loader) {
-		super(loader.getImage("res/background_repeat2.png"));
+		super(loader.getImage(resFinder.background()));
 		
 		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);

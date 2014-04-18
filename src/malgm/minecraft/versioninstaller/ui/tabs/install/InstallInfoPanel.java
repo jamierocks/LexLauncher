@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
@@ -28,9 +29,11 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 	private JButton install;
 	private JTextArea info;
 	private JScrollPane scrollPane;
+	
+	private static ResourceFinder resFinder = new ResourceFinder();
 
 	public InstallInfoPanel(ResourceLoader loader) {
-		super(loader.getImage("res/background_repeat2.png"));
+		super(loader.getImage(resFinder.background()));
 		
 		// Text field for url
 		field = new JTextField(35);

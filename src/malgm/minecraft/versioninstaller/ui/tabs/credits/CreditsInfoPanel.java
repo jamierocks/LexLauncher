@@ -2,6 +2,7 @@ package malgm.minecraft.versioninstaller.ui.tabs.credits;
 
 import javax.swing.JLabel;
 
+import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.ui.TechUI;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
@@ -11,9 +12,11 @@ public class CreditsInfoPanel extends TiledBackground {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel text;
+	
+	private static ResourceFinder resFinder = new ResourceFinder();
 
 	public CreditsInfoPanel(ResourceLoader loader) {
-		super(loader.getImage("res/background_repeat2.png"));
+		super(loader.getImage(resFinder.background()));
 		
 		// Welcome text
 		text = new JLabel("<html>Hello my name is Jamie, I am the creator of Minecraft Version Installer.<br />"
