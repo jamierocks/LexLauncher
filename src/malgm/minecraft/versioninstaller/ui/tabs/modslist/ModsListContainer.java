@@ -11,9 +11,9 @@ public class ModsListContainer extends JPanel implements TableModelListener {
 	
 	private JTable jt;
 	
-	private String[] columns = {"Mod name", "Installed", "Install"};
+	private String[] columns = {"Mod name", "Version", "Installed"};
 	private String[][] data = {
-			{"Example", "Installed", "Install"}
+			{"Example mod", "0.0.1", "Update"}
 	};
 	
 	public ModsListContainer() {
