@@ -41,11 +41,7 @@ public class ModsListContainer extends JPanel implements TableModelListener {
 	}
 
 	private void inputData(String[] infoURLs) {
-		//int i = 0;
-		//while(!(i == infoURLs.length)) {
-		//	data[i][0] = infoURLs[i];
-		//	i++;
-		//}
+		data[0] = infoURLs;
 	}
 
 	@Override
