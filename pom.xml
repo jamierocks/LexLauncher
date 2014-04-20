@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Minecraft-Version-Installer</groupId>
   <artifactId>Minecraft-Version-Installer</artifactId>
-  <version>1.016</version>
+  <version>1.018</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -24,11 +24,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-  	<dependency>
-  		<groupId>com.googlecode.json-simple</groupId>
-  		<artifactId>json-simple</artifactId>
-  		<version>1.1</version>
-  	</dependency>
-  </dependencies>
 </project>
