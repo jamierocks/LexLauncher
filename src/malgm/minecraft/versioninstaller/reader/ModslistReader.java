@@ -6,7 +6,7 @@ import org.w3c.dom.*;
 
 public class ModslistReader {
 	
-	private String[] infoURLs = new String[100000];
+	private String[] infoURLs = null;
 	
 	public ModslistReader(String url) {
 		try {
@@ -18,6 +18,8 @@ public class ModslistReader {
 			
 			NodeList nList = doc.getElementsByTagName("mod");
 			
+			infoURLs = new String[nList.getLength()];
+			
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				System.out.println(temp);
 				Node nNode = nList.item(temp);
@@ -28,9 +30,7 @@ public class ModslistReader {
 					String infoURL = eElement.getElementsByTagName("url").item(0).getTextContent();
 					System.out.println(infoURL);
 					
-					String urll = infoURL;
-					
-					infoURLs[temp] = urll;
+					infoURLs[temp] = infoURL;
 				}
 			}
 		} catch(Exception e) {
