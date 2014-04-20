@@ -5,12 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.Data;
-import malgm.minecraft.versioninstaller.ResourceFinder;
-import malgm.minecraft.versioninstaller.ResourceLoader;
-import malgm.minecraft.versioninstaller.ui.controls.DraggableFrame;
-import malgm.minecraft.versioninstaller.ui.controls.FooterButton;
-import malgm.minecraft.versioninstaller.ui.controls.HeaderTab;
+import malgm.minecraft.versioninstaller.*;
+import malgm.minecraft.versioninstaller.ui.controls.*;
 import malgm.minecraft.versioninstaller.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.install.InstallInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.modslist.ModsListInfoPanel;
@@ -36,12 +32,9 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_CREDITS = "credits";
 	public static final String TAB_MODLIST = "modlist";
 	
-	private HeaderTab welcomeTab;
-	private HeaderTab installTab;
-	private HeaderTab modslistTab;
+	private HeaderTab welcomeTab, installTab,  modslistTab;
 	
-	private FooterButton creditsTab;
-	private FooterButton settingsTab;
+	private FooterButton creditsTab, settingsTab;
 	
 	private WelcomeInfoPanel welcomePanel;
 	private InstallInfoPanel installPanel;
@@ -57,7 +50,7 @@ public class TechUI extends DraggableFrame {
 	private Data data = new Data();
 	
 	public TechUI() {
-		setTitle("Minecraft Version Installer build " + data.getBuild());
+		setTitle(data.getName() + " build " + data.getBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		

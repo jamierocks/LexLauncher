@@ -6,7 +6,7 @@ import org.w3c.dom.*;
 
 public class ModslistReader {
 	
-	private String[] infoURLs = null;
+	private String[] infoURLs = new String[10000];
 	
 	public ModslistReader(String url) {
 		try {
@@ -17,8 +17,6 @@ public class ModslistReader {
 			doc.getDocumentElement().normalize();
 			
 			NodeList nList = doc.getElementsByTagName("mod");
-			
-			infoURLs = new String[nList.getLength()];
 			
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				System.out.println(temp);
