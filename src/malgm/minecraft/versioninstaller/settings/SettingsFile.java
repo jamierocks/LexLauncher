@@ -1,6 +1,6 @@
 package malgm.minecraft.versioninstaller.settings;
 
-public class SettingsFile extends malgm.minecraft.versioninstaller.api.SettingsFile {
+public class SettingsFile extends malgm.mvi.api.SettingsFile {
 	
 	private String userhome = System.getProperty("user.home");
 	

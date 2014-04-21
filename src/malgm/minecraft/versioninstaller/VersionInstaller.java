@@ -20,6 +20,7 @@ public class VersionInstaller {
 		}
 		
 		TechUI frame = new TechUI();
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}
 

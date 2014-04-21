@@ -14,7 +14,6 @@ public class MVIDocumentReader {
 	private String json = null;
 	private String fileName = null;
 	private String modpack = null;
-	private String standalonemod = null;
 	private String modpackurl = null;
 	private String profile = null;
 	private String profilename = null;
@@ -33,7 +32,6 @@ public class MVIDocumentReader {
 			  json = getTextValue(json, ele, "json");
 			  fileName = getTextValue(fileName, ele, "fileName");
 			  modpack = getTextValue(modpack, ele, "modpack");
-			  standalonemod = getTextValue(standalonemod, ele, "standalonemod");
 			  modpackurl = getTextValue(modpackurl, ele, "modpackurl");
 			  profile = getTextValue(profile, ele, "profile");
 			  profilename = getTextValue(profilename, ele, "profilename");
@@ -57,13 +55,6 @@ public class MVIDocumentReader {
 	}
 	public boolean isModpack() {
 		if(modpack.equals("true")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	public boolean isStandaloneMod() {
-		if(standalonemod.equals("true")) {
 			return true;
 		} else {
 			return false;
