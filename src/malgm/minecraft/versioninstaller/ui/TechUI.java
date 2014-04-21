@@ -50,7 +50,7 @@ public class TechUI extends DraggableFrame {
 	private Data data = new Data();
 	
 	public TechUI() {
-		setTitle(data.getName() + " build " + data.getBuild());
+		setTitle(data.getMVIName() + " build " + data.getMVIBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
