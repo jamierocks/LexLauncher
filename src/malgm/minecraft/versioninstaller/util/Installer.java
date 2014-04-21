@@ -8,7 +8,7 @@ import malgm.minecraft.versioninstaller.settings.SettingsFile;
 
 public class Installer {
 	
-	SettingsFile settings = new SettingsFile();
+	SettingsFile settings = new SettingsFile("/Lexware/MVI");
 	
 	@SuppressWarnings("resource")
 	public void downloadFile(String url, String directory, String filename) throws IOException {

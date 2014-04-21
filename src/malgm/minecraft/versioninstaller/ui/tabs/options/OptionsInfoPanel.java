@@ -20,7 +20,7 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	private JButton browse, change;
 	
 	private JTextField field;
-	SettingsFile settings = new SettingsFile();
+	SettingsFile settings = new SettingsFile("/Lexware/MVI");
 
 	//Array of modes
 	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
