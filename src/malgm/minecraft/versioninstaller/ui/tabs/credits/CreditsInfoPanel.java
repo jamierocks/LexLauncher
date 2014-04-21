@@ -1,11 +1,8 @@
 package malgm.minecraft.versioninstaller.ui.tabs.credits;
 
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.Data;
-import malgm.minecraft.versioninstaller.ResourceFinder;
-import malgm.minecraft.versioninstaller.ResourceLoader;
+import malgm.minecraft.versioninstaller.*;
 import malgm.minecraft.versioninstaller.ui.TechUI;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
 

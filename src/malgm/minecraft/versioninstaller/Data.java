@@ -2,10 +2,10 @@ package malgm.minecraft.versioninstaller;
 
 public class Data {
 	
-	private final double build = 1.019;
+	private final int build = 1020;
 	private final String name = "Minecraft Version Installer";
 
-	public double getBuild() {
+	public int getBuild() {
 		return build;
 	}
 	

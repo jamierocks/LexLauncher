@@ -1,7 +1,6 @@
 package malgm.minecraft.versioninstaller;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.ui.TechUI;
 
