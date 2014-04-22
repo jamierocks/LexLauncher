@@ -20,7 +20,7 @@ public class Installer {
 	
 	public String getModpacksDirectory() {
 		if(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory").equals(settings.defaultDir)) {
-			return Utils.getLauncherDirectory().toString() + "modpacks/";
+			return Utils.getLauncherDirectory().toString() + "/modpacks/";
 		} else {
 			return settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory")  + "versions/";
 		}

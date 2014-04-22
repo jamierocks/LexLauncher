@@ -12,6 +12,7 @@ import malgm.minecraft.versioninstaller.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.install.InstallInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.modslist.ModsListInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.options.OptionsInfoPanel;
+import malgm.minecraft.versioninstaller.ui.tabs.play.PlayInfoPanel;
 import malgm.minecraft.versioninstaller.ui.tabs.welcome.WelcomeInfoPanel;
 
 public class TechUI extends DraggableFrame {
@@ -43,6 +44,7 @@ public class TechUI extends DraggableFrame {
 	private OptionsInfoPanel optionsPanel;
 	private CreditsInfoPanel creditsPanel;
 	private ModsListInfoPanel modpacksPanel;
+	private PlayInfoPanel playPanel;
 	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
@@ -205,6 +207,8 @@ public class TechUI extends DraggableFrame {
         
         welcomePanel = new WelcomeInfoPanel(resLoader);
         
+        playPanel = new PlayInfoPanel(resLoader);
+        
         installPanel = new InstallInfoPanel(resLoader);
         
         optionsPanel = new OptionsInfoPanel(resLoader);
@@ -218,6 +222,7 @@ public class TechUI extends DraggableFrame {
         infoSwap.setLayout(infoLayout);
         infoSwap.setOpaque(false);
         infoSwap.add(welcomePanel, TAB_WELCOME);
+        infoSwap.add(playPanel, TAB_PLAY);
         infoSwap.add(installPanel, TAB_INSTALL);
         infoSwap.add(optionsPanel, TAB_OPTIONS);
         infoSwap.add(creditsPanel, TAB_CREDITS);

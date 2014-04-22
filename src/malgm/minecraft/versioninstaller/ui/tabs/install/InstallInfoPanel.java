@@ -1,6 +1,6 @@
 package malgm.minecraft.versioninstaller.ui.tabs.install;
 
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,6 +11,7 @@ import javax.swing.*;
 import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
+import malgm.minecraft.versioninstaller.ui.controls.PopUp;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
 import malgm.minecraft.versioninstaller.util.Installer;
 import malgm.minecraft.versioninstaller.util.Utils;
@@ -35,6 +36,9 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 	public InstallInfoPanel(ResourceLoader loader) {
 		super(loader.getImage(resFinder.background()));
 		
+		FlowLayout layout = new FlowLayout();
+		setLayout(layout);
+		
 		// Text field for url
 		field = new JTextField(35);
 		field.setToolTipText("Enter the URL for your modpack/version");
@@ -44,6 +48,7 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 		install = new JButton("Install");
 		install.setMnemonic(KeyEvent.VK_ENTER);
 		install.addActionListener(this);
+		install.setOpaque(false);
 		add(install);
 				
 		// text area
@@ -54,7 +59,7 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 		info.setEditable(false);
 				
 		//scrollpane for text area
-		scrollPane = new JScrollPane(info, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane = new JScrollPane(info);
 		add(scrollPane);
 	}
 
@@ -66,27 +71,37 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 	}
 	
 	public void install(String modurl) {
-		if(!installing) {
-			installing = true;
-			mviDocReader.readDoc(modurl);
-			info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
-			Utils utils = new Utils();
-			utils.createDirectory(installer.getModpacksDirectory());
-			utils.createDirectory(installer.getModpacksDirectory() + mviDocReader.getFileName());
-			try {
-				String directory = installer.getModpacksDirectory() + "/" + mviDocReader.getFileName();
-				installer.downloadFile(mviDocReader.getJar(), directory, mviDocReader.getFileName()+".jar");
-				installer.downloadFile(mviDocReader.getJson(), directory, mviDocReader.getFileName()+".json");
-				successful = true;
-			} catch (IOException e) {
-				info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");
+		if(!modurl.toString().equals("")) {
+			if(!installing) {
+				installing = true;
+				mviDocReader.readDoc(modurl);
+				if(!(mviDocReader.getName() == null)) {
+					info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+					Utils utils = new Utils();
+					utils.createDirectory(installer.getModpacksDirectory());
+					utils.createDirectory(installer.getModpacksDirectory() + mviDocReader.getFileName());
+					try {
+						String directory = installer.getModpacksDirectory() + "/" + mviDocReader.getFileName();
+						installer.downloadFile(mviDocReader.getJar(), directory, mviDocReader.getFileName()+".jar");
+						installer.downloadFile(mviDocReader.getJson(), directory, mviDocReader.getFileName()+".json");
+						successful = true;
+					} catch (IOException e) {
+						info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");
+						successful = false;
+					}
+					if(successful) {
+						info.append("Installed " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
+					}
+				} else {
+					PopUp popup = new PopUp();
+					popup.error("ERROR MESSAGE", "Unable to find modpack!");
+				}
+				installing = false;
 				successful = false;
 			}
-			if(successful) {
-				info.append("Installed " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
-			}
-			installing = false;
-			successful = false;
+		} else {
+			PopUp popup = new PopUp();
+			popup.error("ERROR MESSAGE", "You did not specify a URL!");
 		}
 	}
 

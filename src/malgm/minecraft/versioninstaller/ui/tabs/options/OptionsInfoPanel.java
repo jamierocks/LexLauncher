@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import malgm.minecraft.versioninstaller.*;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
+import malgm.minecraft.versioninstaller.ui.controls.PopUp;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
 import malgm.minecraft.versioninstaller.util.Utils;
 
@@ -49,11 +50,13 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		// browse button
 		browse = new JButton("Browse");
 		browse.addActionListener(this);
+		browse.setOpaque(false);
 				
 		// change button
 		change = new JButton("Change");
 		change.addActionListener(this);
 		change.setMnemonic(KeyEvent.VK_ENTER);
+		change.setOpaque(false);
 		
 		if(list.getSelectedItem() == modes[0]) {
 			field.setEditable(false);
@@ -87,12 +90,17 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		}
 		if(e.getSource() == this.change) {
 			String s = field.getText();
-			String su = s.substring(s.length() - 1);
-			if(!su.equals("\\")) {
-				s += "\\";
+			if(!s.equalsIgnoreCase("")) {
+				String su = s.substring(s.length() - 1);
+				if(!su.equals("\\")) {
+					s += "\\";
+				}
+				settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory", s);
+				field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
+			} else {
+				PopUp popup = new PopUp();
+				popup.error("ERROR MESSAGE", "You did not specify a directory!");
 			}
-			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory", s);
-			field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
 		}
 	}
 
