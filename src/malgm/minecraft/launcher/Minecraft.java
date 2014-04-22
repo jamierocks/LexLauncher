@@ -5,6 +5,7 @@ public class Minecraft {
 	private String directory = null;
 	
 	public Minecraft(String directory) {
+		// saves directory location to be used latter
 		this.directory = directory;
 		System.out.println(this.directory);
 	}

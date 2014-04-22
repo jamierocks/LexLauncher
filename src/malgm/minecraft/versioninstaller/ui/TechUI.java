@@ -28,12 +28,13 @@ public class TechUI extends DraggableFrame {
     public static final Color COLOR_SELECTOR_BACK = new Color(22,26,29);
 	
 	public static final String TAB_WELCOME = "welcome";
+	public static final String TAB_PLAY = "play";
 	public static final String TAB_INSTALL = "install";
 	public static final String TAB_OPTIONS = "options";
 	public static final String TAB_CREDITS = "credits";
 	public static final String TAB_MODLIST = "modlist";
 	
-	private HeaderTab welcomeTab, installTab,  modslistTab;
+	private HeaderTab welcomeTab, playTab, installTab,  modslistTab;
 	
 	private FooterButton creditsTab, settingsTab;
 	
@@ -63,6 +64,7 @@ public class TechUI extends DraggableFrame {
 	
 	protected void selectTab(String tabName) {
 		welcomeTab.setIsActive(false);
+		playTab.setIsActive(false);
 		installTab.setIsActive(false);
 		settingsTab.setIsActive(false);
 		creditsTab.setIsActive(false);
@@ -70,6 +72,8 @@ public class TechUI extends DraggableFrame {
 		
 		if(tabName.equalsIgnoreCase(TAB_WELCOME)) {
 			welcomeTab.setIsActive(true);
+		} else if(tabName.equals(TAB_PLAY)) {
+			playTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_INSTALL)) {
 			installTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_OPTIONS)) {
@@ -129,6 +133,11 @@ public class TechUI extends DraggableFrame {
         welcomeTab.setActionCommand(TAB_WELCOME);
         welcomeTab.addActionListener(tabListener);
         header.add(welcomeTab);
+        
+        playTab = new HeaderTab("Play", resLoader);
+        playTab.setActionCommand(TAB_PLAY);
+        playTab.addActionListener(tabListener);
+        header.add(playTab);
         
         installTab = new HeaderTab("Install", resLoader);
         installTab.setActionCommand(TAB_INSTALL);
