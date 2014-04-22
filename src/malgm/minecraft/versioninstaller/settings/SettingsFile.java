@@ -2,8 +2,8 @@ package malgm.minecraft.versioninstaller.settings;
 
 public class SettingsFile extends malgm.mvi.api.SettingsFile {
 	
-	public final String defaultDir = "Default Directoty";
-	public final String customDir = "Custom Directoty";
+	public final String defaultDir = "Default Directory";
+	public final String customDir = "Custom Directory";
 	
 	public SettingsFile(String directory) {
 		super(directory);
