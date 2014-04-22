@@ -11,19 +11,19 @@ public class Utils {
 	    if (os.contains("win")) {
 	      String appdata = System.getenv("APPDATA");
 	      if (appdata == null) {
-	        dir = new File(userHome, ".minecraft/");
+	        dir = new File(userHome, ".lexLauncher/");
 	      } else {
-	        dir = new File(appdata, ".minecraft/");
+	        dir = new File(appdata, ".lexLauncher/");
 	      }
 	    }
 	    else if (os.contains("mac")) {
-	      dir = new File(userHome, "Library/Application Support/minecraft");
+	      dir = new File(userHome, "Library/Application Support/lexLauncher");
 	    }
 	    else if ((!os.contains("linux")) && (!os.contains("unix"))) {
 	      if ((os.contains("sunos")) || (os.contains("solaris"))) {
-	        dir = new File(userHome, ".minecraft/");
+	        dir = new File(userHome, ".lexLauncher/");
 	      } else {
-	        dir = new File(userHome, "minecraft/");
+	        dir = new File(userHome, "lexLauncher/");
 	      }
 	    }
 	    if ((!dir.exists()) && (!dir.mkdirs())) {

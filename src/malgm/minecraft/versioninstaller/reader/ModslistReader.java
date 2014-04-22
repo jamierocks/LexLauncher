@@ -19,14 +19,12 @@ public class ModslistReader {
 			NodeList nList = doc.getElementsByTagName("mod");
 			
 			for (int temp = 0; temp < nList.getLength(); temp++) {
-				System.out.println(temp);
 				Node nNode = nList.item(temp);
 				
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 					
 					String infoURL = eElement.getElementsByTagName("url").item(0).getTextContent();
-					System.out.println(infoURL);
 					
 					infoURLs[temp] = infoURL;
 				}

@@ -6,7 +6,10 @@ public class Data {
 	private final String mviname = "Minecraft Version Installer";
 	
 	private final int mmlbuild = 1001;
-	private final String mmlname = "Malgms Minecraft Launcher";
+	private final String mmlname = "lexLauncher";
+	
+	private final String directory = "/Lexware/";
+	private final String mvidir = directory + "MVI/";
 
 	public int getMVIBuild() {
 		return mvibuild;
@@ -22,6 +25,10 @@ public class Data {
 	
 	public String getMMLName() {
 		return mmlname;
+	}
+	
+	public String getMVIDirectory() {
+		return mvidir;
 	}
 
 }

@@ -1,13 +1,10 @@
 package malgm.minecraft.versioninstaller.ui.tabs.options;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import javax.swing.*;
 
+import malgm.minecraft.versioninstaller.Data;
 import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
@@ -19,8 +16,10 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	
 	private JButton browse, change;
 	
+	private Data d = new Data();
+	
 	private JTextField field;
-	SettingsFile settings = new SettingsFile("/Lexware/MVI");
+	private SettingsFile settings = new SettingsFile(d.getMVIDirectory());
 
 	//Array of modes
 	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
@@ -30,6 +29,11 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	
 	public OptionsInfoPanel(ResourceLoader loader) {
 		super(loader.getImage(resFinder.background()));
+		
+		//JLabel mvi = new JLabel("<html><center><h1>Minecraft Version Installer</h1></center></html>");
+		//JLabel mml = new JLabel("<html><center><h1>Malgm Minecraft Launcher</h1></center></html>");
+		
+		//add(mvi);
 		
 		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);
@@ -66,6 +70,8 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		
 		//add(browse);
 		add(change);
+		
+		//add(mml);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import malgm.minecraft.launcher.Minecraft;
 import malgm.minecraft.versioninstaller.*;
 import malgm.minecraft.versioninstaller.ui.controls.*;
 import malgm.minecraft.versioninstaller.ui.tabs.credits.CreditsInfoPanel;
@@ -49,7 +50,7 @@ public class TechUI extends DraggableFrame {
 	private ResourceFinder resFinder = new ResourceFinder();
 	private Data data = new Data();
 	
-	public TechUI() {
+	public TechUI(Minecraft mc) {
 		setTitle(data.getMVIName() + " build " + data.getMVIBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
