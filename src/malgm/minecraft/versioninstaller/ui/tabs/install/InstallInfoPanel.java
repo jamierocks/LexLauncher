@@ -71,10 +71,10 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 			mviDocReader.readDoc(modurl);
 			info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
 			Utils utils = new Utils();
-			utils.createDirectory(installer.getDirectory());
-			utils.createDirectory(installer.getDirectory() + mviDocReader.getFileName());
+			utils.createDirectory(installer.getModpacksDirectory());
+			utils.createDirectory(installer.getModpacksDirectory() + mviDocReader.getFileName());
 			try {
-				String directory = installer.getDirectory() + "/" + mviDocReader.getFileName();
+				String directory = installer.getModpacksDirectory() + "/" + mviDocReader.getFileName();
 				installer.downloadFile(mviDocReader.getJar(), directory, mviDocReader.getFileName()+".jar");
 				installer.downloadFile(mviDocReader.getJson(), directory, mviDocReader.getFileName()+".json");
 				successful = true;

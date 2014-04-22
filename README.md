@@ -1,6 +1,6 @@
 Minecraft Version Installer
 ===========================
 
-Install modpacks easily with a graphical interface to the new Minecraft launcher! No more manual installs.
+Install mods and modpacks easily with a graphical interface to the built in launcher. No more manual installs.
 
-Minecraft Version Installer now has maven support.
+Minecraft Version Installer uses Maven to handle its dependencies.

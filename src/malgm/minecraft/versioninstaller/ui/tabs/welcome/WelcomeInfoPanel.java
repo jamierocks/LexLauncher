@@ -23,6 +23,7 @@ public class WelcomeInfoPanel extends TiledBackground {
 				+ "<h3>Minecraft Version Installer making modpack installations faster every day!</h3>"
 				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_WHITE_TEXT);
+		
 		add(text);
 	}
 

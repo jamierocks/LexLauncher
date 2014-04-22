@@ -4,11 +4,10 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import malgm.minecraft.versioninstaller.Data;
-import malgm.minecraft.versioninstaller.ResourceFinder;
-import malgm.minecraft.versioninstaller.ResourceLoader;
+import malgm.minecraft.versioninstaller.*;
 import malgm.minecraft.versioninstaller.settings.SettingsFile;
 import malgm.minecraft.versioninstaller.ui.controls.TiledBackground;
+import malgm.minecraft.versioninstaller.util.Utils;
 
 public class OptionsInfoPanel extends TiledBackground implements ActionListener {
 	
@@ -16,13 +15,11 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	
 	private JButton browse, change;
 	
-	private Data d = new Data();
-	
 	private JTextField field;
-	private SettingsFile settings = new SettingsFile(d.getMVIDirectory());
+	private SettingsFile settings = new SettingsFile(Utils.getLauncherDirectory().toString());
 
 	//Array of modes
-	private String[] modes = {"Default Minecraft Directory", "Custom Minecraft Directory"};
+	private String[] modes = {settings.defaultDir, settings.customDir};
 	private JComboBox<?> list;
 	
 	private static ResourceFinder resFinder = new ResourceFinder();
@@ -77,13 +74,13 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(list.getSelectedItem() == modes[0]) {
-			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", "Default Minecraft Directory");
+			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", settings.defaultDir);
 			field.setEditable(false);
 			browse.setEnabled(false);
 			change.setEnabled(false);
 		}
 		if(list.getSelectedItem() == modes[1]) {
-			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", "Custom Minecraft Directory");
+			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", settings.customDir);
 			field.setEditable(true);
 			browse.setEnabled(true);
 			change.setEnabled(true);

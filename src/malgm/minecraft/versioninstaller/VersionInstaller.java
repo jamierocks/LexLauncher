@@ -13,7 +13,7 @@ public class VersionInstaller {
 	}
 	
 	private static Minecraft initMC() {
-		return new Minecraft(Utils.getMinecraftDirectory().toString());
+		return new Minecraft(Utils.getLauncherDirectory().toString());
 	}
 
 	public static void loadGUI(Minecraft mc) {

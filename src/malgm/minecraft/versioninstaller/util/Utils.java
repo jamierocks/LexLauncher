@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Utils {
 	
-	public static File getMinecraftDirectory() {
+	public static File getLauncherDirectory() {
 	    String userHome = System.getProperty("user.home", ".");
 	    String os = System.getProperty("os.name").toLowerCase();
 	    File dir = null;

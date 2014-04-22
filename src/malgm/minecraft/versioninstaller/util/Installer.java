@@ -8,7 +8,7 @@ import malgm.minecraft.versioninstaller.settings.SettingsFile;
 
 public class Installer {
 	
-	SettingsFile settings = new SettingsFile("/Lexware/MVI");
+	SettingsFile settings = new SettingsFile(Utils.getLauncherDirectory().toString());
 	
 	@SuppressWarnings("resource")
 	public void downloadFile(String url, String directory, String filename) throws IOException {
@@ -18,9 +18,9 @@ public class Installer {
 		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 	}
 	
-	public String getDirectory() {
-		if(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory").equals("Default Minecraft Directory")) {
-			return Utils.getMinecraftDirectory().toString() + "versions/";
+	public String getModpacksDirectory() {
+		if(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory").equals(settings.defaultDir)) {
+			return Utils.getLauncherDirectory().toString() + "modpacks/";
 		} else {
 			return settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory")  + "versions/";
 		}
