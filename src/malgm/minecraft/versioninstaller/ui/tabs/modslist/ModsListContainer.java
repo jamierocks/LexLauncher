@@ -28,7 +28,7 @@ public class ModsListContainer extends JPanel implements TableModelListener {
 		inputData(modsListReader.getInfoURLs());
 		
 		jt = new JTable(data, columns);
-		jt.setPreferredScrollableViewportSize(new Dimension(580, 220));
+		jt.setPreferredScrollableViewportSize(new Dimension(880, 420));
 		jt.getModel().addTableModelListener(this);
 		jt.getTableHeader().setReorderingAllowed(false);
 		JScrollPane jsp = new JScrollPane(jt);

@@ -17,5 +17,9 @@ public class Minecraft {
 	public void changeDirectory(String directory) {
 		this.directory = directory;
 	}
+	
+	public String getJarDownload(String mcversion) {
+		return "http://s3.amazonaws.com/Minecraft.Download/versions/" + mcversion + "/" + mcversion + ".jar";
+	}
 
 }

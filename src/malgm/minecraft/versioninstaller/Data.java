@@ -2,10 +2,10 @@ package malgm.minecraft.versioninstaller;
 
 public class Data {
 	
-	private final int mvibuild = 1022;
+	private final int mvibuild = 1023;
 	private final String mviname = "Minecraft Version Installer";
 	
-	private final int mmlbuild = 1002;
+	private final int mmlbuild = 1003;
 	private final String mmlname = "lexLauncher";
 
 	public int getMVIBuild() {

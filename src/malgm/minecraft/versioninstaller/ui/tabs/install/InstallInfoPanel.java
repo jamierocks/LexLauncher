@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import malgm.minecraft.launcher.Minecraft;
 import malgm.minecraft.versioninstaller.ResourceFinder;
 import malgm.minecraft.versioninstaller.ResourceLoader;
 import malgm.minecraft.versioninstaller.reader.MVIDocumentReader;
@@ -22,7 +23,7 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 	
 	private boolean installing = false, successful = true;
 	
-	private MVIDocumentReader mviDocReader = new MVIDocumentReader();
+	private MVIDocumentReader mviDocReader;
 	private Installer installer = new Installer();
 	
 	private JTextField field;
@@ -33,11 +34,13 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 	
 	private static ResourceFinder resFinder = new ResourceFinder();
 
-	public InstallInfoPanel(ResourceLoader loader) {
+	public InstallInfoPanel(ResourceLoader loader, Minecraft mc) {
 		super(loader.getImage(resFinder.background()));
 		
 		FlowLayout layout = new FlowLayout();
 		setLayout(layout);
+		
+		mviDocReader = new MVIDocumentReader(mc);
 		
 		// Text field for url
 		field = new JTextField(35);
@@ -76,14 +79,15 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 				installing = true;
 				mviDocReader.readDoc(modurl);
 				if(!(mviDocReader.getName() == null)) {
+					info.setText(null);
 					info.append("Installing " + mviDocReader.getName() + " " + mviDocReader.getVersion() + "\n");
 					Utils utils = new Utils();
 					utils.createDirectory(installer.getModpacksDirectory());
-					utils.createDirectory(installer.getModpacksDirectory() + mviDocReader.getFileName());
+					utils.createDirectory(installer.getModpacksDirectory() + mviDocReader.getFilename());
 					try {
-						String directory = installer.getModpacksDirectory() + "/" + mviDocReader.getFileName();
-						installer.downloadFile(mviDocReader.getJar(), directory, mviDocReader.getFileName()+".jar");
-						installer.downloadFile(mviDocReader.getJson(), directory, mviDocReader.getFileName()+".json");
+						String directory = installer.getModpacksDirectory() + "/" + mviDocReader.getFilename();
+						installer.downloadFile(mviDocReader.getJar(), directory, mviDocReader.getFilename()+".jar");
+						//installer.downloadFile(mviDocReader.getJson(), directory, mviDocReader.getFilename()+".json");
 						successful = true;
 					} catch (IOException e) {
 						info.append("Failed to install " + mviDocReader.getName() + " " + mviDocReader.getVersion() +"\n");

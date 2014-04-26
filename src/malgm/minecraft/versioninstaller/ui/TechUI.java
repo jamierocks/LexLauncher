@@ -19,8 +19,8 @@ public class TechUI extends DraggableFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int FRAME_WIDTH = 600;
-	private int FRAME_HEIGHT = 360;
+	private int FRAME_WIDTH = 900;
+	private int FRAME_HEIGHT = 560;
 	
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
 	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
@@ -52,11 +52,15 @@ public class TechUI extends DraggableFrame {
 	private ResourceLoader resLoader = new ResourceLoader();
 	private ResourceFinder resFinder = new ResourceFinder();
 	private Data data = new Data();
+
+	private Minecraft mc;
 	
 	public TechUI(Minecraft mc) {
 		setTitle(data.getMVIName() + " build " + data.getMVIBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		this.mc = mc;
 		
 		// build the frame
 		relocalize(resLoader);
@@ -209,7 +213,7 @@ public class TechUI extends DraggableFrame {
         
         playPanel = new PlayInfoPanel(resLoader);
         
-        installPanel = new InstallInfoPanel(resLoader);
+        installPanel = new InstallInfoPanel(resLoader, mc);
         
         optionsPanel = new OptionsInfoPanel(resLoader);
         

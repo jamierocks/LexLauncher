@@ -36,10 +36,10 @@ public class CreditsInfoPanel extends TiledBackground {
 				+ "<h3>Development team:</h3>"
 				+ "<p>malgm (Jamie)</p>"
 				+ "<h3>Special thanks to:</h3>"
-				+ "<p>sk89q for having an open-source launcher which anyone can look through.</p>"
+				+ "<p>sk89q for having an open-source launcher, anyone can look through.</p>"
 				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_WHITE_TEXT);
-		text.setBorder(BorderFactory.createEmptyBorder(15, 60, 15, 60));
+		text.setBorder(BorderFactory.createEmptyBorder(15, 220, 15, 220));
 		
 		JScrollPane s = new JScrollPane(text);
 		s.setOpaque(false);

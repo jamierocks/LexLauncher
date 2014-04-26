@@ -2,6 +2,8 @@ package malgm.minecraft.versioninstaller.reader;
 
 import javax.xml.parsers.*;
 
+import malgm.minecraft.launcher.Minecraft;
+
 import org.w3c.dom.*;
 
 public class MVIDocumentReader {
@@ -10,13 +12,15 @@ public class MVIDocumentReader {
 	
 	private String name = null;
 	private String version = null;
-	private String jar = null;
-	private String json = null;
-	private String fileName = null;
-	private String modpack = null;
-	private String modpackurl = null;
-	private String profile = null;
-	private String profilename = null;
+	private String mcversion = null;
+	private String customJar = null;
+	private String filename = null;
+	
+	private Minecraft mc;
+	
+	public MVIDocumentReader(Minecraft mc) {
+		this.mc = mc;
+	}
 	
 	public void readDoc(String url) {
 		try {
@@ -28,13 +32,9 @@ public class MVIDocumentReader {
 			  
 			  name = getTextValue(name, ele, "name");
 			  version = getTextValue(version, ele, "version");
-			  jar = getTextValue(jar, ele, "jar");
-			  json = getTextValue(json, ele, "json");
-			  fileName = getTextValue(fileName, ele, "fileName");
-			  modpack = getTextValue(modpack, ele, "modpack");
-			  modpackurl = getTextValue(modpackurl, ele, "modpackurl");
-			  profile = getTextValue(profile, ele, "profile");
-			  profilename = getTextValue(profilename, ele, "profilename");
+			  mcversion = getTextValue(mcversion, ele, "mcversion");
+			  customJar = getTextValue(customJar, ele, "customJar");
+			  filename = getTextValue(filename, ele, "filename");
 			} catch (Exception e) {}
 	}
 	
@@ -44,34 +44,17 @@ public class MVIDocumentReader {
 	public String getVersion() {
 		return version;
 	}
+	public String getMCVersion() {
+		return mcversion;
+	}
+	public String getFilename() {
+		return filename;
+	}
 	public String getJar() {
-		return jar;
-	}
-	public String getJson() {
-		return json;
-	}
-	public String getFileName() {
-		return fileName;
-	}
-	public boolean isModpack() {
-		if(modpack.equals("true")) {
-			return true;
-		} else {
-			return false;
+		if(!(customJar == "")) {
+			return mc.getJarDownload(mcversion);
 		}
-	}
-	public String getModpackURL() {
-		return modpackurl;
-	}
-	public boolean makeProfile() {
-		if(profile.equals("true")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	public String getProfileName() {
-		return profilename;
+		return customJar;
 	}
 	
 	private String getTextValue(String def, Element doc, String tag) {
