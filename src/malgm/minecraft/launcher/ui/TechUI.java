@@ -58,7 +58,7 @@ public class TechUI extends DraggableFrame {
 	private Minecraft mc;
 	
 	public TechUI(Minecraft mc) {
-		setTitle(data.getMVIName() + " build " + data.getMVIBuild());
+		setTitle(data.getMMLName() + " build " + data.getMMLBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		

@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>Minecraft-Version-Installer</groupId>
-  <artifactId>Minecraft-Version-Installer</artifactId>
-  <version>1.022</version>
+  <groupId>lexLauncher</groupId>
+  <artifactId>lexLauncher</artifactId>
+  <version>1.023</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -24,4 +24,8 @@
       </plugin>
     </plugins>
   </build>
+  <name>lexLauncher</name>
+  <description>Install mods and modpacks easily with a graphical interface to the built in launcher. No more manual installs.
+</description>
+  <url>https://github.com/lexware/lexLauncher</url>
 </project>

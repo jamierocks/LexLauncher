@@ -25,7 +25,7 @@ public class CreditsInfoPanel extends TiledBackground {
 		
 		// Welcome text
 		JLabel text = new JLabel("<html><center>"
-				+ "<h1>" + data.getMVIName() +" build "+ data.getMVIBuild() +"</h1>"
+				+ "<h1>" + data.getMMLName() +" build "+ data.getMMLBuild() +"</h1>"
 				+ "<h3>Development team:</h3>"
 				+ "<p>malgm (Jamie)</p>"
 				+ "<h3>Special thanks to:</h3>"
@@ -33,11 +33,6 @@ public class CreditsInfoPanel extends TiledBackground {
 				+ "<p>Github for having such a wonderful service.</p>"
 				+ "<p>StackOverFlow for having soo many wonderful answers.</p>"
 				+ "<p>Mojang without them I wouldn't be making this piece of software.</p>"
-				+ "<br />"
-				+ "<h1>" + data.getMMLName() +" build "+ data.getMMLBuild() +"</h1>"
-				+ "<h3>Development team:</h3>"
-				+ "<p>malgm (Jamie)</p>"
-				+ "<h3>Special thanks to:</h3>"
 				+ "<p>sk89q for having an open-source launcher, anyone can look through.</p>"
 				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_WHITE_TEXT);

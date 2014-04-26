@@ -21,7 +21,7 @@ public class WelcomeInfoPanel extends TiledBackground {
 		text = new JLabel("<html><center>"
 				+ "<h1>Welcome to lexLauncher!</h1>"
 				+ "<h3>Install what you want, play what you want!</h3>"
-				+ "<h3>lexLauncher, gets you to the FAST!</h3>"
+				+ "<h3>lexLauncher, gets you to the game FAST!</h3>"
 				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_WHITE_TEXT);
 		
