@@ -51,7 +51,6 @@ public class InstallInfoPanel extends TiledBackground implements ActionListener 
 		install = new JButton("Install");
 		install.setMnemonic(KeyEvent.VK_ENTER);
 		install.addActionListener(this);
-		install.setOpaque(false);
 		add(install);
 				
 		// text area

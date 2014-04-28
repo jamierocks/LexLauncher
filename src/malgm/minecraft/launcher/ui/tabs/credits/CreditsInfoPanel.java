@@ -39,9 +39,9 @@ public class CreditsInfoPanel extends TiledBackground {
 		text.setBorder(BorderFactory.createEmptyBorder(15, 220, 15, 220));
 		
 		JScrollPane s = new JScrollPane(text);
-		s.setOpaque(false);
 		s.getViewport().setOpaque(false);
 		s.setBorder(null);
+		s.setOpaque(false);
 		
 		add(s, BorderLayout.CENTER);
 	}

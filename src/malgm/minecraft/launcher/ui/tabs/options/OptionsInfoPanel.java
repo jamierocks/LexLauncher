@@ -51,13 +51,11 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		// browse button
 		browse = new JButton("Browse");
 		browse.addActionListener(this);
-		browse.setOpaque(false);
 				
 		// change button
 		change = new JButton("Change");
 		change.addActionListener(this);
 		change.setMnemonic(KeyEvent.VK_ENTER);
-		change.setOpaque(false);
 		
 		if(list.getSelectedItem() == modes[0]) {
 			field.setEditable(false);
