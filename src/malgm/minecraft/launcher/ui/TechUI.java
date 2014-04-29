@@ -2,7 +2,6 @@ package malgm.minecraft.launcher.ui;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 import malgm.minecraft.launcher.Data;
@@ -50,19 +49,21 @@ public class TechUI extends DraggableFrame {
 	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
-	
-	private ResourceLoader resLoader = new ResourceLoader();
-	private ResourceFinder resFinder = new ResourceFinder();
 	private Data data = new Data();
+	
+	private ResourceLoader resLoader;
+	private ResourceFinder resFinder;
 
 	private Minecraft mc;
 	
-	public TechUI(Minecraft mc) {
+	public TechUI(Minecraft mc, ResourceLoader resLoader, ResourceFinder resFinder) {
 		setTitle(data.getMMLName() + " build " + data.getMMLBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.mc = mc;
+		this.resLoader = resLoader;
+		this.resFinder = resFinder;
 		
 		// build the frame
 		relocalize(resLoader);

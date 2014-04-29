@@ -24,7 +24,7 @@ public class Launcher {
 			e.printStackTrace();
 		}
 		
-		TechUI frame = new TechUI(mc);
+		TechUI frame = new TechUI(mc, new ResourceLoader(), new ResourceFinder());
 		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 	}

@@ -32,7 +32,8 @@ public class TiledBackground extends JPanel {
         }
     }
 
-    public void paintComponent(Graphics g) {
+    @Override
+	public void paintComponent(Graphics g) {
         int destWidth = getWidth();
         int destHeight = getHeight();
 
