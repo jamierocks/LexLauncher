@@ -9,6 +9,7 @@ import malgm.minecraft.launcher.util.Utils;
 public class Launcher {
 	
 	public static void main(String []args) {
+		//Use system default proxy settings
 		System.setProperty("java.net.useSystemProxies", "true");
 		
 		loadGUI(initMC());

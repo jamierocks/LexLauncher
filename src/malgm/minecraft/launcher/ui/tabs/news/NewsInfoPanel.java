@@ -1,48 +1,53 @@
-package malgm.minecraft.launcher.ui.tabs.welcome;
+package malgm.minecraft.launcher.ui.tabs.news;
 
 import java.awt.BorderLayout;
 import java.io.IOException;
 
 import javax.swing.*;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
+import javax.swing.event.*;
+import javax.swing.text.html.HTMLEditorKit;
 
-import malgm.minecraft.launcher.Data;
-import malgm.minecraft.launcher.ResourceFinder;
-import malgm.minecraft.launcher.ResourceLoader;
+import malgm.minecraft.launcher.*;
 import malgm.minecraft.launcher.ui.controls.TiledBackground;
 
-public class WelcomeInfoPanel extends TiledBackground {
+public class NewsInfoPanel extends TiledBackground {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public JEditorPane page;
+	public JTextPane page;
 	private JScrollPane newsPanel;
 	
 	private static ResourceFinder resFinder = new ResourceFinder();
 
-	public WelcomeInfoPanel(ResourceLoader loader, Data data) {
+	public NewsInfoPanel(ResourceLoader loader, Data data) {
 		super(loader.getImage(resFinder.background()));
 		
 		setLayout(new BorderLayout());
 		
-		page = new JEditorPane();
+		page = new JTextPane();
+		
+		HTMLEditorKit kit = new HTMLEditorKit();
+	    page.setEditorKit(kit);
+		
 		page.setEditable(false);
 		try {
-			page.setPage(data.getDiscoverPage());
+			page.setPage(data.getNewsPage());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		page.addHyperlinkListener(new HyperlinkListener() {
             @Override
             public void hyperlinkUpdate (HyperlinkEvent arg0) {
                 
             }
         });
+		page.setBorder(BorderFactory.createEmptyBorder());
 		
 		newsPanel = new JScrollPane(page);
         newsPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         newsPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        
         add(newsPanel, BorderLayout.CENTER);
 	}
 

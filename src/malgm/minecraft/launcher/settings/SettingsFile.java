@@ -1,6 +1,6 @@
 package malgm.minecraft.launcher.settings;
 
-public class SettingsFile extends malgm.mvi.api.SettingsFile {
+public class SettingsFile extends malgm.minecraft.launcher.api.SettingsFile {
 	
 	public final String defaultDir = "Default Directory";
 	public final String customDir = "Custom Directory";

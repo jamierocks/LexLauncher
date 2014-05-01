@@ -1,4 +1,4 @@
-package malgm.mvi.api;
+package malgm.minecraft.launcher.api;
 
 import java.io.*;
 import java.util.Properties;

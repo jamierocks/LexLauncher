@@ -2,6 +2,7 @@ package malgm.minecraft.launcher.ui;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import malgm.minecraft.launcher.Data;
@@ -9,12 +10,14 @@ import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.mc.Minecraft;
 import malgm.minecraft.launcher.ui.controls.*;
+import malgm.minecraft.launcher.ui.tabs.console.ConsoleInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.credits.CreditsInfoPanel;
+import malgm.minecraft.launcher.ui.tabs.discover.DiscoverInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.install.InstallInfoPanel;
+import malgm.minecraft.launcher.ui.tabs.modpacks.ModpacksInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.modslist.ModsListInfoPanel;
+import malgm.minecraft.launcher.ui.tabs.news.NewsInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.options.OptionsInfoPanel;
-import malgm.minecraft.launcher.ui.tabs.play.PlayInfoPanel;
-import malgm.minecraft.launcher.ui.tabs.welcome.WelcomeInfoPanel;
 
 public class TechUI extends DraggableFrame {
 	
@@ -35,17 +38,21 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_OPTIONS = "options";
 	public static final String TAB_CREDITS = "credits";
 	public static final String TAB_MODLIST = "modlist";
+	public static final String TAB_CONSOLE = "console";
+	public static final String TAB_NEWS = "news";
 	
 	private HeaderTab welcomeTab, playTab, installTab,  modslistTab;
 	
-	private FooterButton creditsTab, settingsTab;
+	private FooterButton creditsTab, settingsTab, consoleTab, newsTab;
 	
-	private WelcomeInfoPanel welcomePanel;
+	private DiscoverInfoPanel welcomePanel;
 	private InstallInfoPanel installPanel;
 	private OptionsInfoPanel optionsPanel;
 	private CreditsInfoPanel creditsPanel;
 	private ModsListInfoPanel modpacksPanel;
-	private PlayInfoPanel playPanel;
+	private ModpacksInfoPanel playPanel;
+	private ConsoleInfoPanel consolePanel;
+	private NewsInfoPanel newsPanel;
 	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
@@ -78,6 +85,8 @@ public class TechUI extends DraggableFrame {
 		settingsTab.setIsActive(false);
 		creditsTab.setIsActive(false);
 		modslistTab.setIsActive(false);
+		consoleTab.setIsActive(false);
+		newsTab.setIsActive(false);
 		
 		if(tabName.equalsIgnoreCase(TAB_WELCOME)) {
 			welcomeTab.setIsActive(true);
@@ -91,6 +100,10 @@ public class TechUI extends DraggableFrame {
 			creditsTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_MODLIST)) {
 			modslistTab.setIsActive(true);
+		} else if(tabName.equalsIgnoreCase(TAB_CONSOLE)) {
+			consoleTab.setIsActive(true);
+		} else if(tabName.equalsIgnoreCase(TAB_NEWS)) {
+			newsTab.setIsActive(true);
 		}
 		
 		infoLayout.show(infoSwap, tabName);
@@ -143,7 +156,7 @@ public class TechUI extends DraggableFrame {
         welcomeTab.addActionListener(tabListener);
         header.add(welcomeTab);
         
-        playTab = new HeaderTab("Play", resLoader);
+        playTab = new HeaderTab("Modpacks", resLoader);
         playTab.setActionCommand(TAB_PLAY);
         playTab.addActionListener(tabListener);
         header.add(playTab);
@@ -212,9 +225,9 @@ public class TechUI extends DraggableFrame {
         this.add(infoContainer, BorderLayout.CENTER);
         infoContainer.setLayout(new BorderLayout());
         
-        welcomePanel = new WelcomeInfoPanel(resLoader, data);
+        welcomePanel = new DiscoverInfoPanel(resLoader, data);
         
-        playPanel = new PlayInfoPanel(resLoader);
+        playPanel = new ModpacksInfoPanel(resLoader);
         
         installPanel = new InstallInfoPanel(resLoader, mc);
         
@@ -223,6 +236,10 @@ public class TechUI extends DraggableFrame {
         creditsPanel = new CreditsInfoPanel(resLoader, resFinder);
         
         modpacksPanel = new ModsListInfoPanel(resLoader);
+        
+        consolePanel = new ConsoleInfoPanel(resLoader);
+        
+        newsPanel = new NewsInfoPanel(resLoader, data);
         
         infoSwap = new JPanel();
         infoLayout = new CardLayout();
@@ -234,6 +251,8 @@ public class TechUI extends DraggableFrame {
         infoSwap.add(optionsPanel, TAB_OPTIONS);
         infoSwap.add(creditsPanel, TAB_CREDITS);
         infoSwap.add(modpacksPanel, TAB_MODLIST);
+        infoSwap.add(consolePanel, TAB_CONSOLE);
+        infoSwap.add(newsPanel, TAB_NEWS);
         infoContainer.add(infoSwap, BorderLayout.CENTER);
         
         //////////////////////////////////////
@@ -245,22 +264,42 @@ public class TechUI extends DraggableFrame {
         footer.setForeground(COLOR_WHITE_TEXT);
         footer.setBorder(BorderFactory.createEmptyBorder(3,6,3,12));
         
-        JLabel dashText = new JLabel("Copyright Lexware 2014.");
+        JLabel dashText = new JLabel("Made by Lexware 2014.");
         dashText.setForeground(COLOR_WHITE_TEXT);
         dashText.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText);
         
         footer.add(Box.createHorizontalGlue());
         
-        settingsTab = new FooterButton("Settings", resLoader);
-        settingsTab.setActionCommand(TAB_OPTIONS);
-        settingsTab.addActionListener(tabListener);
-        footer.add(settingsTab);
+        newsTab = new FooterButton("News", resLoader);
+        newsTab.setActionCommand(TAB_NEWS);
+        newsTab.addActionListener(tabListener);
+        footer.add(newsTab);
         
         JLabel dashText2 = new JLabel(" | ");
         dashText2.setForeground(COLOR_WHITE_TEXT);
         dashText2.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText2);
+        
+        consoleTab = new FooterButton("Console", resLoader);
+        consoleTab.setActionCommand(TAB_CONSOLE);
+        consoleTab.addActionListener(tabListener);
+        footer.add(consoleTab);
+        
+        JLabel dashText3 = new JLabel(" | ");
+        dashText3.setForeground(COLOR_WHITE_TEXT);
+        dashText3.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
+        footer.add(dashText3);
+        
+        settingsTab = new FooterButton("Settings", resLoader);
+        settingsTab.setActionCommand(TAB_OPTIONS);
+        settingsTab.addActionListener(tabListener);
+        footer.add(settingsTab);
+        
+        JLabel dashText4 = new JLabel(" | ");
+        dashText4.setForeground(COLOR_WHITE_TEXT);
+        dashText4.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
+        footer.add(dashText4);
         
         creditsTab = new FooterButton("Credits", resLoader);
         creditsTab.setActionCommand(TAB_CREDITS);
