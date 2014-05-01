@@ -13,7 +13,7 @@ public class ResourceLoader {
 	
 	public BufferedImage getImage(String imageName) {
         try {
-            return ImageIO.read(ResourceLoader.class.getResource(imageName));
+            return ImageIO.read(getClass().getResource(imageName));
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;

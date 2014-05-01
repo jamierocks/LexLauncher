@@ -1,31 +1,49 @@
 package malgm.minecraft.launcher.ui.tabs.welcome;
 
-import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import java.io.IOException;
 
+import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+
+import malgm.minecraft.launcher.Data;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
-import malgm.minecraft.launcher.ui.TechUI;
 import malgm.minecraft.launcher.ui.controls.TiledBackground;
 
 public class WelcomeInfoPanel extends TiledBackground {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public JLabel text;
+	public JEditorPane page;
+	private JScrollPane newsPanel;
 	
 	private static ResourceFinder resFinder = new ResourceFinder();
 
-	public WelcomeInfoPanel(ResourceLoader loader) {
+	public WelcomeInfoPanel(ResourceLoader loader, Data data) {
 		super(loader.getImage(resFinder.background()));
 		
-		text = new JLabel("<html><center>"
-				+ "<h1>Welcome to lexLauncher!</h1>"
-				+ "<h3>Install what you want, play what you want!</h3>"
-				+ "<h3>lexLauncher, gets you to the game FAST!</h3>"
-				+ "</center></html>");
-		text.setForeground(TechUI.COLOR_WHITE_TEXT);
+		setLayout(new BorderLayout());
 		
-		add(text);
+		page = new JEditorPane();
+		page.setEditable(false);
+		try {
+			page.setPage(data.getDiscoverPage());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		page.addHyperlinkListener(new HyperlinkListener() {
+            @Override
+            public void hyperlinkUpdate (HyperlinkEvent arg0) {
+                
+            }
+        });
+		
+		newsPanel = new JScrollPane(page);
+        newsPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        newsPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        add(newsPanel, BorderLayout.CENTER);
 	}
 
 }

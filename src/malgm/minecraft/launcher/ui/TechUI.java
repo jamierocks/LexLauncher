@@ -20,8 +20,8 @@ public class TechUI extends DraggableFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int FRAME_WIDTH = 900;
-	private int FRAME_HEIGHT = 560;
+	public final static int FRAME_WIDTH = 900;
+	public final static int FRAME_HEIGHT = 560;
 	
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
 	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
@@ -138,7 +138,7 @@ public class TechUI extends DraggableFrame {
             }
         };
         
-        welcomeTab = new HeaderTab("Welcome", resLoader);
+        welcomeTab = new HeaderTab("Discover", resLoader);
         welcomeTab.setActionCommand(TAB_WELCOME);
         welcomeTab.addActionListener(tabListener);
         header.add(welcomeTab);
@@ -212,7 +212,7 @@ public class TechUI extends DraggableFrame {
         this.add(infoContainer, BorderLayout.CENTER);
         infoContainer.setLayout(new BorderLayout());
         
-        welcomePanel = new WelcomeInfoPanel(resLoader);
+        welcomePanel = new WelcomeInfoPanel(resLoader, data);
         
         playPanel = new PlayInfoPanel(resLoader);
         
@@ -220,7 +220,7 @@ public class TechUI extends DraggableFrame {
         
         optionsPanel = new OptionsInfoPanel(resLoader);
         
-        creditsPanel = new CreditsInfoPanel(resLoader);
+        creditsPanel = new CreditsInfoPanel(resLoader, resFinder);
         
         modpacksPanel = new ModsListInfoPanel(resLoader);
         
