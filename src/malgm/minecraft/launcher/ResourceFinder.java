@@ -54,4 +54,8 @@ public class ResourceFinder {
 		this.folder = folder;
 	}
 
+	public String logo() {
+		return getValue("logo.png");
+	}
+
 }
