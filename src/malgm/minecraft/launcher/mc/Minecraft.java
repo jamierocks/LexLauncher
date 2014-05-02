@@ -5,9 +5,8 @@ public class Minecraft {
 	private String directory = null;
 	
 	public Minecraft(String directory) {
-		// saves directory location to be used latter
+		// saves directory location
 		this.directory = directory;
-		System.out.println(this.directory);
 	}
 	
 	public void startMinecraft() {
@@ -16,6 +15,10 @@ public class Minecraft {
 	
 	public void changeDirectory(String directory) {
 		this.directory = directory;
+	}
+	
+	public String getDirectory() {
+		return directory;
 	}
 	
 	public String getJarDownload(String mcversion) {

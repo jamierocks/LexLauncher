@@ -22,7 +22,7 @@ public class Launcher {
 
 	public static void loadGUI(Minecraft mc) {
 		try {
-			// sets look and fell to look like the respective systems default
+			// sets look and feel to look like the respective system default
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {

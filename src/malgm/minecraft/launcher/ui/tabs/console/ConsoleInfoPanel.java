@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 
+import malgm.minecraft.launcher.Data;
+import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.ui.controls.TiledBackground;
@@ -59,15 +61,20 @@ public class ConsoleInfoPanel extends TiledBackground {
 		JScrollPane p = new JScrollPane(a);
 		
 		add(p, BorderLayout.CENTER);
-
-		//Prints system variables to the console
-		System.out.println("os.name = " + System.getProperty("os.name"));
-		System.out.println("os.version = " + System.getProperty("os.version"));
-		System.out.println("os.arch = " + System.getProperty("os.arch"));
+		
+		// Prints launcher info to the console
+		Data data = new Data();
+		Logger.log(data.getMMLName() + " build " + data.getMMLBuild() + " Loading");
 		System.out.println();
-		System.out.println("java.vendor = " + System.getProperty("java.vendor"));
-		System.out.println("java.version = " + System.getProperty("java.version"));
-		System.out.println("java.vendor.url = " + System.getProperty("java.vendor.url"));
+
+		// Prints system variables to the console
+		Logger.log("System.getProperty('os.name') == " + System.getProperty("os.name"));
+		Logger.log("System.getProperty('os.version') == " + System.getProperty("os.version"));
+		Logger.log("System.getProperty('os.arch') == " + System.getProperty("os.arch"));
+		System.out.println();
+		Logger.log("System.getProperty('java.vendor') == " + System.getProperty("java.vendor"));
+		Logger.log("System.getProperty('java.version') == " + System.getProperty("java.version"));
+		Logger.log("System.getProperty('java.vendor.url') == " + System.getProperty("java.vendor.url"));
 	}
 	
 	public static JTextArea console(final InputStream out, final PrintWriter in) {
