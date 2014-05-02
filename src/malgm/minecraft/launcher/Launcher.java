@@ -12,6 +12,7 @@ public class Launcher {
 		//Use system default proxy settings
 		System.setProperty("java.net.useSystemProxies", "true");
 		
+		// load gui and initialize Minecraft class
 		loadGUI(initMC());
 	}
 	
@@ -21,6 +22,7 @@ public class Launcher {
 
 	public static void loadGUI(Minecraft mc) {
 		try {
+			// sets look and fell to look like the respective systems default
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {

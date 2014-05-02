@@ -31,6 +31,7 @@ public class NewsInfoPanel extends TiledBackground {
 		
 		page.setEditable(false);
 		try {
+			// sets page to set page in the data class
 			page.setPage(data.getNewsPage());
 		} catch (IOException e) {
 			e.printStackTrace();
