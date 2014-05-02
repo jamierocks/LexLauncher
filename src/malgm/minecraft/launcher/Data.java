@@ -2,7 +2,7 @@ package malgm.minecraft.launcher;
 
 public class Data {
 	
-	private final int mmlbuild = 1026;
+	private final int mmlbuild = 1027;
 	private final String mmlname = "lexLauncher";
 	
 	private final String discoverPage = "http://lexware.github.io/discover.html";

@@ -1,6 +1,6 @@
 package malgm.minecraft.launcher.ui.tabs.news;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.io.IOException;
 
 import javax.swing.*;

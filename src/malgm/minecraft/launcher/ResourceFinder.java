@@ -9,6 +9,7 @@ public class ResourceFinder {
 	private final String close = "close.png";
 	private final String minimize = "minimize.png";
 	private final String background = "background.png";
+	private final String logo = "logo.png";
 	
 	public ResourceFinder() {
 		changeFolder("res/");
@@ -38,6 +39,10 @@ public class ResourceFinder {
 		return getValue(background);
 	}
 	
+	public String logo() {
+		return getValue(logo);
+	}
+	
 	public String getResource(String value) {
 		return getValue(value);
 	}
@@ -52,10 +57,6 @@ public class ResourceFinder {
 	
 	public void changeFolder(String folder) {
 		this.folder = folder;
-	}
-
-	public String logo() {
-		return getValue("logo.png");
 	}
 
 }

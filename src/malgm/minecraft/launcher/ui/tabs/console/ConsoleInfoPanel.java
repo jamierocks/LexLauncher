@@ -75,6 +75,7 @@ public class ConsoleInfoPanel extends TiledBackground {
 		Logger.log("System.getProperty('java.vendor') == " + System.getProperty("java.vendor"));
 		Logger.log("System.getProperty('java.version') == " + System.getProperty("java.version"));
 		Logger.log("System.getProperty('java.vendor.url') == " + System.getProperty("java.vendor.url"));
+		System.out.println();
 	}
 	
 	public static JTextArea console(final InputStream out, final PrintWriter in) {

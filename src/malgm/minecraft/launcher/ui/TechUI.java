@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import malgm.minecraft.launcher.Data;
+import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.mc.Minecraft;
@@ -32,12 +33,12 @@ public class TechUI extends DraggableFrame {
     public static final Color COLOR_CHARCOAL = new Color(31, 31, 31);
     public static final Color COLOR_SELECTOR_BACK = new Color(22,26,29);
 	
-	public static final String TAB_WELCOME = "welcome";
-	public static final String TAB_PLAY = "play";
+	public static final String TAB_WELCOME = "discover";
+	public static final String TAB_PLAY = "modpacks";
 	public static final String TAB_INSTALL = "install";
-	public static final String TAB_OPTIONS = "options";
+	public static final String TAB_OPTIONS = "settings";
 	public static final String TAB_CREDITS = "credits";
-	public static final String TAB_MODLIST = "modlist";
+	public static final String TAB_MODLIST = "mods";
 	public static final String TAB_CONSOLE = "console";
 	public static final String TAB_NEWS = "news";
 	
@@ -148,6 +149,7 @@ public class TechUI extends DraggableFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 selectTab(e.getActionCommand());
+                Logger.log("Tab changed event: " + e.getActionCommand());
             }
         };
         
