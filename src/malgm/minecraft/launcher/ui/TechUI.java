@@ -76,10 +76,12 @@ public class TechUI extends DraggableFrame {
 		// build the frame
 		relocalize(resLoader);
 		
+		// selects the welcome tab
 		selectTab(TAB_WELCOME);
 	}
 	
 	protected void selectTab(String tabName) {
+		// sets all tabs to not active
 		welcomeTab.setIsActive(false);
 		playTab.setIsActive(false);
 		installTab.setIsActive(false);
@@ -89,6 +91,7 @@ public class TechUI extends DraggableFrame {
 		consoleTab.setIsActive(false);
 		newsTab.setIsActive(false);
 		
+		// sets the correct tab to active
 		if(tabName.equalsIgnoreCase(TAB_WELCOME)) {
 			welcomeTab.setIsActive(true);
 		} else if(tabName.equals(TAB_PLAY)) {
@@ -107,10 +110,12 @@ public class TechUI extends DraggableFrame {
 			newsTab.setIsActive(true);
 		}
 		
+		// shows the correct tab
 		infoLayout.show(infoSwap, tabName);
 	}
 	
 	protected void closeWindow() {
+		// closes program
 	    this.dispose();
     }
 
@@ -153,21 +158,25 @@ public class TechUI extends DraggableFrame {
             }
         };
         
+        // discover tab
         welcomeTab = new HeaderTab("Discover", resLoader);
         welcomeTab.setActionCommand(TAB_WELCOME);
         welcomeTab.addActionListener(tabListener);
         header.add(welcomeTab);
         
+        // modpacks tab
         playTab = new HeaderTab("Modpacks", resLoader);
         playTab.setActionCommand(TAB_PLAY);
         playTab.addActionListener(tabListener);
         header.add(playTab);
         
+        // install tab
         installTab = new HeaderTab("Install", resLoader);
         installTab.setActionCommand(TAB_INSTALL);
         installTab.addActionListener(tabListener);
         header.add(installTab);
         
+        // mods tab
         modslistTab = new HeaderTab("Mods", resLoader);
         modslistTab.setActionCommand(TAB_MODLIST);
         modslistTab.addActionListener(tabListener);
@@ -185,6 +194,7 @@ public class TechUI extends DraggableFrame {
         windowGadgetPanel.setLayout(new BoxLayout(windowGadgetPanel, BoxLayout.LINE_AXIS));
         windowGadgetPanel.setAlignmentX(RIGHT_ALIGNMENT);
         
+        // minimize button
         ImageIcon minimizeIcon = resLoader.getIcon(resFinder.minimize());
         JButton minimizeButton = new JButton(minimizeIcon);
         minimizeButton.setBorder(BorderFactory.createEmptyBorder());
@@ -199,6 +209,7 @@ public class TechUI extends DraggableFrame {
         minimizeButton.setFocusable(false);
         windowGadgetPanel.add(minimizeButton);
         
+        // close button
         ImageIcon closeIcon = resLoader.getIcon(resFinder.close());
         JButton closeButton = new JButton(closeIcon);
         closeButton.setBorder(BorderFactory.createEmptyBorder());
@@ -273,6 +284,7 @@ public class TechUI extends DraggableFrame {
         
         footer.add(Box.createHorizontalGlue());
         
+        // news tab
         newsTab = new FooterButton("News", resLoader);
         newsTab.setActionCommand(TAB_NEWS);
         newsTab.addActionListener(tabListener);
@@ -283,6 +295,7 @@ public class TechUI extends DraggableFrame {
         dashText2.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText2);
         
+        // console tab
         consoleTab = new FooterButton("Console", resLoader);
         consoleTab.setActionCommand(TAB_CONSOLE);
         consoleTab.addActionListener(tabListener);
@@ -293,6 +306,7 @@ public class TechUI extends DraggableFrame {
         dashText3.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText3);
         
+        // settings tab
         settingsTab = new FooterButton("Settings", resLoader);
         settingsTab.setActionCommand(TAB_OPTIONS);
         settingsTab.addActionListener(tabListener);
@@ -303,6 +317,7 @@ public class TechUI extends DraggableFrame {
         dashText4.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText4);
         
+        // credits tab
         creditsTab = new FooterButton("Credits", resLoader);
         creditsTab.setActionCommand(TAB_CREDITS);
         creditsTab.addActionListener(tabListener);

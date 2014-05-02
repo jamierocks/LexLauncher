@@ -13,9 +13,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 import malgm.minecraft.launcher.Data;
 import malgm.minecraft.launcher.Logger;
@@ -29,8 +27,8 @@ public class ConsoleInfoPanel extends TiledBackground {
 	
 	private static ResourceFinder resFinder = new ResourceFinder();
 	
-	public static PipedInputStream outPipe;
-	public static PrintWriter inWriter;
+	private static PipedInputStream outPipe;
+	private static PrintWriter inWriter;
 	
 	public ConsoleInfoPanel(ResourceLoader loader) {
 		super(loader.getImage(resFinder.background()));

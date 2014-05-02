@@ -13,9 +13,11 @@ public class SplashScreen extends JWindow {
 	public SplashScreen(ResourceLoader resLoader, ResourceFinder resFinder) {
 		setLayout(new BorderLayout());
 		
+		// add logo to center
 		JLabel logo = new JLabel(resLoader.getIcon(resFinder.logo()));
 		add(logo, BorderLayout.CENTER);
 		
+		// sets size depending on the content inside
 		pack();
 	}
 

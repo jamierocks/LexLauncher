@@ -32,7 +32,7 @@ public class CreditsInfoPanel extends TiledBackground {
 				+ "<p>Github for having such a wonderful service.</p>"
 				+ "<p>StackOverFlow for having soo many wonderful answers.</p>"
 				+ "<p>Mojang without them I wouldn't be making this piece of software.</p>"
-				+ "<p>sk89q for having an open-source launcher, anyone can look through.</p>"
+				//+ "<p>sk89q for having an open-source launcher, anyone can look through.</p>"
 				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_WHITE_TEXT);
 		

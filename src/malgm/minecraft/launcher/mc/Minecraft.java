@@ -2,7 +2,7 @@ package malgm.minecraft.launcher.mc;
 
 public class Minecraft {
 	
-	private String directory = null;
+	private String directory;
 	
 	public Minecraft(String directory) {
 		// saves directory location
@@ -10,7 +10,7 @@ public class Minecraft {
 	}
 	
 	public void startMinecraft() {
-		
+		// code to launch minecraft from the launcher
 	}
 	
 	public void changeDirectory(String directory) {
@@ -22,6 +22,7 @@ public class Minecraft {
 	}
 	
 	public String getJarDownload(String mcversion) {
+		// gets the url for the jar download of a mc version
 		return "http://s3.amazonaws.com/Minecraft.Download/versions/" + mcversion + "/" + mcversion + ".jar";
 	}
 
