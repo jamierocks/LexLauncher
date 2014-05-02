@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
@@ -20,6 +22,7 @@ import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.util.Utils;
 
 public class ConsoleInfoPanel extends TiledBackground {
 	
@@ -50,7 +53,7 @@ public class ConsoleInfoPanel extends TiledBackground {
 		}
 		
 		// this is the on-screen console
-		JTextArea a = console(outPipe, inWriter);
+		final JTextArea a = console(outPipe, inWriter);
 		a.setEditable(false);
 		a.setBackground(Color.BLACK);
 		a.setForeground(Color.WHITE);
@@ -59,6 +62,36 @@ public class ConsoleInfoPanel extends TiledBackground {
 		JScrollPane p = new JScrollPane(a);
 		
 		add(p, BorderLayout.CENTER);
+		
+		JButton clear = new JButton("Clear");
+		clear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				a.setText(null);
+			}
+		});
+		
+		JButton save = new JButton("Save to log");
+		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					a.write(new FileWriter(new File(Utils.getLauncherDirectory().toString(), "LauncherLog.txt")));
+					System.out.println();
+					Logger.log("Successfully saved log file");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(Color.TRANSLUCENT));
+		
+		panel.add(clear, BorderLayout.WEST);
+		panel.add(save, BorderLayout.EAST);
+		
+		add(panel, BorderLayout.SOUTH);
 		
 		// Prints launcher info to the console
 		Data data = new Data();
