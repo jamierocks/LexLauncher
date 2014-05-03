@@ -16,6 +16,7 @@ import malgm.minecraft.launcher.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.discover.DiscoverInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.install.InstallInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.modpacks.ModpacksInfoPanel;
+import malgm.minecraft.launcher.ui.tabs.modpacks.ModpacksSelector;
 import malgm.minecraft.launcher.ui.tabs.modslist.ModsListInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.news.NewsInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.options.OptionsInfoPanel;
@@ -26,6 +27,9 @@ public class TechUI extends DraggableFrame {
 	
 	public final static int FRAME_WIDTH = 1200;
 	public final static int FRAME_HEIGHT = 720;
+	
+	private static final int SIDEKICK_WIDTH = 300;
+    private static final int SIDEKICK_HEIGHT = 250;
 	
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
 	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
@@ -56,6 +60,8 @@ public class TechUI extends DraggableFrame {
 	private ModpacksInfoPanel playPanel;
 	private ConsoleInfoPanel consolePanel;
 	private NewsInfoPanel newsPanel;
+	
+	private ModpacksSelector modpackSelector;
 	
 	private TintablePanel leftPanel;
 	
@@ -308,8 +314,14 @@ public class TechUI extends DraggableFrame {
         selectorSwap.setOpaque(false);
         this.selectorLayout = new CardLayout();
         selectorSwap.setLayout(selectorLayout);
-        
+        modpackSelector = new ModpacksSelector(resLoader);
+        selectorSwap.add(modpackSelector, "modpacks");
         leftPanel.add(selectorSwap, BorderLayout.CENTER);
+        
+        TiledBackground sidekick = new TiledBackground(resLoader.getImage(resFinder.advertisment()));
+        sidekick.setForeground(COLOR_WHITE_TEXT);
+        sidekick.setPreferredSize(new Dimension(SIDEKICK_WIDTH, SIDEKICK_HEIGHT));
+        leftPanel.add(sidekick, BorderLayout.PAGE_END);
         
         //////////////////////////////////////
         // Footer

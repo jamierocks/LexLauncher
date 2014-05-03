@@ -12,6 +12,7 @@ public class ResourceFinder {
 	private final String logo = "logo.png";
 	private final String downTriangle = "downTriangle.png";
 	private final String optionsCog = "optionsCog.png";
+	private final String advertisement = "placeholder_ad.png";
 	
 	public ResourceFinder() {
 		changeFolder("res/");
@@ -51,6 +52,10 @@ public class ResourceFinder {
 	
 	public String optionsCog() {
 		return getValue(optionsCog);
+	}
+	
+	public String advertisment() {
+		return getValue(advertisement);
 	}
 	
 	public String getResource(String value) {
