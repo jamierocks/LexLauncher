@@ -6,7 +6,7 @@ public class Modpack extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Modpack(String name) {
+	public Modpack(String name, String actionCommand, String imageDir) {
 		
 	}
 

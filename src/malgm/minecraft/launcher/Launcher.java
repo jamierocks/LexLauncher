@@ -1,7 +1,6 @@
 package malgm.minecraft.launcher;
 
 import java.io.File;
-
 import javax.swing.*;
 
 import malgm.minecraft.launcher.mc.Minecraft;
@@ -33,6 +32,25 @@ public class Launcher {
 		if(!new File(Utils.getLauncherDirectory().toString(), "resources/modpacks").exists()) {
 			new File(Utils.getLauncherDirectory().toString(), "resources/modpacks").mkdirs();
 		}
+		
+		// checks if cache folder exists and if not create it
+		if(!new File(Utils.getLauncherDirectory().toString(), "resources/cache").exists()) {
+			new File(Utils.getLauncherDirectory().toString(), "resources/cache").mkdirs();
+		}
+		
+		// keep local copys of news and discover pages
+		/*Installer installer = new Installer();
+		Data data = new Data();
+		try {
+			installer.downloadFile(data.getNewsPage(), Utils.getLauncherDirectory() + "/resources/cache", "news.html");
+			installer.downloadFile(data.getDiscoverPage(), Utils.getLauncherDirectory() + "/resources/cache", "discover.html");
+			installer.downloadFile(data.getWebsite() + "discover.css", Utils.getLauncherDirectory() + "/resources/cache", "discover.css");
+			installer.downloadFile(data.getWebsite() + "lexlauncher.png", Utils.getLauncherDirectory() + "/resources/cache", "lexlauncher.png");
+			installer.downloadFile(data.getWebsite() + "discoverbg.png", Utils.getLauncherDirectory() + "/resources/cache", "discoverbg.png");
+			installer.downloadFile(data.getWebsite() + "logo2.png", Utils.getLauncherDirectory() + "/resources/cache", "logo2.png");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}*/
 		
 		// load gui and initialize Minecraft class
 		try {

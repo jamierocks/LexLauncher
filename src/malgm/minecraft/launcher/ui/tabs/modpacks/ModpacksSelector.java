@@ -1,6 +1,7 @@
 package malgm.minecraft.launcher.ui.tabs.modpacks;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.*;
 
@@ -13,9 +14,7 @@ public class ModpacksSelector extends JPanel {
 	public ModpacksSelector(ResourceLoader resLoader) {
 		setLayout(new BorderLayout());
 		
-		JScrollPane modpacks = new JScrollPane();
-		
-		add(modpacks, BorderLayout.CENTER);
+		setBackground(new Color(32, 32, 32));
 	}
 
 }

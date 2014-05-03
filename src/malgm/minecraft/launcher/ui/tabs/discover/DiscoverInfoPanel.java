@@ -31,6 +31,7 @@ public class DiscoverInfoPanel extends TiledBackground {
 	    page.setEditorKit(kit);
 		
 		page.setEditable(false);
+		
 		try {
 			// sets page to set page in the data class
 			page.setPage(data.getDiscoverPage());

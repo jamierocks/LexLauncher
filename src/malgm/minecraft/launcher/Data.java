@@ -8,8 +8,8 @@ public class Data {
 	private final String discoverPage = "http://lexware.github.io/discover.html";
 	private final String newsPage = "http://lexware.github.io/news.html";
 	
-	private final String backupDiscoverPage = "res/offlinepages/discover.html";
-	private final String backupNewsPage = "res/offlinepages/news.html";
+	private final String website = "http://lexware.github.io/";
+	
 	
 	public int getMMLBuild() {
 		// gets the current build of lexLauncher (malgms minecraft launcher shortly)
@@ -30,15 +30,9 @@ public class Data {
 		// news page url
 		return newsPage;
 	}
-
-	public String getBackupDiscoverPage() {
-		// backup / offline discover page
-		return backupDiscoverPage;
-	}
 	
-	public String getBackupNewsPage() {
-		// backup / offline discover page
-		return backupNewsPage;
+	public String getWebsite() {
+		return website;
 	}
 
 }
