@@ -11,6 +11,7 @@ import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.mc.Minecraft;
 import malgm.minecraft.launcher.ui.components.*;
+import malgm.minecraft.launcher.ui.selectors.QuickLaunch;
 import malgm.minecraft.launcher.ui.tabs.console.ConsoleInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.discover.DiscoverInfoPanel;
@@ -32,6 +33,8 @@ public class TechUI extends DraggableFrame {
     private static final int SIDEKICK_HEIGHT = 250;
 	
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
+	public static final Color COLOR_SCROLL_TRACK = new Color(18, 18, 18);
+    public static final Color COLOR_SCROLL_THUMB = new Color(53, 53, 53);
 	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
     public static final Color COLOR_BLACK_TEXT = new Color(0,0,0);
     public static final Color COLOR_CHARCOAL = new Color(31, 31, 31);
@@ -46,6 +49,9 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_MODLIST = "mods";
 	public static final String TAB_CONSOLE = "console";
 	public static final String TAB_NEWS = "news";
+	
+	public static final String QUICK_LAUNCH = "quicklaunch";
+	public static final String MODPACKS = "modpacks";
 	
 	private HeaderTab welcomeTab, playTab, installTab,  modslistTab, newsTab;
 	
@@ -62,6 +68,7 @@ public class TechUI extends DraggableFrame {
 	private NewsInfoPanel newsPanel;
 	
 	private ModpacksSelector modpackSelector;
+	private QuickLaunch quickLaunch;
 	
 	private TintablePanel leftPanel;
 	
@@ -125,6 +132,11 @@ public class TechUI extends DraggableFrame {
 		
 		// shows the correct tab
 		infoLayout.show(infoSwap, tabName);
+		if(tabName == TAB_PLAY) {
+			selectorLayout.show(selectorSwap, MODPACKS);
+		} else {
+			selectorLayout.show(selectorSwap, QUICK_LAUNCH);
+		}
 	}
 	
 	protected void closeWindow() {
@@ -312,12 +324,17 @@ public class TechUI extends DraggableFrame {
         
         selectorSwap = new JPanel();
         selectorSwap.setOpaque(false);
-        this.selectorLayout = new CardLayout();
+        selectorLayout = new CardLayout();
         selectorSwap.setLayout(selectorLayout);
+        
         modpackSelector = new ModpacksSelector(resLoader);
-        selectorSwap.add(modpackSelector, "modpacks");
+        quickLaunch = new QuickLaunch(resLoader, resFinder);
+        
+        selectorSwap.add(modpackSelector, MODPACKS);
+        selectorSwap.add(quickLaunch, QUICK_LAUNCH);
         leftPanel.add(selectorSwap, BorderLayout.CENTER);
         
+        // advertisement
         TiledBackground sidekick = new TiledBackground(resLoader.getImage(resFinder.advertisment()));
         sidekick.setForeground(COLOR_WHITE_TEXT);
         sidekick.setPreferredSize(new Dimension(SIDEKICK_WIDTH, SIDEKICK_HEIGHT));
@@ -340,7 +357,7 @@ public class TechUI extends DraggableFrame {
         footer.add(Box.createHorizontalGlue());
         
         // console tab
-        consoleTab = new FooterButton("Console", resLoader, TechUI.COLOR_WHITE_TEXT);
+        consoleTab = new FooterButton("Console", resLoader, COLOR_WHITE_TEXT);
         consoleTab.setActionCommand(TAB_CONSOLE);
         consoleTab.addActionListener(tabListener);
         footer.add(consoleTab);
@@ -351,7 +368,7 @@ public class TechUI extends DraggableFrame {
         footer.add(dashText3);
         
         // credits tab
-        creditsTab = new FooterButton("Credits", resLoader, TechUI.COLOR_WHITE_TEXT);
+        creditsTab = new FooterButton("Credits", resLoader, COLOR_WHITE_TEXT);
         creditsTab.setActionCommand(TAB_CREDITS);
         creditsTab.addActionListener(tabListener);
         footer.add(creditsTab);

@@ -21,6 +21,7 @@ import malgm.minecraft.launcher.Data;
 import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
+import malgm.minecraft.launcher.ui.components.SimpleScrollBarUI;
 import malgm.minecraft.launcher.ui.components.TiledBackground;
 import malgm.minecraft.launcher.util.Utils;
 
@@ -32,6 +33,8 @@ public class ConsoleInfoPanel extends TiledBackground {
 	
 	private static PipedInputStream outPipe;
 	private static PrintWriter inWriter;
+	
+	private final JTextArea a;
 	
 	public ConsoleInfoPanel(ResourceLoader loader) {
 		super(loader.getImage(resFinder.background()));
@@ -53,13 +56,14 @@ public class ConsoleInfoPanel extends TiledBackground {
 		}
 		
 		// this is the on-screen console
-		final JTextArea a = console(outPipe, inWriter);
+		a = console(outPipe, inWriter);
 		a.setEditable(false);
 		a.setBackground(Color.BLACK);
 		a.setForeground(Color.WHITE);
 		a.setMargin(new Insets(10, 10, 10, 10));
 		
 		JScrollPane p = new JScrollPane(a);
+		p.getVerticalScrollBar().setUI(new SimpleScrollBarUI());
 		
 		add(p, BorderLayout.CENTER);
 		
@@ -142,6 +146,10 @@ public class ConsoleInfoPanel extends TiledBackground {
 	    });
 
 	    return area;
+	}
+	
+	public JTextArea getConsole() {
+		return a;
 	}
 
 }

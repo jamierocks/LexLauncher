@@ -11,6 +11,11 @@ import malgm.minecraft.launcher.util.Utils;
 public class Launcher {
 	
 	public static void main(String []args) {
+		// load splash screen
+		SplashScreen splash = new SplashScreen(new ResourceLoader(), new ResourceFinder());
+		splash.setLocationRelativeTo(null);
+		splash.setVisible(true);
+		
 		// Use system default proxy settings
 		System.setProperty("java.net.useSystemProxies", "true");
 		
@@ -19,6 +24,16 @@ public class Launcher {
 			new File(Utils.getLauncherDirectory().toString(), "LauncherLog.txt").delete();
         }
 		
+		// check if resources directory exists and if not makes it
+		if(!new File(Utils.getLauncherDirectory().toString(), "resources").exists()) {
+			new File(Utils.getLauncherDirectory().toString(), "resources").mkdirs();
+		}
+		
+		// checks if modpacks folder exists and if not create it
+		if(!new File(Utils.getLauncherDirectory().toString(), "resources/modpacks").exists()) {
+			new File(Utils.getLauncherDirectory().toString(), "resources/modpacks").mkdirs();
+		}
+		
 		// load gui and initialize Minecraft class
 		try {
 			// sets look and feel to look like the respective system default
@@ -26,11 +41,6 @@ public class Launcher {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		// load splash screen
-		SplashScreen splash = new SplashScreen(new ResourceLoader(), new ResourceFinder());
-		splash.setLocationRelativeTo(null);
-		splash.setVisible(true);
 		
 		// load launcher
 		TechUI frame = new TechUI(initMC(), new ResourceLoader(), new ResourceFinder());

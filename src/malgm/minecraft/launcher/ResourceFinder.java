@@ -13,6 +13,8 @@ public class ResourceFinder {
 	private final String downTriangle = "downTriangle.png";
 	private final String optionsCog = "optionsCog.png";
 	private final String advertisement = "placeholder_ad.png";
+	private final String add = "add_button.png";
+	private final String remove = "remove_button.png";
 	
 	public ResourceFinder() {
 		changeFolder("res/");
@@ -56,6 +58,14 @@ public class ResourceFinder {
 	
 	public String advertisment() {
 		return getValue(advertisement);
+	}
+	
+	public String add() {
+		return getValue(add);
+	}
+	
+	public String remove() {
+		return getValue(remove);
 	}
 	
 	public String getResource(String value) {

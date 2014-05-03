@@ -8,6 +8,7 @@ import javax.swing.event.*;
 import javax.swing.text.html.HTMLEditorKit;
 
 import malgm.minecraft.launcher.*;
+import malgm.minecraft.launcher.ui.components.SimpleScrollBarUI;
 import malgm.minecraft.launcher.ui.components.TiledBackground;
 
 public class NewsInfoPanel extends TiledBackground {
@@ -48,6 +49,7 @@ public class NewsInfoPanel extends TiledBackground {
 		newsPanel = new JScrollPane(page);
         newsPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         newsPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        newsPanel.getVerticalScrollBar().setUI(new SimpleScrollBarUI());
         
         add(newsPanel, BorderLayout.CENTER);
 	}
