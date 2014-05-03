@@ -71,7 +71,7 @@ public class ConsoleInfoPanel extends TiledBackground {
 			}
 		});
 		
-		JButton save = new JButton("Save to log");
+		JButton save = new JButton("Save log");
 		save.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -24,14 +24,15 @@ public class TechUI extends DraggableFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public final static int FRAME_WIDTH = 900;
-	public final static int FRAME_HEIGHT = 560;
+	public final static int FRAME_WIDTH = 1200;
+	public final static int FRAME_HEIGHT = 720;
 	
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
 	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
     public static final Color COLOR_BLACK_TEXT = new Color(0,0,0);
     public static final Color COLOR_CHARCOAL = new Color(31, 31, 31);
     public static final Color COLOR_SELECTOR_BACK = new Color(22,26,29);
+    public static final Color COLOR_CENTRAL_BACK = new Color(25, 30, 34, 160);
 	
 	public static final String TAB_WELCOME = "discover";
 	public static final String TAB_PLAY = "modpacks";
@@ -42,9 +43,10 @@ public class TechUI extends DraggableFrame {
 	public static final String TAB_CONSOLE = "console";
 	public static final String TAB_NEWS = "news";
 	
-	private HeaderTab welcomeTab, playTab, installTab,  modslistTab;
+	private HeaderTab welcomeTab, playTab, installTab,  modslistTab, newsTab;
 	
-	private FooterButton creditsTab, settingsTab, consoleTab, newsTab;
+	private FooterButton creditsTab, consoleTab;
+	private HeaderButton launcherOptionsLabel;
 	
 	private DiscoverInfoPanel welcomePanel;
 	private InstallInfoPanel installPanel;
@@ -55,8 +57,13 @@ public class TechUI extends DraggableFrame {
 	private ConsoleInfoPanel consolePanel;
 	private NewsInfoPanel newsPanel;
 	
+	private TintablePanel leftPanel;
+	
 	private CardLayout infoLayout;
 	private JPanel infoSwap;
+	private CardLayout selectorLayout;
+    private JPanel selectorSwap;
+	
 	private Data data = new Data();
 	
 	private ResourceLoader resLoader;
@@ -85,7 +92,7 @@ public class TechUI extends DraggableFrame {
 		welcomeTab.setIsActive(false);
 		playTab.setIsActive(false);
 		installTab.setIsActive(false);
-		settingsTab.setIsActive(false);
+		launcherOptionsLabel.setIsActive(false);
 		creditsTab.setIsActive(false);
 		modslistTab.setIsActive(false);
 		consoleTab.setIsActive(false);
@@ -99,7 +106,7 @@ public class TechUI extends DraggableFrame {
 		} else if(tabName.equalsIgnoreCase(TAB_INSTALL)) {
 			installTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_OPTIONS)) {
-			settingsTab.setIsActive(true);
+			launcherOptionsLabel.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_CREDITS)) {
 			creditsTab.setIsActive(true);
 		} else if(tabName.equalsIgnoreCase(TAB_MODLIST)) {
@@ -167,20 +174,28 @@ public class TechUI extends DraggableFrame {
         // modpacks tab
         playTab = new HeaderTab("Modpacks", resLoader);
         playTab.setActionCommand(TAB_PLAY);
+        playTab.setIcon(resLoader.getIcon(resFinder.downTriangle()));
+        playTab.setHorizontalTextPosition(SwingConstants.LEADING);
         playTab.addActionListener(tabListener);
         header.add(playTab);
+        
+        // news tab
+        newsTab = new HeaderTab("News", resLoader);
+        newsTab.setActionCommand(TAB_NEWS);
+        newsTab.addActionListener(tabListener);
+        header.add(newsTab);
         
         // install tab
         installTab = new HeaderTab("Install", resLoader);
         installTab.setActionCommand(TAB_INSTALL);
         installTab.addActionListener(tabListener);
-        header.add(installTab);
+        //header.add(installTab);
         
         // mods tab
         modslistTab = new HeaderTab("Mods", resLoader);
         modslistTab.setActionCommand(TAB_MODLIST);
         modslistTab.addActionListener(tabListener);
-        header.add(modslistTab);
+        //header.add(modslistTab);
         
         header.add(Box.createHorizontalGlue());
         
@@ -223,9 +238,21 @@ public class TechUI extends DraggableFrame {
         closeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         closeButton.setFocusable(false);
         windowGadgetPanel.add(closeButton);
-
+        
         rightHeaderPanel.add(windowGadgetPanel);
         rightHeaderPanel.add(Box.createVerticalGlue());
+        
+        // options tab / button
+        launcherOptionsLabel = new HeaderButton("Launcher Options", resLoader);
+        launcherOptionsLabel.setIcon(resLoader.getIcon(resFinder.optionsCog()));
+        launcherOptionsLabel.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 14));
+        launcherOptionsLabel.setForeground(TechUI.COLOR_BLACK_TEXT);
+        launcherOptionsLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        launcherOptionsLabel.setHorizontalTextPosition(SwingConstants.LEADING);
+        launcherOptionsLabel.setAlignmentX(RIGHT_ALIGNMENT);
+        launcherOptionsLabel.setActionCommand(TAB_OPTIONS);
+        launcherOptionsLabel.addActionListener(tabListener);
+        rightHeaderPanel.add(launcherOptionsLabel);
         
         header.add(rightHeaderPanel);
         
@@ -269,6 +296,22 @@ public class TechUI extends DraggableFrame {
         infoContainer.add(infoSwap, BorderLayout.CENTER);
         
         //////////////////////////////////////
+        // Left setup
+        //////////////////////////////////////
+        leftPanel = new TintablePanel();
+        leftPanel.setTintColor(COLOR_CENTRAL_BACK);
+        this.add(leftPanel, BorderLayout.LINE_START);
+
+        leftPanel.setLayout(new BorderLayout());
+        
+        selectorSwap = new JPanel();
+        selectorSwap.setOpaque(false);
+        this.selectorLayout = new CardLayout();
+        selectorSwap.setLayout(selectorLayout);
+        
+        leftPanel.add(selectorSwap, BorderLayout.CENTER);
+        
+        //////////////////////////////////////
         // Footer
         //////////////////////////////////////
         JPanel footer = new JPanel();
@@ -284,19 +327,8 @@ public class TechUI extends DraggableFrame {
         
         footer.add(Box.createHorizontalGlue());
         
-        // news tab
-        newsTab = new FooterButton("News", resLoader);
-        newsTab.setActionCommand(TAB_NEWS);
-        newsTab.addActionListener(tabListener);
-        footer.add(newsTab);
-        
-        JLabel dashText2 = new JLabel(" | ");
-        dashText2.setForeground(COLOR_WHITE_TEXT);
-        dashText2.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
-        footer.add(dashText2);
-        
         // console tab
-        consoleTab = new FooterButton("Console", resLoader);
+        consoleTab = new FooterButton("Console", resLoader, TechUI.COLOR_WHITE_TEXT);
         consoleTab.setActionCommand(TAB_CONSOLE);
         consoleTab.addActionListener(tabListener);
         footer.add(consoleTab);
@@ -306,19 +338,8 @@ public class TechUI extends DraggableFrame {
         dashText3.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
         footer.add(dashText3);
         
-        // settings tab
-        settingsTab = new FooterButton("Settings", resLoader);
-        settingsTab.setActionCommand(TAB_OPTIONS);
-        settingsTab.addActionListener(tabListener);
-        footer.add(settingsTab);
-        
-        JLabel dashText4 = new JLabel(" | ");
-        dashText4.setForeground(COLOR_WHITE_TEXT);
-        dashText4.setFont(resLoader.getFont(ResourceLoader.FONT_RALEWAY, 15));
-        footer.add(dashText4);
-        
         // credits tab
-        creditsTab = new FooterButton("Credits", resLoader);
+        creditsTab = new FooterButton("Credits", resLoader, TechUI.COLOR_WHITE_TEXT);
         creditsTab.setActionCommand(TAB_CREDITS);
         creditsTab.addActionListener(tabListener);
         footer.add(creditsTab);

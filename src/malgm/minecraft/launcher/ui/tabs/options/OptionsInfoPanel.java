@@ -46,9 +46,10 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		add(list);
 		
 		// Text field for custom directory
-		field = new JTextField(20);
+		field = new JTextField(35);
 		field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
-		field.setToolTipText("Enter the directory of your custom directory");
+		field.setEditable(false);
+		
 		add(field);
 		
 		// browse button
@@ -61,30 +62,30 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		change.setMnemonic(KeyEvent.VK_ENTER);
 		
 		if(list.getSelectedItem() == modes[0]) {
-			field.setEditable(false);
+			field.setEnabled(false);
 			browse.setEnabled(false);
 			change.setEnabled(false);
 		} else {
-			field.setEditable(true);
+			field.setEnabled(true);
 			browse.setEnabled(true);
 			change.setEnabled(true);
 		}
 		
 		add(browse);
-		add(change);
+		//add(change);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(list.getSelectedItem() == modes[0]) {
 			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", settings.defaultDir);
-			field.setEditable(false);
+			field.setEnabled(false);
 			browse.setEnabled(false);
 			change.setEnabled(false);
 		}
 		if(list.getSelectedItem() == modes[1]) {
 			settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "mcDirectory", settings.customDir);
-			field.setEditable(true);
+			field.setEnabled(true);
 			browse.setEnabled(true);
 			change.setEnabled(true);
 		}

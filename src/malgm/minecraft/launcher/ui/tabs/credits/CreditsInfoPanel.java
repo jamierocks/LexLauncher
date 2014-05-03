@@ -37,7 +37,7 @@ public class CreditsInfoPanel extends TiledBackground {
 				+ "</center></html>");
 		text.setForeground(TechUI.COLOR_WHITE_TEXT);
 		
-		int i = 280;
+		int i = 440;
 		
 		text.setBorder(BorderFactory.createEmptyBorder(15, i, 15, i));
 		
