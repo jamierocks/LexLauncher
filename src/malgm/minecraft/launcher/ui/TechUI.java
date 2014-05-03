@@ -10,7 +10,7 @@ import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.mc.Minecraft;
-import malgm.minecraft.launcher.ui.controls.*;
+import malgm.minecraft.launcher.ui.components.*;
 import malgm.minecraft.launcher.ui.tabs.console.ConsoleInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.credits.CreditsInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.discover.DiscoverInfoPanel;

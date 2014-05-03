@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
-import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.ui.components.TiledBackground;
 
 public class ModsListInfoPanel extends TiledBackground implements ActionListener {
 	

@@ -4,11 +4,13 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.settings.SettingsFile;
-import malgm.minecraft.launcher.ui.controls.PopUp;
-import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.ui.TechUI;
+import malgm.minecraft.launcher.ui.components.PopUp;
+import malgm.minecraft.launcher.ui.components.TiledBackground;
 import malgm.minecraft.launcher.util.Utils;
 
 public class OptionsInfoPanel extends TiledBackground implements ActionListener {
@@ -16,6 +18,7 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	private static final long serialVersionUID = 1L;
 	
 	private JButton browse, change;
+	private JLabel directory;
 	
 	private JTextField field;
 	private SettingsFile settings = new SettingsFile(Utils.getLauncherDirectory().toString());
@@ -29,10 +32,10 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 	public OptionsInfoPanel(ResourceLoader loader) {
 		super(loader.getImage(resFinder.background()));
 		
-		//JLabel mvi = new JLabel("<html><center><h1>Minecraft Version Installer</h1></center></html>");
-		//JLabel mml = new JLabel("<html><center><h1>Malgm Minecraft Launcher</h1></center></html>");
-		
-		//add(mvi);
+		// install directory label
+		directory = new JLabel("Install directory...    ");
+		directory.setForeground(TechUI.COLOR_WHITE_TEXT);
+		add(directory);
 		
 		// list for selecting between default and custom minecraft installations
 		list = new JComboBox<Object>(modes);
@@ -67,10 +70,8 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 			change.setEnabled(true);
 		}
 		
-		//add(browse);
+		add(browse);
 		add(change);
-		
-		//add(mml);
 	}
 
 	@Override
@@ -96,10 +97,31 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 				}
 				settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory", s);
 				field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
+				Logger.log("Install directory changed");
 			} else {
 				PopUp popup = new PopUp();
 				popup.error("ERROR MESSAGE", "You did not specify a directory!");
 			}
+		}
+		if(e.getSource() == this.browse) {
+			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(Utils.getLauncherDirectory());
+			chooser.setDialogTitle("Install Directory");
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.setAcceptAllFileFilterUsed(false);
+            
+            if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            	settings.writeToSettingsFile(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory", chooser.getSelectedFile().getPath());
+            	field.setText(settings.getSettingsValue(settings.getDefaultDirectory(), settings.getDefaultFileName(), "customDirectory"));
+				
+            	System.out.println();
+            	Logger.log("Install directory changed");
+            	System.out.println();
+            } else {
+            	System.out.println();
+            	Logger.log("No selection");
+            	System.out.println();
+            }
 		}
 	}
 

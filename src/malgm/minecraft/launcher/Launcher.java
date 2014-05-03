@@ -14,7 +14,7 @@ public class Launcher {
 		// Use system default proxy settings
 		System.setProperty("java.net.useSystemProxies", "true");
 		
-		// checks if log exists and if it does delete it
+		// checks if existing log exists and if it does delete it
 		if (new File(Utils.getLauncherDirectory().toString(), "LauncherLog.txt").exists()) {
 			new File(Utils.getLauncherDirectory().toString(), "LauncherLog.txt").delete();
         }
@@ -45,6 +45,7 @@ public class Launcher {
 	}
 	
 	private static Minecraft initMC() {
+		// return minecraft class
 		return new Minecraft(Utils.getLauncherDirectory().toString());
 	}
 

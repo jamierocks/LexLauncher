@@ -1,13 +1,14 @@
 package malgm.minecraft.launcher.ui.tabs.credits;
 
 import java.awt.BorderLayout;
+
 import javax.swing.*;
 
 import malgm.minecraft.launcher.Data;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.ui.TechUI;
-import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.ui.components.TiledBackground;
 
 public class CreditsInfoPanel extends TiledBackground {
 	
@@ -24,9 +25,9 @@ public class CreditsInfoPanel extends TiledBackground {
 		JLabel text = new JLabel("<html><center>"
 				+ "<h1>" + data.getMMLName() +" build "+ data.getMMLBuild() +"</h1>"
 				+ "<h3>Development team:</h3>"
-				+ "<p>Jamie Mansfield</p>"
-				+ "<p>Ethan Riley</p>"
-				+ "<p>Tom Drever</p>"
+				+ "<p>Jamie Mansfield (Programming)</p>"
+				+ "<p>Ethan Riley (Bug fixes)</p>"
+				+ "<p>Tom Drever (Programming)</p>"
 				+ "<h3>Special thanks to:</h3>"
 				+ "<p>The Technic Team without them I wouldn't have this design.</p>"
 				+ "<p>Github for having such a wonderful service.</p>"

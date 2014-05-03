@@ -21,7 +21,7 @@ import malgm.minecraft.launcher.Data;
 import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
-import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.ui.components.TiledBackground;
 import malgm.minecraft.launcher.util.Utils;
 
 public class ConsoleInfoPanel extends TiledBackground {

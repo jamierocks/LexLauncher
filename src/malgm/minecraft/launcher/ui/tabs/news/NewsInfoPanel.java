@@ -8,7 +8,7 @@ import javax.swing.event.*;
 import javax.swing.text.html.HTMLEditorKit;
 
 import malgm.minecraft.launcher.*;
-import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.ui.components.TiledBackground;
 
 public class NewsInfoPanel extends TiledBackground {
 	

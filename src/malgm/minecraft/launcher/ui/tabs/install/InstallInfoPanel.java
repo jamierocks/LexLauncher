@@ -12,8 +12,8 @@ import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.mc.Minecraft;
 import malgm.minecraft.launcher.reader.MVIDocumentReader;
-import malgm.minecraft.launcher.ui.controls.PopUp;
-import malgm.minecraft.launcher.ui.controls.TiledBackground;
+import malgm.minecraft.launcher.ui.components.PopUp;
+import malgm.minecraft.launcher.ui.components.TiledBackground;
 import malgm.minecraft.launcher.util.Installer;
 import malgm.minecraft.launcher.util.Utils;
 

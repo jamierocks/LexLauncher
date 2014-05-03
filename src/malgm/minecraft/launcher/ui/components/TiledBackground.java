@@ -1,4 +1,4 @@
-package malgm.minecraft.launcher.ui.controls;
+package malgm.minecraft.launcher.ui.components;
 
 import javax.swing.*;
 import java.awt.*;
