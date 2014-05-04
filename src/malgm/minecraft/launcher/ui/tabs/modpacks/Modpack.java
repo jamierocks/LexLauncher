@@ -20,7 +20,9 @@ public class Modpack extends JPanel {
 		JButton icon = new JButton(new ImageIcon(modpackicon));
 		icon.setBorder(BorderFactory.createEmptyBorder());
 		icon.setFocusable(false);
+		icon.setContentAreaFilled(false);
 		icon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		icon.setSize(60, 60);
 		icon.addActionListener(listener);
 		icon.setActionCommand(actionCommand);
 		
