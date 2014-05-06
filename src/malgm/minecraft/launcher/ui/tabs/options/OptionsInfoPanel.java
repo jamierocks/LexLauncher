@@ -8,7 +8,7 @@ import malgm.minecraft.launcher.Logger;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
 import malgm.minecraft.launcher.settings.SettingsFile;
-import malgm.minecraft.launcher.ui.TechUI;
+import malgm.minecraft.launcher.ui.*;
 import malgm.minecraft.launcher.ui.components.PopUp;
 import malgm.minecraft.launcher.ui.components.TiledBackground;
 import malgm.minecraft.launcher.util.Utils;
@@ -34,7 +34,7 @@ public class OptionsInfoPanel extends TiledBackground implements ActionListener 
 		
 		// install directory label
 		directory = new JLabel("Install directory...    ");
-		directory.setForeground(TechUI.COLOR_WHITE_TEXT);
+		directory.setForeground(IndigoUI.COLOR_WHITE_TEXT);
 		add(directory);
 		
 		// list for selecting between default and custom minecraft installations

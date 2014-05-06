@@ -1,17 +1,22 @@
 package malgm.minecraft.launcher.ui.components;
 
 import javax.swing.*;
+
+import malgm.minecraft.launcher.ui.IndigoUI;
+
 import java.awt.event.*;
 
-public class DraggableFrame extends JFrame implements MouseListener, MouseMotionListener {
+public class DraggablePanel extends JPanel implements MouseListener, MouseMotionListener {
 
 	private static final long serialVersionUID = 1L;
 	
 	private int dragGripX;
     private int dragGripY;
 
-    public DraggableFrame() {
-        setUndecorated(true);
+	private IndigoUI f;
+
+    public DraggablePanel(IndigoUI f) {
+    	this.f = f;
         addMouseListener(this);
         addMouseMotionListener(this);
     }
@@ -46,8 +51,10 @@ public class DraggableFrame extends JFrame implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
-            this.setLocation(e.getXOnScreen() - dragGripX, e.getYOnScreen() - dragGripY);
+        if(f.getNormalSize()) {
+        	if ((e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0) {
+                f.setLocation(e.getXOnScreen() - dragGripX, e.getYOnScreen() - dragGripY);
+            }
         }
     }
 

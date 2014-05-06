@@ -7,7 +7,7 @@ import javax.swing.*;
 import malgm.minecraft.launcher.Data;
 import malgm.minecraft.launcher.ResourceFinder;
 import malgm.minecraft.launcher.ResourceLoader;
-import malgm.minecraft.launcher.ui.TechUI;
+import malgm.minecraft.launcher.ui.IndigoUI;
 import malgm.minecraft.launcher.ui.components.TiledBackground;
 
 public class CreditsInfoPanel extends TiledBackground {
@@ -36,7 +36,7 @@ public class CreditsInfoPanel extends TiledBackground {
 				+ "<p>Kane Mansfield for ideas and inspiration</p>"
 				//+ "<p>sk89q for having an open-source launcher, anyone can look through.</p>"
 				+ "</center></html>");
-		text.setForeground(TechUI.COLOR_WHITE_TEXT);
+		text.setForeground(IndigoUI.COLOR_WHITE_TEXT);
 		
 		int i = 280;
 		

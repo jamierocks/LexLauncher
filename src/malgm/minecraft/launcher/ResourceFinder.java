@@ -18,6 +18,7 @@ public class ResourceFinder {
 	private final String remove = "remove_button.png";
 	private final String maximize = "maximize.png";
 	private final String shrink = "shrink.png";
+	private final String smallLogo = "smallLogo.png";
 	
 	public ResourceFinder() {
 		changeFolder("res/");
@@ -81,6 +82,10 @@ public class ResourceFinder {
 	
 	public String shrink() {
 		return getValue(shrink);
+	}
+	
+	public String smallLogo() {
+		return getValue(smallLogo);
 	}
 	
 	public String getResource(String value) {

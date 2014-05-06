@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import malgm.minecraft.launcher.ResourceLoader;
-import malgm.minecraft.launcher.ui.TechUI;
+import malgm.minecraft.launcher.ui.*;
 import malgm.minecraft.launcher.util.Utils;
 
 public class ModpackTab extends JPanel {
@@ -31,7 +31,7 @@ public class ModpackTab extends JPanel {
 		
 		// modpack name
 		JButton nameButton = new JButton(name);
-		nameButton.setForeground(TechUI.COLOR_WHITE_TEXT);
+		nameButton.setForeground(IndigoUI.COLOR_WHITE_TEXT);
 		nameButton.setFont(resLoader.getFont(ResourceLoader.FONT_OPENSANS, 18));
 		nameButton.setBorder(BorderFactory.createEmptyBorder());
 		nameButton.setContentAreaFilled(false);

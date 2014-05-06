@@ -3,20 +3,20 @@ package malgm.minecraft.launcher.ui.components;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-import malgm.minecraft.launcher.ui.TechUI;
+import malgm.minecraft.launcher.ui.IndigoUI;
 
 import java.awt.*;
 
 public class SimpleScrollBarUI extends BasicScrollBarUI {
     @Override
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-        g.setColor(TechUI.COLOR_SCROLL_TRACK);
+        g.setColor(IndigoUI.COLOR_SCROLL_TRACK);
         g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
     }
 
     @Override
     protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-        g.setColor(TechUI.COLOR_SCROLL_THUMB);
+        g.setColor(IndigoUI.COLOR_SCROLL_THUMB);
 
         int x = thumbBounds.x+1;
         int y = thumbBounds.y+1;
