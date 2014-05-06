@@ -11,10 +11,13 @@ public class ResourceFinder {
 	private final String background = "background.png";
 	private final String logo = "logo.png";
 	private final String downTriangle = "downTriangle.png";
+	private final String upTriangle = "upTriangle.png";
 	private final String optionsCog = "optionsCog.png";
-	private final String advertisement = "placeholder_ad.png";
+	private final String advertisement = "ad.png";
 	private final String add = "add_button.png";
 	private final String remove = "remove_button.png";
+	private final String maximize = "maximize.png";
+	private final String shrink = "shrink.png";
 	
 	public ResourceFinder() {
 		changeFolder("res/");
@@ -52,6 +55,10 @@ public class ResourceFinder {
 		return getValue(downTriangle);
 	}
 	
+	public String upTriangle() {
+		return getValue(upTriangle);
+	}
+	
 	public String optionsCog() {
 		return getValue(optionsCog);
 	}
@@ -66,6 +73,14 @@ public class ResourceFinder {
 	
 	public String remove() {
 		return getValue(remove);
+	}
+	
+	public String maximize() {
+		return getValue(maximize);
+	}
+	
+	public String shrink() {
+		return getValue(shrink);
 	}
 	
 	public String getResource(String value) {

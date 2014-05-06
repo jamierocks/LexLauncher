@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 public class ResourceLoader {
 	
 	public static final String FONT_RALEWAY = "Raleway-Light.ttf";
+	public static final String FONT_OPENSANS = "OpenSans-Regular.ttf";
 	
 	public BufferedImage getImage(String imageName) {
         try {

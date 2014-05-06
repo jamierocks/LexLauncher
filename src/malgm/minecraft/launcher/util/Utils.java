@@ -1,6 +1,7 @@
 package malgm.minecraft.launcher.util;
 
 import java.io.File;
+import java.io.FilenameFilter;
 
 public class Utils {
 	
@@ -35,6 +36,16 @@ public class Utils {
 	public void createDirectory(String dir) {
 		File file = new File(dir);
 		file.mkdirs();
+	}
+	
+	public static String[] getModpacks() {
+		File file = new File(getLauncherDirectory().toString()  + "/modpacks/");
+		return file.list(new FilenameFilter() {
+			@Override
+			  public boolean accept(File current, String name) {
+			    return new File(current, name).isDirectory();
+			  }
+		});
 	}
 	
 }

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lexLauncher</groupId>
   <artifactId>lexLauncher</artifactId>
-  <version>1.028</version>
+  <version>1029</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>

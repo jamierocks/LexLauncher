@@ -23,7 +23,7 @@ public class Launcher {
 			new File(Utils.getLauncherDirectory().toString(), "LauncherLog.txt").delete();
         }
 		
-		// check if resources directory exists and if not makes it
+		// check if resources directory exists and if not creates it
 		if(!new File(Utils.getLauncherDirectory().toString(), "resources").exists()) {
 			new File(Utils.getLauncherDirectory().toString(), "resources").mkdirs();
 		}
@@ -61,8 +61,7 @@ public class Launcher {
 		}
 		
 		// load launcher
-		TechUI frame = new TechUI(initMC(), new ResourceLoader(), new ResourceFinder());
-		frame.setLocationRelativeTo(null); 
+		IndigoUI frame = new IndigoUI(initMC(), new ResourceLoader(), new ResourceFinder());
 		frame.setVisible(true);
 		
 		// keeps splash open until frame opens 

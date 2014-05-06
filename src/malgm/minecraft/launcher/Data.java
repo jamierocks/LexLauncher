@@ -2,7 +2,7 @@ package malgm.minecraft.launcher;
 
 public class Data {
 	
-	private final int mmlbuild = 1028;
+	private final int mmlbuild = 1029;
 	private final String mmlname = "lexLauncher";
 	
 	private final String discoverPage = "http://lexware.github.io/discover.html";
@@ -32,6 +32,7 @@ public class Data {
 	}
 	
 	public String getWebsite() {
+		// website URL
 		return website;
 	}
 

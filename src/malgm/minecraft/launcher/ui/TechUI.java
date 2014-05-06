@@ -21,6 +21,7 @@ import malgm.minecraft.launcher.ui.tabs.modpacks.ModpacksSelector;
 import malgm.minecraft.launcher.ui.tabs.modslist.ModsListInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.news.NewsInfoPanel;
 import malgm.minecraft.launcher.ui.tabs.options.OptionsInfoPanel;
+import malgm.minecraft.launcher.util.Utils;
 
 public class TechUI extends DraggableFrame {
 	
@@ -87,6 +88,7 @@ public class TechUI extends DraggableFrame {
 	public TechUI(Minecraft mc, ResourceLoader resLoader, ResourceFinder resFinder) {
 		setTitle(data.getMMLName() + " build " + data.getMMLBuild());
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		setLocationRelativeTo(null); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.mc = mc;
@@ -98,6 +100,11 @@ public class TechUI extends DraggableFrame {
 		
 		// selects the welcome tab
 		selectTab(TAB_WELCOME);
+		
+		String[] i = Utils.getModpacks();
+		for(String x : i) {
+			Logger.log(x);
+		}
 	}
 	
 	protected void selectTab(String tabName) {
@@ -241,6 +248,15 @@ public class TechUI extends DraggableFrame {
         minimizeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         minimizeButton.setFocusable(false);
         windowGadgetPanel.add(minimizeButton);
+        
+        // maximize button
+        ImageIcon maximizeIcon = resLoader.getIcon(resFinder.maximize());
+        JButton maximizeButton = new JButton(maximizeIcon);
+        maximizeButton.setBorder(BorderFactory.createEmptyBorder());
+        maximizeButton.setContentAreaFilled(false);
+        maximizeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        maximizeButton.setFocusable(false);
+        windowGadgetPanel.add(maximizeButton);
         
         // close button
         ImageIcon closeIcon = resLoader.getIcon(resFinder.close());
