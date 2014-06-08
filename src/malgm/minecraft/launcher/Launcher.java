@@ -65,9 +65,11 @@ public class Launcher {
 		frame.setVisible(true);
 		
 		// keeps splash open until frame opens 
-		while(frame.isVisible()) {
+		int i = 1;
+		while(frame.isVisible() && i == 1) {
 			// close splash
 			splash.dispose();
+			i++;
 		}
 	}
 	
