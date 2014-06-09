@@ -1,9 +1,9 @@
 package malgm.minecraft.launcher;
 
 public class ResourceFinder {
-	
+
 	private String folder = "";
-	
+
 	private final String icon = "icon.png";
 	private final String icon_title = "icon_title.png";
 	private final String close = "close.png";
@@ -19,7 +19,7 @@ public class ResourceFinder {
 	private final String maximize = "maximize.png";
 	private final String shrink = "shrink.png";
 	private final String smallLogo = "smallLogo.png";
-	
+
 	public ResourceFinder() {
 		changeFolder("res/");
 	}
@@ -27,79 +27,75 @@ public class ResourceFinder {
 	public ResourceFinder(String folder) {
 		changeFolder(folder);
 	}
-	
+
 	public String icon() {
-		return getValue(icon);
+		return getResource(icon);
 	}
-	
+
 	public String icon_title() {
-		return getValue(icon_title);
+		return getResource(icon_title);
 	}
-	
+
 	public String close() {
-		return getValue(close);
+		return getResource(close);
 	}
-	
+
 	public String minimize() {
-		return getValue(minimize);
+		return getResource(minimize);
 	}
-	
+
 	public String background() {
-		return getValue(background);
+		return getResource(background);
 	}
-	
+
 	public String logo() {
-		return getValue(logo);
+		return getResource(logo);
 	}
-	
+
 	public String downTriangle() {
-		return getValue(downTriangle);
+		return getResource(downTriangle);
 	}
-	
+
 	public String upTriangle() {
-		return getValue(upTriangle);
+		return getResource(upTriangle);
 	}
-	
+
 	public String optionsCog() {
-		return getValue(optionsCog);
+		return getResource(optionsCog);
 	}
-	
+
 	public String advertisment() {
-		return getValue(advertisement);
+		return getResource(advertisement);
 	}
-	
+
 	public String add() {
-		return getValue(add);
+		return getResource(add);
 	}
-	
+
 	public String remove() {
-		return getValue(remove);
+		return getResource(remove);
 	}
-	
+
 	public String maximize() {
-		return getValue(maximize);
+		return getResource(maximize);
 	}
-	
+
 	public String shrink() {
-		return getValue(shrink);
+		return getResource(shrink);
 	}
-	
+
 	public String smallLogo() {
-		return getValue(smallLogo);
+		return getResource(smallLogo);
 	}
-	
+
 	public String getResource(String value) {
-		return getValue(value);
-	}
-	
-	private String getValue(String value) {
 		return folder + value;
 	}
-	
+
 	public String getFolder() {
 		return folder;
 	}
-	
+
 	public void changeFolder(String folder) {
 		this.folder = folder;
 	}
