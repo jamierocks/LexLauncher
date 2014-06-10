@@ -13,8 +13,8 @@ public class MatteUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public final static int FRAME_WIDTH = 1100;
-	public final static int FRAME_HEIGHT = 740;
+	public final static int FRAME_WIDTH = 1200;
+	public final static int FRAME_HEIGHT = 720;
 
 	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
 	public static final Color COLOR_SCROLL_TRACK = new Color(18, 18, 18);
@@ -51,7 +51,7 @@ public class MatteUI extends JFrame {
 		setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		this.getContentPane().setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 
 		//////////////////////////////////////
 		// Side bar

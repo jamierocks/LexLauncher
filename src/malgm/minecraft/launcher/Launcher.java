@@ -1,6 +1,10 @@
 package malgm.minecraft.launcher;
 
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.io.File;
+
 import javax.swing.*;
 
 import malgm.minecraft.launcher.mc.Minecraft;
@@ -14,6 +18,25 @@ public class Launcher {
 		SplashScreen splash = new SplashScreen(new ResourceLoader(), new ResourceFinder());
 		splash.setLocationRelativeTo(null);
 		splash.setVisible(true);
+
+		// System Tray stuff
+		if (!SystemTray.isSupported()) {
+
+		 	Logger.log("SystemTray is not supported");
+
+            final PopupMenu popup = new PopupMenu();
+	        final TrayIcon trayIcon = new TrayIcon(new ResourceLoader().getImage("res/trayIcon.png"));
+	        final SystemTray tray = SystemTray.getSystemTray();
+
+	        trayIcon.setPopupMenu(popup);
+
+	        try {
+	            tray.add(trayIcon);
+	        } catch (Exception e) {
+	            Logger.log("TrayIcon could not be added.");
+	        }
+
+		}
 
 		// Use system default proxy settings
 		if("a" == "a") {
