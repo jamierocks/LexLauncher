@@ -1,11 +1,13 @@
 package malgm.minecraft.launcher.ui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
 
-import malgm.minecraft.launcher.Data;
+import javax.swing.*;
 
-import java.awt.CardLayout;
+import malgm.minecraft.launcher.*;
+import malgm.minecraft.launcher.ui.components.HeaderTab;
+import malgm.minecraft.launcher.ui.components.TintablePanel;
 
 public class MatteUI extends JFrame {
 
@@ -14,34 +16,59 @@ public class MatteUI extends JFrame {
 	public final static int FRAME_WIDTH = 1100;
 	public final static int FRAME_HEIGHT = 740;
 
-	public MatteUI() {
+	public static final Color COLOR_LEX_GREEN = new Color(51, 204, 51);
+	public static final Color COLOR_SCROLL_TRACK = new Color(18, 18, 18);
+    public static final Color COLOR_SCROLL_THUMB = new Color(53, 53, 53);
+	public static final Color COLOR_WHITE_TEXT = new Color(208,208,208);
+    public static final Color COLOR_BLACK_TEXT = new Color(0,0,0);
+    public static final Color COLOR_CHARCOAL = new Color(31, 31, 31);
+    public static final Color COLOR_SELECTOR_BACK = new Color(22,26,29);
+    public static final Color COLOR_CENTRAL_BACK = new Color(25, 30, 34, 160);
+
+    public static final String TAB_DISCOVER = "discover";
+	public static final String TAB_MODPACKS = "modpacks";
+	public static final String TAB_NEWS = "news";
+
+	private TintablePanel leftPanel;
+
+	private HeaderTab discoverTab, modpacksTab, newsTab;
+
+	private ResourceLoader resLoader;
+	private ResourceFinder resFinder;
+
+	public MatteUI(ResourceLoader resLoader, ResourceFinder resFinder) {
+		this.resLoader = resLoader;
+		this.resFinder = resFinder;
+
 		setupGUI();
 	}
 
 	private void setupGUI() {
 		setTitle(Data.getMMLName() + " build " + Data.getMMLBuild());
+		setIconImage(resLoader.getImage(resFinder.icon()));
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		getContentPane().setLayout(null);
+		this.getContentPane().setLayout(new BorderLayout());
 
-		JPanel userPanel = new JPanel();
-		userPanel.setBounds(10, 11, 220, 220);
-		getContentPane().add(userPanel);
+		//////////////////////////////////////
+		// Side bar
+		//////////////////////////////////////
+		leftPanel = new TintablePanel();
+		leftPanel.setTintColor(COLOR_CENTRAL_BACK);
+        this.add(leftPanel, BorderLayout.LINE_START);
 
-		JPanel tabsPanel = new JPanel();
-		tabsPanel.setBounds(10, 242, 220, 220);
-		getContentPane().add(tabsPanel);
+        leftPanel.setLayout(new BorderLayout());
 
-		JPanel modpacksSelector = new JPanel();
-		modpacksSelector.setBounds(10, 473, 220, 256);
-		getContentPane().add(modpacksSelector);
+        JPanel menuPanel = new JPanel();
 
-		JPanel mainPanel = new JPanel();
-		mainPanel.setBounds(240, 11, 850, 718);
-		getContentPane().add(mainPanel);
-		mainPanel.setLayout(new CardLayout(0, 0));
+        // Discover tab
+        discoverTab = new HeaderTab("Discover", resLoader);
+        discoverTab.setActionCommand(TAB_DISCOVER);
+        menuPanel.add(discoverTab);
+
+        leftPanel.add(menuPanel, BorderLayout.CENTER);
 	}
 }

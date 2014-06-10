@@ -2,11 +2,11 @@ package malgm.minecraft.launcher;
 
 public class Data {
 
-	private static final int mmlbuild = 1029;
+	private static final int mmlbuild = 1031;
 	private static final String mmlname = "lexLauncher";
 
-	private final static String discoverPage = "http://lexware.github.io/discover.html";
-	private final static String newsPage = "http://lexware.github.io/news.html";
+	private final static String discoverPage = "http://lexware.github.io/lexLauncher/discover.html";
+	private final static String newsPage = "http://lexware.github.io/lexLauncher/news.html";
 
 	private final static String website = "http://lexware.github.io/";
 
@@ -32,7 +32,7 @@ public class Data {
 	}
 
 	public static String getWebsite() {
-		// website URL
+		// Lexware URL
 		return website;
 	}
 
