@@ -1,7 +1,7 @@
 /target
 src/malgm/minecraft/launcher/res/Thumbs.db
 .settings/org.eclipse.m2e.core.prefs
-bin/.gitignore
+bin/
 .settings/org.eclipse.jdt.core.prefs
 .classpath
 .project
