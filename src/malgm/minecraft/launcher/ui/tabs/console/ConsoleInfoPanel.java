@@ -26,21 +26,21 @@ import malgm.minecraft.launcher.ui.components.TiledBackground;
 import malgm.minecraft.launcher.util.Utils;
 
 public class ConsoleInfoPanel extends TiledBackground {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private static ResourceFinder resFinder = new ResourceFinder();
-	
+
 	private static PipedInputStream outPipe;
 	private static PrintWriter inWriter;
-	
+
 	private final JTextArea a;
-	
+
 	public ConsoleInfoPanel(ResourceLoader loader) {
 		super(loader.getImage(resFinder.background()));
-		
+
 		setLayout(new BorderLayout());
-		
+
 		try {
 	    	// 1. create the pipes
 		    PipedInputStream inPipe = new PipedInputStream();
@@ -48,25 +48,25 @@ public class ConsoleInfoPanel extends TiledBackground {
 
 		    // 2. set the System.in and System.out streams
 		    System.setIn(inPipe);
-	    	
+
 			System.setOut(new PrintStream(new PipedOutputStream(outPipe), true));
 			inWriter = new PrintWriter(new PipedOutputStream(inPipe), true);
 	    } catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		// this is the on-screen console
 		a = console(outPipe, inWriter);
 		a.setEditable(false);
 		a.setBackground(Color.BLACK);
 		a.setForeground(Color.WHITE);
 		a.setMargin(new Insets(10, 10, 10, 10));
-		
+
 		JScrollPane p = new JScrollPane(a);
 		p.getVerticalScrollBar().setUI(new SimpleScrollBarUI());
-		
+
 		add(p, BorderLayout.CENTER);
-		
+
 		JButton clear = new JButton("Clear");
 		clear.addActionListener(new ActionListener() {
 			@Override
@@ -74,7 +74,7 @@ public class ConsoleInfoPanel extends TiledBackground {
 				a.setText(null);
 			}
 		});
-		
+
 		JButton save = new JButton("Save log");
 		save.addActionListener(new ActionListener() {
 			@Override
@@ -88,18 +88,17 @@ public class ConsoleInfoPanel extends TiledBackground {
 				}
 			}
 		});
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(Color.TRANSLUCENT));
-		
+
 		panel.add(clear, BorderLayout.WEST);
 		panel.add(save, BorderLayout.EAST);
-		
+
 		add(panel, BorderLayout.SOUTH);
-		
+
 		// Prints launcher info to the console
-		Data data = new Data();
-		Logger.log(data.getMMLName() + " build " + data.getMMLBuild() + " Loading");
+		Logger.log(Data.getMMLName() + " build " + Data.getMMLBuild() + " Loading");
 		System.out.println();
 
 		// Prints system variables to the console
@@ -112,7 +111,7 @@ public class ConsoleInfoPanel extends TiledBackground {
 		Logger.log("System.getProperty('java.vendor.url') == " + System.getProperty("java.vendor.url"));
 		System.out.println();
 	}
-	
+
 	public static JTextArea console(final InputStream out, final PrintWriter in) {
 	    final JTextArea area = new JTextArea();
 
@@ -136,9 +135,9 @@ public class ConsoleInfoPanel extends TiledBackground {
 	            char c = e.getKeyChar();
 	            if (c == KeyEvent.VK_ENTER) {
 	                in.println(line);
-	                line.setLength(0); 
-	            } else if (c == KeyEvent.VK_BACK_SPACE) { 
-	                line.setLength(line.length() - 1); 
+	                line.setLength(0);
+	            } else if (c == KeyEvent.VK_BACK_SPACE) {
+	                line.setLength(line.length() - 1);
 	            } else if (!Character.isISOControl(c)) {
 	                line.append(e.getKeyChar());
 	            }
@@ -147,7 +146,7 @@ public class ConsoleInfoPanel extends TiledBackground {
 
 	    return area;
 	}
-	
+
 	public JTextArea getConsole() {
 		return a;
 	}
