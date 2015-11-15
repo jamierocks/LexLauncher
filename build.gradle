@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+
+    id 'eclipse'
+    id 'idea'
+
+    id 'com.github.hierynomus.license' version '0.11.0'
+    id 'com.github.johnrengelman.shadow' version '1.2.2'
+}
+
+defaultTasks 'clean', 'licenseFormat'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'uk.jamierocks'
+version = '1.0.0'
+description = "LexLauncher - More information coming soon..."
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:18.0'
+}
+
+jar {
+    classifier = 'base'
+
+    manifest {
+        attributes(
+                'Implementation-Title': project.name,
+                'Implementation-Version': version,
+                'Main-Class': 'uk.jamierocks.lexlauncher.Main'
+        )
+    }
+}
+
+shadowJar {
+    classifier = ''
+}
+
+artifacts {
+    archives shadowJar
+}
+
+license {
+    header file('HEADER.txt')
+    include '**/*.java'
+    include '**/*.groovy'
+
+    strictCheck true
+    mapping {
+        java = 'SLASHSTAR_STYLE'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
