@@ -28,13 +28,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import uk.jamierocks.lexlauncher.util.OperatingSystem;
+
+import java.io.File;
 
 /**
  * The application entry-point.
  *
  * @author Jamie Mansfield
  */
-public class Main extends Application {
+public final class Main extends Application {
+
+    public static Logger LOGGER = LogManager.getLogger("LexLauncher");
+    public static Logger MINECRAFT_LOGGER = LogManager.getLogger("Minecraft");
+
+    public static File DATA_DIRECTORY = new File(OperatingSystem.getOs().getDataDirectory());
+
+    static {
+        if (!DATA_DIRECTORY.exists()) {
+            DATA_DIRECTORY.mkdirs();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
