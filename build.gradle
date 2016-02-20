@@ -1,10 +1,10 @@
 plugins {
     id 'java'
 
-    id 'eclipse'
     id 'idea'
+    id 'eclipse'
 
-    id 'com.github.hierynomus.license' version '0.11.0'
+    id 'net.minecrell.licenser' version '0.1.1'
     id 'com.github.johnrengelman.shadow' version '1.2.2'
 }
 
@@ -18,12 +18,11 @@ version = '1.0.0'
 description = "LexLauncher - More information coming soon..."
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    compile 'com.google.guava:guava:18.0'
+    compile 'com.google.guava:guava:19.0'
 }
 
 jar {
@@ -49,14 +48,9 @@ artifacts {
 license {
     header file('HEADER.txt')
     include '**/*.java'
-    include '**/*.groovy'
-
-    strictCheck true
-    mapping {
-        java = 'SLASHSTAR_STYLE'
-    }
+    newLine = false
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.8'
+    gradleVersion = '2.11'
 }
