@@ -4,7 +4,7 @@ plugins {
     id 'idea'
     id 'eclipse'
 
-    id 'net.minecrell.licenser' version '0.1.1'
+    id 'net.minecrell.licenser' version '0.1.5'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 
@@ -56,5 +56,5 @@ license {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '2.13'
 }
