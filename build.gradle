@@ -6,6 +6,7 @@ plugins {
 
     id 'net.minecrell.licenser' version '0.1.5'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'ninja.miserable.blossom' version '1.0.1'
 }
 
 defaultTasks 'clean', 'licenseFormat'
@@ -24,6 +25,10 @@ repositories {
 dependencies {
     compile 'com.google.guava:guava:19.0'
     compile 'org.slf4j:slf4j-api:1.7.21'
+}
+
+blossom {
+    replaceToken '%version%', project.version, 'src/main/java/uk/jamierocks/lexlauncher/data/Constants.java'
 }
 
 jar {
