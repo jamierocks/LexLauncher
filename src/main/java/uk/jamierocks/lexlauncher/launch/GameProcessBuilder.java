@@ -24,9 +24,6 @@
 package uk.jamierocks.lexlauncher.launch;
 
 import com.google.common.collect.Lists;
-import net.minecraft.launchwrapper.AlphaVanillaTweaker;
-import net.minecraft.launchwrapper.IndevVanillaTweaker;
-import net.minecraft.launchwrapper.VanillaTweaker;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,16 +31,10 @@ import java.util.List;
 
 public final class GameProcessBuilder {
 
-    private VersionType versionType;
     private File gameDir;
     private File assetsDir;
     private String username;
     private String sessionId;
-
-    public GameProcessBuilder versionType(VersionType versionType) {
-        this.versionType = versionType;
-        return this;
-    }
 
     public GameProcessBuilder gameDir(File gameDir) {
         this.gameDir = gameDir;
@@ -74,21 +65,5 @@ public final class GameProcessBuilder {
         processBuilder.directory(this.gameDir);
 
         return processBuilder.start();
-    }
-
-    public enum VersionType {
-        INDEV(IndevVanillaTweaker.class),
-        ALPHA(AlphaVanillaTweaker.class),
-        VANILLA(VanillaTweaker.class);
-
-        private final Class tweakClass;
-
-        VersionType(Class tweakClass) {
-            this.tweakClass = tweakClass;
-        }
-
-        public Class getTweakClass() {
-            return this.tweakClass;
-        }
     }
 }
