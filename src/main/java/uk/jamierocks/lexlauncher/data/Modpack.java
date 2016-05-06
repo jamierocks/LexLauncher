@@ -32,8 +32,9 @@ import java.util.Optional;
  * <pre>
  *     {
  *         "name": "Example Pack",
- *         "safeName": "example-pack",
+ *         "id": "example-pack",
  *         "version": "1.0.0",
+ *         "channel": "RELEASE",
  *         "minecraft": {
  *             "version": "1.8.9",
  *             "json": "https://rawgit.com/MinecraftForge/MinecraftForge/master/jsons/1.8.9.json"
@@ -44,25 +45,27 @@ import java.util.Optional;
 public class Modpack {
 
     private String name;
-    private String safeName;
+    private String id;
     private String version;
+    private Channel channel;
+    private MinecraftOptions minecraft;
     private String mainClass;
     private String extraArguments;
-
-    public Modpack() {
-
-    }
 
     public String getName() {
         return this.name;
     }
 
-    public String getSafeName() {
-        return this.safeName;
+    public String getId() {
+        return this.id;
     }
 
     public String getVersion() {
         return this.version;
+    }
+
+    public MinecraftOptions getMinecraft() {
+        return this.minecraft;
     }
 
     public String getMainClass() {
@@ -91,5 +94,10 @@ public class Modpack {
                         this.version + "/" + this.version + ".json";
             }
         }
+    }
+
+    enum Channel {
+        RELEASE,
+        BETA
     }
 }
