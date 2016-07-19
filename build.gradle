@@ -24,11 +24,10 @@ repositories {
 
 dependencies {
     compile 'com.google.guava:guava:19.0'
-    compile 'org.slf4j:slf4j-api:1.7.21'
 }
 
 blossom {
-    replaceToken '%version%', project.version, 'src/main/java/uk/jamierocks/lexlauncher/data/Constants.java'
+    replaceToken '%version%', project.version, 'src/main/java/uk/jamierocks/lexlauncher/util/Constants.java'
 }
 
 jar {
@@ -54,7 +53,6 @@ artifacts {
 license {
     header file('HEADER.txt')
     include '**/*.java'
-    newLine = false
 }
 
 task wrapper(type: Wrapper) {

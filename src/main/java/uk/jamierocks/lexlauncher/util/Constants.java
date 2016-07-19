@@ -21,50 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package uk.jamierocks.lexlauncher.data;
 
-import java.util.List;
+package uk.jamierocks.lexlauncher.util;
 
 /**
- * Represents the modpack index.
- *
- * Example:
- * <pre>
- *     {
- *         "packs": [
- *             {
- *                 "id": "minecraft",
- *                 "name": "Minecraft",
- *                 "versions": [
- *                     {
- *                         "version": "1.8.9"
- *                         "channel: "RELEASE"
- *                     }
- *                 ]
- *             }
- *         ]
- *     }
- * </pre>
+ * The constants for LexLauncher.
  */
-public class ModpackIndex {
+public final class Constants {
 
-    private List<SimplePack> packs;
+    /**
+     * The version of LexLauncher.
+     */
+    public static final String VERSION = "%version%";
 
-    public List<SimplePack> getPacks() {
-        return this.packs;
-    }
-
-    public class SimplePack {
-
-        private String id;
-        private String name;
-
-        public String getId() {
-            return this.id;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-    }
 }

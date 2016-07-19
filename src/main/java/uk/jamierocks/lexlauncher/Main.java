@@ -21,47 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package uk.jamierocks.lexlauncher;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import uk.jamierocks.lexlauncher.util.OperatingSystem;
-
-import java.io.File;
-
 /**
- * The application entry-point.
+ * The entry point for LexLauncher.
  */
-public final class Main extends Application {
-
-    public static Logger LOGGER = LoggerFactory.getLogger("LexLauncher");
-    public static Logger MINECRAFT_LOGGER = LoggerFactory.getLogger("Minecraft");
-
-    public static File DATA_DIRECTORY = new File(OperatingSystem.getOs().getDataDirectory());
-
-    static {
-        if (!DATA_DIRECTORY.exists()) {
-            DATA_DIRECTORY.mkdirs();
-        }
-    }
+public final class Main {
 
     public static void main(String[] args) {
-        launch(args);
+
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = new FXMLLoader(ClassLoader.getSystemResource("main.fxml")).load();
-        Scene scene = new Scene(root);
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("LexLauncher");
-        primaryStage.setResizable(false);
-        primaryStage.show();
-    }
 }
