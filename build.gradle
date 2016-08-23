@@ -1,12 +1,11 @@
 plugins {
-    id 'java'
+    id 'groovy'
 
     id 'idea'
     id 'eclipse'
 
-    id 'net.minecrell.licenser' version '0.1.5'
+    id 'net.minecrell.licenser' version '0.2.1'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
-    id 'ninja.miserable.blossom' version '1.0.1'
 }
 
 defaultTasks 'clean', 'licenseFormat'
@@ -24,10 +23,6 @@ repositories {
 
 dependencies {
     compile 'com.google.guava:guava:19.0'
-}
-
-blossom {
-    replaceToken '%version%', project.version, 'src/main/java/uk/jamierocks/lexlauncher/util/Constants.java'
 }
 
 jar {
@@ -52,9 +47,8 @@ artifacts {
 
 license {
     header file('HEADER.txt')
-    include '**/*.java'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+    gradleVersion = '2.14.1'
 }

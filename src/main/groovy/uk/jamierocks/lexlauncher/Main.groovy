@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.lexlauncher;
+package uk.jamierocks.lexlauncher
 
 /**
- * The entry point for LexLauncher.
+ * The entry-point for LexLauncher.
  */
-public final class Main {
+class Main {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
     }
 
