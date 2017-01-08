@@ -24,26 +24,39 @@
 
 package uk.jamierocks.lexlauncher;
 
-import com.google.inject.Guice;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.eventbus.EventBus;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * The entry-point for LexLauncher.
- */
-public final class Main {
+public final class LexLauncher {
 
-    public static void main(String[] args) {
-        // Set the name of the Thread
-        Thread.currentThread().setName("LexLauncher Main Thread");
+    public static final Logger log = LoggerFactory.getLogger("LexLauncher");
+    private static LexLauncher $;
 
-        // Add shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            LexLauncher.log.info("LexLauncher is shutting down...");
-        }));
-
-        // Let's begin
-        final Injector injector = Guice.createInjector();
-        injector.getInstance(LexLauncher.class);
+    public static LexLauncher getLexLauncher() {
+        checkNotNull($, "LexLauncher has not yet been initialised!");
+        return $;
     }
 
+    private final EventBus eventBus = new EventBus();
+    private final Injector injector;
+
+    @Inject
+    protected LexLauncher(Injector injector) {
+        log.info("Starting LexLauncher 1.0.0...");
+
+        // Set the instance
+        $ = this;
+
+        // Initialise fields
+        this.injector = injector;
+    }
+
+    public EventBus getEventBus() {
+        return this.eventBus;
+    }
 }

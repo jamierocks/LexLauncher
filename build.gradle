@@ -18,10 +18,27 @@ version = '1.0.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'forge'
+        url = 'http://files.minecraftforge.net/maven'
+    }
 }
 
 dependencies {
+    // General
     compile 'com.google.guava:guava:19.0'
+    compile 'com.google.inject:guice:4.1.0'
+    compile 'net.minecraftforge:stateless4j:2.7'
+
+    // Configuration
+    compile 'ninja.leaping.configurate:configurate-core:3.2'
+    compile 'ninja.leaping.configurate:configurate-gson:3.2'
+
+    // Logging
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'org.apache.logging.log4j:log4j-api:2.7'
+    compile 'org.apache.logging.log4j:log4j-core:2.7'
+    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
 }
 
 jar {
