@@ -22,28 +22,45 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.lexlauncher.state;
+package uk.jamierocks.lexlauncher.ui;
 
 import uk.jamierocks.lexlauncher.LexLauncher;
-import uk.jamierocks.lexlauncher.ui.SplashScreen;
+import uk.jamierocks.lexlauncher.Main;
 
-public class LoadingState extends AbstractState {
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-    private SplashScreen splashScreen;
+import javax.imageio.ImageIO;
+import javax.swing.JWindow;
 
-    public LoadingState() {
-        this.splashScreen = LexLauncher.getLexLauncher().getInjector().getInstance(SplashScreen.class);
+public class SplashScreen extends JWindow {
+
+    private static BufferedImage splashImage;
+
+    static {
+        try {
+            splashImage = ImageIO.read(Main.class.getResourceAsStream("/image/SplashScreen.png"));
+        } catch (IOException e) {
+            LexLauncher.log.error("Failed to get splash image!", e);
+            splashImage = null;
+        }
+    }
+
+    public SplashScreen() {
+        this.setSize(splashImage.getWidth(), splashImage.getHeight());
+        this.setLocationRelativeTo(null);
+        this.setAlwaysOnTop(false);
     }
 
     @Override
-    public void onEntry() {
-        this.splashScreen.setVisible(true);
+    public void paint(Graphics g) {
+        g.drawImage(splashImage, 0, 0, this.getWidth(), this.getHeight(), null);
     }
 
-    @Override
-    public void onExit() {
-        this.splashScreen.close();
-        this.splashScreen = null;
+    public void close() {
+        this.setVisible(false);
+        this.dispose();
     }
 
 }

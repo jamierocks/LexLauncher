@@ -78,6 +78,10 @@ public final class LexLauncher {
         return this.eventBus;
     }
 
+    public Injector getInjector() {
+        return this.injector;
+    }
+
     public enum State {
 
         STARTING,
