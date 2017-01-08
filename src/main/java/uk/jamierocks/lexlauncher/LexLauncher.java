@@ -26,11 +26,14 @@ package uk.jamierocks.lexlauncher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.github.oxo42.stateless4j.StateMachine;
+import com.github.oxo42.stateless4j.StateMachineConfig;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.jamierocks.lexlauncher.state.LoadingState;
 
 public final class LexLauncher {
 
@@ -42,6 +45,7 @@ public final class LexLauncher {
         return $;
     }
 
+    private final StateMachine<State, Trigger> stateMachine;
     private final EventBus eventBus = new EventBus();
     private final Injector injector;
 
@@ -54,9 +58,39 @@ public final class LexLauncher {
 
         // Initialise fields
         this.injector = injector;
+
+        // Configure state machine
+        final StateMachineConfig<State, Trigger> stateMachineConfig = new StateMachineConfig<>();
+
+        stateMachineConfig.configure(State.STARTING)
+                .permit(Trigger.BEGIN, State.LOADING);
+
+        final LoadingState loadingState = this.injector.getInstance(LoadingState.class);
+        stateMachineConfig.configure(State.LOADING)
+                .onEntry(loadingState::onEntry)
+                .onExit(loadingState::onExit);
+
+        this.stateMachine = new StateMachine<>(State.STARTING, stateMachineConfig);
+        this.stateMachine.fire(Trigger.BEGIN);
     }
 
     public EventBus getEventBus() {
         return this.eventBus;
     }
+
+    public enum State {
+
+        STARTING,
+        LOADING,
+        ;
+
+    }
+
+    public enum Trigger {
+
+        BEGIN,
+        ;
+
+    }
+
 }

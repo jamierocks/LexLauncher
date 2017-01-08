@@ -22,34 +22,12 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.lexlauncher;
+package uk.jamierocks.lexlauncher.state;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import uk.jamierocks.lexlauncher.config.ConfigManager;
-import uk.jamierocks.lexlauncher.guice.LexLauncherModule;
-import uk.jamierocks.lexlauncher.util.OperatingSystem;
+public abstract class AbstractState {
 
-import java.nio.file.Paths;
+    public abstract void onEntry();
 
-/**
- * The entry-point for LexLauncher.
- */
-public final class Main {
-
-    public static void main(String[] args) {
-        // Set the name of the Thread
-        Thread.currentThread().setName("LexLauncher Main Thread");
-
-        // Add shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            LexLauncher.log.info("LexLauncher is shutting down...");
-        }));
-
-        // Let's begin
-        final ConfigManager configManager = new ConfigManager(Paths.get(OperatingSystem.getOs().getAppDataFolder(), "config.json"));
-        final Injector injector = Guice.createInjector(new LexLauncherModule(configManager));
-        injector.getInstance(LexLauncher.class);
-    }
+    public abstract void onExit();
 
 }

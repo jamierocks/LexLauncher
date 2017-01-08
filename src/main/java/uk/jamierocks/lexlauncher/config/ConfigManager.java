@@ -22,34 +22,43 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.lexlauncher;
+package uk.jamierocks.lexlauncher.config;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import uk.jamierocks.lexlauncher.config.ConfigManager;
-import uk.jamierocks.lexlauncher.guice.LexLauncherModule;
-import uk.jamierocks.lexlauncher.util.OperatingSystem;
+import ninja.leaping.configurate.ConfigurationNode;
+import ninja.leaping.configurate.gson.GsonConfigurationLoader;
+import uk.jamierocks.lexlauncher.LexLauncher;
 
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.Path;
 
-/**
- * The entry-point for LexLauncher.
- */
-public final class Main {
+public class ConfigManager {
 
-    public static void main(String[] args) {
-        // Set the name of the Thread
-        Thread.currentThread().setName("LexLauncher Main Thread");
+    private final GsonConfigurationLoader loader;
+    private ConfigurationNode configurationNode;
 
-        // Add shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            LexLauncher.log.info("LexLauncher is shutting down...");
-        }));
+    public ConfigManager(Path configPath) {
+        this.loader = GsonConfigurationLoader.builder()
+                .setPath(configPath)
+                .setIndent(4)
+                .build();
 
-        // Let's begin
-        final ConfigManager configManager = new ConfigManager(Paths.get(OperatingSystem.getOs().getAppDataFolder(), "config.json"));
-        final Injector injector = Guice.createInjector(new LexLauncherModule(configManager));
-        injector.getInstance(LexLauncher.class);
+        try {
+            this.configurationNode = this.loader.load();
+        } catch (IOException e) {
+            this.configurationNode = this.loader.createEmptyNode();
+        }
+    }
+
+    public ConfigurationNode getConfigurationNode() {
+        return this.configurationNode;
+    }
+
+    public void save() {
+        try {
+            this.loader.save(this.configurationNode);
+        } catch (IOException e) {
+            LexLauncher.log.error("Failed to save config!", e);
+        }
     }
 
 }
