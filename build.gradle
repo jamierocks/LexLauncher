@@ -1,11 +1,11 @@
 plugins {
-    id 'groovy'
+    id 'java'
 
     id 'idea'
     id 'eclipse'
 
-    id 'net.minecrell.licenser' version '0.2.1'
-    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'net.minecrell.licenser' version '0.3'
+    id 'com.github.johnrengelman.shadow' version '1.2.4'
 }
 
 defaultTasks 'clean', 'licenseFormat'
@@ -15,7 +15,6 @@ targetCompatibility = 1.8
 
 group = 'uk.jamierocks'
 version = '1.0.0-SNAPSHOT'
-description = "LexLauncher - More information coming soon..."
 
 repositories {
     mavenCentral()

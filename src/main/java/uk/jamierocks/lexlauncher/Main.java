@@ -1,7 +1,7 @@
 /*
  * This file is part of LexLauncher, licensed under the MIT License (MIT).
  *
- * Copyright (c) 2014-2016, Jamie Mansfield <https://github.com/jamierocks>
+ * Copyright (c) 2014-2017, Jamie Mansfield <https://github.com/jamierocks>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.lexlauncher
+package uk.jamierocks.lexlauncher;
 
 /**
  * The entry-point for LexLauncher.
  */
-class Main {
+public final class Main {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
 
     }
 
