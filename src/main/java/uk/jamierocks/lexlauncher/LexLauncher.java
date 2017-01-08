@@ -63,15 +63,29 @@ public final class LexLauncher {
         final StateMachineConfig<State, Trigger> stateMachineConfig = new StateMachineConfig<>();
 
         stateMachineConfig.configure(State.STARTING)
-                .permit(Trigger.BEGIN, State.LOADING);
+                .permit(Trigger.PROCEED, State.LOADING);
 
         final LoadingState loadingState = this.injector.getInstance(LoadingState.class);
         stateMachineConfig.configure(State.LOADING)
                 .onEntry(loadingState::onEntry)
-                .onExit(loadingState::onExit);
+                .onExit(loadingState::onExit)
+                .permit(Trigger.PROCEED, State.LOADED)
+                .permit(Trigger.CRASH, State.QUITING);
+
+        stateMachineConfig.configure(State.LOADED)
+                .permit(Trigger.CRASH, State.QUITING)
+                .permit(Trigger.QUIT, State.QUITING);
+
+        stateMachineConfig.configure(State.QUITING)
+                .onEntryFrom(Trigger.CRASH, () -> {
+                    log.warn("LexLauncher encountered a fatal crash! Exiting...");
+                })
+                .onEntry(() -> {
+                    System.exit(0);
+                });
 
         this.stateMachine = new StateMachine<>(State.STARTING, stateMachineConfig);
-        this.stateMachine.fire(Trigger.BEGIN);
+        this.stateMachine.fire(Trigger.PROCEED);
     }
 
     public EventBus getEventBus() {
@@ -86,13 +100,17 @@ public final class LexLauncher {
 
         STARTING,
         LOADING,
+        LOADED,
+        QUITING,
         ;
 
     }
 
     public enum Trigger {
 
-        BEGIN,
+        PROCEED,
+        CRASH,
+        QUIT,
         ;
 
     }

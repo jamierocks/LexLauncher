@@ -22,6 +22,10 @@ repositories {
         name = 'forge'
         url = 'http://files.minecraftforge.net/maven'
     }
+    maven {
+        name = 'mojang-libararies'
+        url = 'https://libraries.minecraft.net/'
+    }
 }
 
 dependencies {
@@ -39,6 +43,9 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-api:2.7'
     compile 'org.apache.logging.log4j:log4j-core:2.7'
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
+
+    // Authentication
+    compile 'com.mojang:authlib:1.5.22'
 }
 
 jar {

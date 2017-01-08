@@ -22,31 +22,27 @@
  * THE SOFTWARE.
  */
 
-package uk.jamierocks.lexlauncher.state;
+package uk.jamierocks.lexlauncher.util;
 
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import uk.jamierocks.lexlauncher.ui.SplashScreen;
+import uk.jamierocks.lexlauncher.LexLauncher;
 
-public class LoadingState extends AbstractState {
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-    private SplashScreen splashScreen;
+import javax.imageio.ImageIO;
 
-    @Inject
-    public LoadingState(Injector injector) {
-        this.splashScreen = injector.getInstance(SplashScreen.class);
-    }
+/**
+ * A utility class for working with images.
+ */
+public final class ImageUtils {
 
-    @Override
-    public void onEntry() {
-        // Enable splash screen
-        this.splashScreen.setVisible(true);
-    }
-
-    @Override
-    public void onExit() {
-        // Disable splash screen
-        this.splashScreen.close();
+    public static BufferedImage getImage(String image) {
+        try {
+            return ImageIO.read(LexLauncher.class.getResourceAsStream("/image/" + image));
+        } catch (IOException e) {
+            LexLauncher.log.error("Failed to read image!", e);
+            return null;
+        }
     }
 
 }

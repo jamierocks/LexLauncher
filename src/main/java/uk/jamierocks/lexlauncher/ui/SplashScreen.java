@@ -24,28 +24,16 @@
 
 package uk.jamierocks.lexlauncher.ui;
 
-import uk.jamierocks.lexlauncher.LexLauncher;
-import uk.jamierocks.lexlauncher.Main;
+import uk.jamierocks.lexlauncher.util.ImageUtils;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JWindow;
 
 public class SplashScreen extends JWindow {
 
-    private static BufferedImage splashImage;
-
-    static {
-        try {
-            splashImage = ImageIO.read(Main.class.getResourceAsStream("/image/SplashScreen.png"));
-        } catch (IOException e) {
-            LexLauncher.log.error("Failed to get splash image!", e);
-            splashImage = null;
-        }
-    }
+    private static BufferedImage splashImage = ImageUtils.getImage("SplashScreen.png");
 
     public SplashScreen() {
         this.setSize(splashImage.getWidth(), splashImage.getHeight());
